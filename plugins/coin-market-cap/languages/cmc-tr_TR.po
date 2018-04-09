@@ -1,0 +1,465 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Coin Market Cap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-13 07:38+0000\n"
+"PO-Revision-Date: 2018-03-13 08:48+0000\n"
+"Last-Translator: admin <baljit.cooltimeline@gmail.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: coin-market-cap.php:203
+msgctxt "Post Type General Name"
+msgid "Coin Market Cap"
+msgstr "Madeni Para Başlığı"
+
+#: coin-market-cap.php:204
+msgctxt "Post Type Singular Name"
+msgid "Coin Market Cap"
+msgstr "Madeni Para Başlığı"
+
+#. Name of the plugin
+#: coin-market-cap.php:205
+msgid "Coin Market Cap"
+msgstr "Madeni Para Başlığı"
+
+#: coin-market-cap.php:206 coin-market-cap.php:312
+msgid "Post Type"
+msgstr ""
+"Yazı tipi\n"
+
+#: coin-market-cap.php:207 coin-market-cap.php:313
+msgid "Item Archives"
+msgstr "Ürün Arşivleri"
+
+#: coin-market-cap.php:208 coin-market-cap.php:314
+msgid "Item Attributes"
+msgstr "Öğe Özellikleri"
+
+#: coin-market-cap.php:209 coin-market-cap.php:315
+msgid "Parent Item:"
+msgstr "Ebeveyn Öğesi:"
+
+#: coin-market-cap.php:210
+msgid "All Shortcodes"
+msgstr "Tüm kısa kodlar"
+
+#: coin-market-cap.php:211
+msgid "Add New Shortcode"
+msgstr "Yeni Kısa Kod Ekle"
+
+#: coin-market-cap.php:212 coin-market-cap.php:318
+msgid "Add New"
+msgstr "Yeni ekle"
+
+#: coin-market-cap.php:213 coin-market-cap.php:319
+msgid "New Item"
+msgstr ""
+"Yeni öğe\n"
+
+#: coin-market-cap.php:214 coin-market-cap.php:320
+msgid "Edit Item"
+msgstr ""
+"Ögeyi düzenle\n"
+
+#: coin-market-cap.php:215 coin-market-cap.php:321
+msgid "Update Item"
+msgstr "Öğeyi Güncelle"
+
+#: coin-market-cap.php:216 coin-market-cap.php:322
+msgid "View Item"
+msgstr ""
+"Ürünü incele\n"
+
+#: coin-market-cap.php:217 coin-market-cap.php:323
+msgid "View Items"
+msgstr "Ürünleri Görüntüle"
+
+#: coin-market-cap.php:218 coin-market-cap.php:324
+msgid "Search Item"
+msgstr "Öğe Ara"
+
+#: coin-market-cap.php:219 coin-market-cap.php:325
+msgid "Not found"
+msgstr "Bulunamadı"
+
+#: coin-market-cap.php:220 coin-market-cap.php:326
+msgid "Not found in Trash"
+msgstr "Çöp kutusunda bulunamadı"
+
+#: coin-market-cap.php:221 coin-market-cap.php:327
+msgid "Featured Image"
+msgstr "Özellikli resim"
+
+#: coin-market-cap.php:222 coin-market-cap.php:328
+msgid "Set featured image"
+msgstr "Öne çıkan resmi ayarla"
+
+#: coin-market-cap.php:223 coin-market-cap.php:329
+msgid "Remove featured image"
+msgstr "Öne çıkan görüntüyü kaldır"
+
+#: coin-market-cap.php:224 coin-market-cap.php:330
+msgid "Use as featured image"
+msgstr "Öne çıkan resim olarak kullan"
+
+#: coin-market-cap.php:225 coin-market-cap.php:331
+msgid "Insert into item"
+msgstr "Öğeye ekle"
+
+#: coin-market-cap.php:226 coin-market-cap.php:332
+msgid "Uploaded to this item"
+msgstr "Bu öğeye yüklendi"
+
+#: coin-market-cap.php:227 coin-market-cap.php:333
+msgid "Items list"
+msgstr "Öğe listesi"
+
+#: coin-market-cap.php:228 coin-market-cap.php:334
+msgid "Items list navigation"
+msgstr "Öğeler listesi gezinme"
+
+#: coin-market-cap.php:229 coin-market-cap.php:335
+msgid "Filter items list"
+msgstr "Öğeleri filtrele"
+
+#: coin-market-cap.php:232
+msgid "CryptoCurrency Price Widget"
+msgstr "CryptoCurrency Fiyat Widget'ları"
+
+#: coin-market-cap.php:233 coin-market-cap.php:339
+msgid "Post Type Description"
+msgstr "Gönderi Türü Açıklaması"
+
+#: coin-market-cap.php:276
+msgid "Shortcode"
+msgstr "Kısa kod"
+
+#: coin-market-cap.php:292
+msgid "COIN ID"
+msgstr "COIN ID"
+
+#: coin-market-cap.php:309
+msgctxt "Post Type General Name"
+msgid "Coin Description"
+msgstr "Para Açıklaması"
+
+#: coin-market-cap.php:310
+msgctxt "Post Type Singular Name"
+msgid "Coin Description"
+msgstr "Para Açıklaması"
+
+#: coin-market-cap.php:311 coin-market-cap.php:338
+#: includes/cmc-common-settings.php:215 includes/cmc-common-settings.php:230
+msgid "Coin Description"
+msgstr "Para Açıklaması"
+
+#: coin-market-cap.php:316
+msgid "All Descriptions"
+msgstr "Tüm Açıklamalar"
+
+#: coin-market-cap.php:317
+msgid "Add New Description"
+msgstr "Yeni Açıklama Ekle"
+
+#: coin-market-cap.php:424
+msgid "Hopefully you are Happy with our plugin"
+msgstr "Umarım eklentimiz ile mutlu olursunuz"
+
+#: coin-market-cap.php:436
+msgid "May I ask you to give it a 5-star rating on  "
+msgstr "Size 5 yıldızlı bir puan vermenizi isteyebilir miyim"
+
+#: coin-market-cap.php:436 coin-market-cap.php:438
+msgid "Codecanyon"
+msgstr "Codecanyon"
+
+#: coin-market-cap.php:437
+msgid ""
+"This will help to spread its popularity and to make this plugin a better one "
+"on  "
+msgstr ""
+"Bu, popülerliğini yaymaya ve bu eklentiyi daha iyi bir hale getirmeye "
+"yardımcı olacaktır."
+
+#: coin-market-cap.php:440
+msgid "View Demos"
+msgstr "Demoları Görüntüle"
+
+#: includes/cmc-common-settings.php:5
+msgid "Coin Details Settings"
+msgstr "Para Ayrıntıları Ayarları"
+
+#: includes/cmc-common-settings.php:11
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: includes/cmc-common-settings.php:24
+msgid "Select Currency"
+msgstr ""
+"Para birimini seçin\n"
+
+#: includes/cmc-common-settings.php:43
+msgid "Coins Per Page"
+msgstr "Sayfa Başına Paraları"
+
+#: includes/cmc-common-settings.php:55
+msgid "All"
+msgstr ""
+"Herşey\n"
+
+#: includes/cmc-common-settings.php:63
+msgid "Display Price? (Optional)"
+msgstr "Görüntü Fiyatı? (İsteğe bağlı)"
+
+#: includes/cmc-common-settings.php:64
+msgid "Select if you want to display Price?"
+msgstr "Fiyatı görüntülemek istiyorsanız seçin?"
+
+#: includes/cmc-common-settings.php:70 includes/cmc-common-settings.php:142
+msgid "Display Changes 1h? (Optional)"
+msgstr "Değişiklikleri Görüntüle 1h? (İsteğe bağlı)"
+
+#: includes/cmc-common-settings.php:71 includes/cmc-common-settings.php:146
+msgid "Select if you want to display 1hour % Changes ?"
+msgstr "1saat% Değişikliklerini görüntülemek istiyorsanız seçin"
+
+#: includes/cmc-common-settings.php:77 includes/cmc-common-settings.php:151
+msgid "Display Changes 24h? (Optional)"
+msgstr "Değişiklikler 24 saat görüntüleniyor mu? (İsteğe bağlı)"
+
+#: includes/cmc-common-settings.php:78 includes/cmc-common-settings.php:154
+msgid "Select if you want to display 24hour % Changes ?"
+msgstr "24 saat% Değişikliklerini görüntülemek istiyor musunuz?"
+
+#: includes/cmc-common-settings.php:85 includes/cmc-common-settings.php:161
+msgid "Display Changes 7d? (Optional)"
+msgstr "Değişiklikleri görüntüle 7d? (İsteğe bağlı)"
+
+#: includes/cmc-common-settings.php:86 includes/cmc-common-settings.php:164
+msgid "Select if you want to display 7days % Changes ?"
+msgstr "7gün% Değişiklikleri görüntülemek istiyorsanız seçin"
+
+#: includes/cmc-common-settings.php:93 includes/cmc-common-settings.php:169
+msgid "Display supply? (Optional)"
+msgstr "Ekran kaynağı? (İsteğe bağlı)"
+
+#: includes/cmc-common-settings.php:94 includes/cmc-common-settings.php:172
+msgid "Select if you want to display Currency Available Supply?"
+msgstr "Para Kullanılabilir Kaynağı görüntülemek istiyor musunuz?"
+
+#: includes/cmc-common-settings.php:102 includes/cmc-common-settings.php:177
+msgid " Volume 24h ? (Optional)"
+msgstr "24 saat mi? (İsteğe bağlı)"
+
+#: includes/cmc-common-settings.php:103 includes/cmc-common-settings.php:178
+msgid "Select if you want to display Currency Volume 24h ?"
+msgstr "Para Birimi Hacmini 24 saat görüntülemek istiyorsanız seçin?"
+
+#: includes/cmc-common-settings.php:111 includes/cmc-common-settings.php:185
+msgid "Display Market Cap? (Optional)"
+msgstr "Market Kapağını mı Gösterdiniz? (İsteğe bağlı)"
+
+#: includes/cmc-common-settings.php:112 includes/cmc-common-settings.php:186
+msgid "Select if you want to display Market Cap?"
+msgstr "Market Cap'i görüntülemek istiyor musunuz?"
+
+#: includes/cmc-common-settings.php:119
+msgid "Display Price chart 7days?"
+msgstr "Gösterge tablosu 7days?"
+
+#: includes/cmc-common-settings.php:120
+msgid "Select if you want to generate chart"
+msgstr "Grafik oluşturmak istiyorsanız seçin"
+
+#: includes/cmc-common-settings.php:128
+msgid "Enable Live Updates"
+msgstr "Canlı Güncellemeleri Etkinleştir"
+
+#: includes/cmc-common-settings.php:129
+msgid ""
+"Select if you want to display Live Changes ?</br>(only supports currency USD)"
+msgstr ""
+"Canlı Değişiklikleri görüntülemek istiyor musunuz seçin? </ br> (sadece para "
+"birimini destekler)"
+
+#: includes/cmc-common-settings.php:191
+msgid "Chart Color"
+msgstr "Grafik Rengi"
+
+#: includes/cmc-common-settings.php:198
+msgid "Facebok APP ID"
+msgstr "Facebook APP Kimliği"
+
+#: includes/cmc-common-settings.php:220
+msgid "Select Coin"
+msgstr "Para Seç"
+
+#: includes/cmc-shortcode.php:39
+msgid "Market Cap:"
+msgstr "Piyasa değeri:"
+
+#: includes/cmc-shortcode.php:44
+msgid "24h Vol:"
+msgstr "24s Cilt:"
+
+#: includes/cmc-shortcode.php:46
+msgid "BTC Dominance: "
+msgstr "BTC Hakimiyeti:"
+
+#: includes/cmc-shortcode.php:173
+msgid "search"
+msgstr "arama"
+
+#: includes/cmc-shortcode.php:195
+msgid "#"
+msgstr "#"
+
+#: includes/cmc-shortcode.php:196
+msgid "Name"
+msgstr "isim"
+
+#: includes/cmc-shortcode.php:199
+msgid "Price"
+msgstr "Fiyat"
+
+#: includes/cmc-shortcode.php:204 includes/cmc-shortcode.php:207
+#: includes/cmc-shortcode.php:210
+msgid "Changes "
+msgstr "değişiklikler"
+
+#: includes/cmc-shortcode.php:204
+msgid "1H "
+msgstr "1H"
+
+#: includes/cmc-shortcode.php:207 includes/cmc-shortcode.php:216
+msgid "24H"
+msgstr "24H"
+
+#: includes/cmc-shortcode.php:210
+msgid "7D"
+msgstr "7D"
+
+#: includes/cmc-shortcode.php:213 includes/cmc-single-shortcode.php:317
+msgid "Market Cap"
+msgstr "Piyasa değeri"
+
+#: includes/cmc-shortcode.php:216
+msgid "Volume "
+msgstr "hacim"
+
+#: includes/cmc-shortcode.php:219 includes/cmc-single-shortcode.php:324
+msgid "Available Supply"
+msgstr "Mevcut Tedarik"
+
+#: includes/cmc-shortcode.php:222
+msgid "Price Graph "
+msgstr "Fiyat Grafiği"
+
+#: includes/cmc-shortcode.php:318 includes/cmc-shortcode.php:327
+#: includes/cmc-shortcode.php:344 includes/cmc-shortcode.php:355
+#: includes/cmc-single-shortcode.php:250 includes/cmc-single-shortcode.php:259
+#: includes/cmc-single-shortcode.php:266
+msgid "up"
+msgstr "yukarı"
+
+#: includes/cmc-shortcode.php:330 includes/cmc-shortcode.php:347
+#: includes/cmc-shortcode.php:358 includes/cmc-single-shortcode.php:255
+#: includes/cmc-single-shortcode.php:262 includes/cmc-single-shortcode.php:269
+msgid "down"
+msgstr "aşağı"
+
+#: includes/cmc-single-shortcode.php:42
+msgid " Price"
+msgstr "Fiyat"
+
+#: includes/cmc-single-shortcode.php:42
+msgid " Market Cap"
+msgstr ""
+"Piyasa değeri\n"
+
+#: includes/cmc-single-shortcode.php:59
+msgid " Price & Market Cap Info"
+msgstr "Fiyat ve Market Bilgisi"
+
+#: includes/cmc-single-shortcode.php:186
+msgid "Currency Not Found"
+msgstr "Para Birimi Bulunamadı"
+
+#: includes/cmc-single-shortcode.php:189
+msgid "Something wrong with URL"
+msgstr "URL ile ilgili bir sorun var"
+
+#: includes/cmc-single-shortcode.php:275
+msgid "1h % "
+msgstr "1 saat boyunca%"
+
+#: includes/cmc-single-shortcode.php:281
+msgid "24h % "
+msgstr "% 24"
+
+#: includes/cmc-single-shortcode.php:286
+msgid "7d %"
+msgstr "% 7d"
+
+#: includes/cmc-single-shortcode.php:302
+#, php-format
+msgid ""
+"%s current price is %s with a marketcap of %s . Its price is %s in last 24 "
+"hours. "
+msgstr ""
+"% s şimdiki fiyat% s ve% s pazar payı var. Son 24 saat içinde fiyatı% s."
+
+#: includes/cmc-single-shortcode.php:313
+msgid "Price "
+msgstr "Fiyat"
+
+#: includes/cmc-single-shortcode.php:320
+msgid "Volume"
+msgstr "hacim"
+
+#: includes/cmc-single-shortcode.php:328
+msgid "Rank"
+msgstr "rütbe"
+
+#: includes/pagination.class.php:161 includes/pagination.class.php:165
+msgid "First"
+msgstr "İlk"
+
+#: includes/pagination.class.php:173 includes/pagination.class.php:176
+msgid "Prev"
+msgstr "Önceki"
+
+#: includes/pagination.class.php:195 includes/pagination.class.php:198
+msgid "Next"
+msgstr ""
+"Sonraki\n"
+
+#: includes/pagination.class.php:204 includes/pagination.class.php:207
+msgid "Last"
+msgstr "Son"
+
+#. Description of the plugin
+msgid ""
+"Create a website similar like CoinMarketCap.com using this <strong>Coin "
+"Market Cap & Crypto Prices</strong> WordPress plugin. This crypto plugin "
+"uses coinmarketcap.com api to grab live crypto prices, market cap, charts "
+"and other data related to cryptocurrency"
+msgstr ""
+"Bunu kullanarak CoinMarketCap.com gibi benzer bir web sitesi oluşturun "
+"<strong>Para Büfesi ve Kripto Fiyatları</strong>WordPress eklentisi. Bu "
+"kripto eklentisi, cryptocurrency ile ilgili canlı kripto fiyatları, market "
+"cap, grafikler ve diğer verileri kapmak için coinmarketcap.com api kullanır "
+
+#. Author of the plugin
+msgid "Cool Timeline Team"
+msgstr "Serin Zaman Çizelgesi Ekibi"
+
+#. Author URI of the plugin
+msgid "https://www.cooltimeline.com/"
+msgstr "https://www.cooltimeline.com/"

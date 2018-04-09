@@ -1,0 +1,37 @@
+/**!
+Theme Name: Coin School
+Theme URI: https://github.com/rhyun/coinschool
+Description: A theme to demonstrate simplest implementation of WPGulp Boilerplate.
+Version: 1.0.0
+Author: Richard Hyun
+Author URI: http://richardhyun.com
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+@import 'vendors/breakpoint/breakpoint';
+@import 'vendors/normalize/normalize';
+@import 'vendors/font-awesome/fontawesome';
+
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/helpers';
+@import 'base/media';
+@import 'base/typography';
+
+@import 'layout/footer';
+@import 'layout/header';
+@import 'layout/nav';
+@import 'layout/page';
+
+@import 'modules/mod-coin-tabs';
+
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/lists';
+@import 'components/tables';
+
+@import 'pages/single-coin';

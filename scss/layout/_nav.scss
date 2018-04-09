@@ -1,0 +1,114 @@
+body.nav-is-opened {
+  overflow: hidden;
+  transition: linear 0.3s;
+  &:before {
+    background-color: rgba(0, 0, 0, 0.85);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+/* Site Navigation
+------------------------------------------*/
+.site-nav {
+  background-color: $white;
+  height: 100%;
+  padding: 84px 0 20px;
+  position: fixed;
+  overflow-y: scroll;
+  right: 0;
+  top: 0;
+  width: 340px;
+  z-index: 100;
+  transform: translateX(340px);
+  transition: transform 0.3s;
+  &.site-nav--selected {
+    transform: translateX(0);
+  }
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+    transform: translateX(100%);
+  }
+  @include breakpoint($desktop) {
+    background-color: transparent;
+    overflow: visible;
+    padding: 0;
+    position: static; 
+    width: 100%;
+    transform: translateX(0);
+  }
+}
+/* Site Logo
+------------------------------------------*/
+.site-nav__logo {
+  display: none;
+  margin: 15px auto 0;
+  position: relative;
+  z-index: 101;
+  @include breakpoint($desktop) {
+    display: block;
+    float: left;
+  }
+  .home & {
+    display: none;
+  }
+}
+.site-nav__logo-link {
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  height: 32px;
+  margin: 0 auto;
+  text-indent: -9999px;
+  width: 95px;
+  @include breakpoint($tablet) {
+    height: 42px;
+    width: 125px;
+  }
+  @include breakpoint($desktop) {
+    height: 42px;
+    width: 125px;
+  }
+}
+
+/* Site Menu
+------------------------------------------*/
+.site-nav__menu {
+  @include breakpoint($desktop) {
+    display: flex;
+  }
+}
+.site-nav__item {
+
+ 
+}
+.site-nav__link {
+  color: $black;
+  display: block;
+  font-family: $montserrat-bold;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1;
+  padding: 12px 20px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  @include breakpoint($tablet) {
+    font-size: 20px;
+    letter-spacing: 4px;
+  }
+  @include breakpoint($desktop) {
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding: 30px 20px;
+    text-align: center;
+    white-space: nowrap;
+  }
+}

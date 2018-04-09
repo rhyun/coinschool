@@ -1,0 +1,469 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Coin Market Cap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-13 07:38+0000\n"
+"PO-Revision-Date: 2018-03-13 08:43+0000\n"
+"Last-Translator: admin <baljit.cooltimeline@gmail.com>\n"
+"Language-Team: Italian\n"
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: coin-market-cap.php:203
+msgctxt "Post Type General Name"
+msgid "Coin Market Cap"
+msgstr "Coin Market Cap"
+
+#: coin-market-cap.php:204
+msgctxt "Post Type Singular Name"
+msgid "Coin Market Cap"
+msgstr "Coin Market Cap"
+
+#. Name of the plugin
+#: coin-market-cap.php:205
+msgid "Coin Market Cap"
+msgstr "Coin Market Cap"
+
+#: coin-market-cap.php:206 coin-market-cap.php:312
+msgid "Post Type"
+msgstr "Post Type"
+
+#: coin-market-cap.php:207 coin-market-cap.php:313
+msgid "Item Archives"
+msgstr "Archivi degli articoli"
+
+#: coin-market-cap.php:208 coin-market-cap.php:314
+msgid "Item Attributes"
+msgstr "Attributi dell'articolo"
+
+#: coin-market-cap.php:209 coin-market-cap.php:315
+msgid "Parent Item:"
+msgstr "Articolo principale:"
+
+#: coin-market-cap.php:210
+msgid "All Shortcodes"
+msgstr "Tutti gli shortcode"
+
+#: coin-market-cap.php:211
+msgid "Add New Shortcode"
+msgstr "Aggiungi nuovo shortcode"
+
+#: coin-market-cap.php:212 coin-market-cap.php:318
+msgid "Add New"
+msgstr ""
+"Aggiungere nuova\n"
+
+#: coin-market-cap.php:213 coin-market-cap.php:319
+msgid "New Item"
+msgstr "Nuovo oggetto"
+
+#: coin-market-cap.php:214 coin-market-cap.php:320
+msgid "Edit Item"
+msgstr "Modifica elemento"
+
+#: coin-market-cap.php:215 coin-market-cap.php:321
+msgid "Update Item"
+msgstr "Aggiorna articolo"
+
+#: coin-market-cap.php:216 coin-market-cap.php:322
+msgid "View Item"
+msgstr "Visualizza l'oggetto"
+
+#: coin-market-cap.php:217 coin-market-cap.php:323
+msgid "View Items"
+msgstr "Visualizza articoli"
+
+#: coin-market-cap.php:218 coin-market-cap.php:324
+msgid "Search Item"
+msgstr "Cerca Oggetto"
+
+#: coin-market-cap.php:219 coin-market-cap.php:325
+msgid "Not found"
+msgstr "Non trovato"
+
+#: coin-market-cap.php:220 coin-market-cap.php:326
+msgid "Not found in Trash"
+msgstr "Non trovato nel cestino"
+
+#: coin-market-cap.php:221 coin-market-cap.php:327
+msgid "Featured Image"
+msgstr "Immagine in primo piano"
+
+#: coin-market-cap.php:222 coin-market-cap.php:328
+msgid "Set featured image"
+msgstr "Imposta l'immagine in primo piano"
+
+#: coin-market-cap.php:223 coin-market-cap.php:329
+msgid "Remove featured image"
+msgstr "Rimuovi l'immagine in primo piano"
+
+#: coin-market-cap.php:224 coin-market-cap.php:330
+msgid "Use as featured image"
+msgstr "Usa come immagine in primo piano"
+
+#: coin-market-cap.php:225 coin-market-cap.php:331
+msgid "Insert into item"
+msgstr "Inserisci nell'elemento"
+
+#: coin-market-cap.php:226 coin-market-cap.php:332
+msgid "Uploaded to this item"
+msgstr "Caricato su questo oggetto"
+
+#: coin-market-cap.php:227 coin-market-cap.php:333
+msgid "Items list"
+msgstr "Lista degli articoli"
+
+#: coin-market-cap.php:228 coin-market-cap.php:334
+msgid "Items list navigation"
+msgstr "Navigazione elenco articoli"
+
+#: coin-market-cap.php:229 coin-market-cap.php:335
+msgid "Filter items list"
+msgstr "Elenco dei filtri"
+
+#: coin-market-cap.php:232
+msgid "CryptoCurrency Price Widget"
+msgstr "CryptoCurrency Price Widget"
+
+#: coin-market-cap.php:233 coin-market-cap.php:339
+msgid "Post Type Description"
+msgstr "Descrizione del tipo di messaggio"
+
+#: coin-market-cap.php:276
+msgid "Shortcode"
+msgstr ""
+"Codice corto\n"
+
+#: coin-market-cap.php:292
+msgid "COIN ID"
+msgstr "ID COIN"
+
+#: coin-market-cap.php:309
+msgctxt "Post Type General Name"
+msgid "Coin Description"
+msgstr "Descrizione della moneta"
+
+#: coin-market-cap.php:310
+msgctxt "Post Type Singular Name"
+msgid "Coin Description"
+msgstr "Descrizione della moneta"
+
+#: coin-market-cap.php:311 coin-market-cap.php:338
+#: includes/cmc-common-settings.php:215 includes/cmc-common-settings.php:230
+msgid "Coin Description"
+msgstr "Descrizione della moneta"
+
+#: coin-market-cap.php:316
+msgid "All Descriptions"
+msgstr "Tutte le descrizioni"
+
+#: coin-market-cap.php:317
+msgid "Add New Description"
+msgstr "Aggiungi nuova descrizione"
+
+#: coin-market-cap.php:424
+msgid "Hopefully you are Happy with our plugin"
+msgstr "Spero che tu sia felice con il nostro plugin"
+
+#: coin-market-cap.php:436
+msgid "May I ask you to give it a 5-star rating on  "
+msgstr "Posso chiederti di dargli una valutazione a 5 stelle"
+
+#: coin-market-cap.php:436 coin-market-cap.php:438
+msgid "Codecanyon"
+msgstr "CodeCanyon"
+
+#: coin-market-cap.php:437
+msgid ""
+"This will help to spread its popularity and to make this plugin a better one "
+"on  "
+msgstr ""
+"Ciò contribuirà a diffondere la sua popolarità e a rendere questo plugin "
+"migliore"
+
+#: coin-market-cap.php:440
+msgid "View Demos"
+msgstr "Visualizza demo"
+
+#: includes/cmc-common-settings.php:5
+msgid "Coin Details Settings"
+msgstr "Impostazioni dettagli monete"
+
+#: includes/cmc-common-settings.php:11
+msgid "Settings"
+msgstr "impostazioni"
+
+#: includes/cmc-common-settings.php:24
+msgid "Select Currency"
+msgstr ""
+"Seleziona la valuta\n"
+
+#: includes/cmc-common-settings.php:43
+msgid "Coins Per Page"
+msgstr "Monete per pagina"
+
+#: includes/cmc-common-settings.php:55
+msgid "All"
+msgstr ""
+"Tutti\n"
+
+#: includes/cmc-common-settings.php:63
+msgid "Display Price? (Optional)"
+msgstr "Visualizza il prezzo? (Opzionale)"
+
+#: includes/cmc-common-settings.php:64
+msgid "Select if you want to display Price?"
+msgstr "Seleziona se vuoi visualizzare il prezzo?"
+
+#: includes/cmc-common-settings.php:70 includes/cmc-common-settings.php:142
+msgid "Display Changes 1h? (Optional)"
+msgstr "Visualizza le modifiche 1 ora? (Opzionale)"
+
+#: includes/cmc-common-settings.php:71 includes/cmc-common-settings.php:146
+msgid "Select if you want to display 1hour % Changes ?"
+msgstr "Selezionare se si desidera visualizzare 1 ora% di modifiche?"
+
+#: includes/cmc-common-settings.php:77 includes/cmc-common-settings.php:151
+msgid "Display Changes 24h? (Optional)"
+msgstr "Visualizza le modifiche 24 ore? (Opzionale)"
+
+#: includes/cmc-common-settings.php:78 includes/cmc-common-settings.php:154
+msgid "Select if you want to display 24hour % Changes ?"
+msgstr "Seleziona se vuoi visualizzare le 24 ore di modifiche?"
+
+#: includes/cmc-common-settings.php:85 includes/cmc-common-settings.php:161
+msgid "Display Changes 7d? (Optional)"
+msgstr "Visualizza le modifiche 7d? (Opzionale)"
+
+#: includes/cmc-common-settings.php:86 includes/cmc-common-settings.php:164
+msgid "Select if you want to display 7days % Changes ?"
+msgstr "Selezionare se si desidera visualizzare le modifiche di 7 giorni%?"
+
+#: includes/cmc-common-settings.php:93 includes/cmc-common-settings.php:169
+msgid "Display supply? (Optional)"
+msgstr "Visualizzare la fornitura? (Opzionale)"
+
+#: includes/cmc-common-settings.php:94 includes/cmc-common-settings.php:172
+msgid "Select if you want to display Currency Available Supply?"
+msgstr ""
+"Selezionare se si desidera visualizzare la disponibilità di valuta "
+"disponibile?"
+
+#: includes/cmc-common-settings.php:102 includes/cmc-common-settings.php:177
+msgid " Volume 24h ? (Optional)"
+msgstr "Volume 24 ore? (Opzionale)"
+
+#: includes/cmc-common-settings.php:103 includes/cmc-common-settings.php:178
+msgid "Select if you want to display Currency Volume 24h ?"
+msgstr "Selezionare se si desidera visualizzare il volume della valuta 24h?"
+
+#: includes/cmc-common-settings.php:111 includes/cmc-common-settings.php:185
+msgid "Display Market Cap? (Optional)"
+msgstr "Visualizza Market Cap? (Opzionale)"
+
+#: includes/cmc-common-settings.php:112 includes/cmc-common-settings.php:186
+msgid "Select if you want to display Market Cap?"
+msgstr "Seleziona se vuoi visualizzare Market Cap?"
+
+#: includes/cmc-common-settings.php:119
+msgid "Display Price chart 7days?"
+msgstr "Visualizza la tabella dei prezzi 7 giorni?"
+
+#: includes/cmc-common-settings.php:120
+msgid "Select if you want to generate chart"
+msgstr "Seleziona se vuoi generare un grafico"
+
+#: includes/cmc-common-settings.php:128
+msgid "Enable Live Updates"
+msgstr "Abilita aggiornamenti live"
+
+#: includes/cmc-common-settings.php:129
+msgid ""
+"Select if you want to display Live Changes ?</br>(only supports currency USD)"
+msgstr ""
+"Seleziona se vuoi visualizzare le modifiche in tempo reale? </ br> (supporta "
+"solo la valuta USD)"
+
+#: includes/cmc-common-settings.php:191
+msgid "Chart Color"
+msgstr "Colore grafico"
+
+#: includes/cmc-common-settings.php:198
+msgid "Facebok APP ID"
+msgstr "ID APP di Facebook"
+
+#: includes/cmc-common-settings.php:220
+msgid "Select Coin"
+msgstr "Seleziona Coin"
+
+#: includes/cmc-shortcode.php:39
+msgid "Market Cap:"
+msgstr "Market Cap:"
+
+#: includes/cmc-shortcode.php:44
+msgid "24h Vol:"
+msgstr "24 ore su 24:"
+
+#: includes/cmc-shortcode.php:46
+msgid "BTC Dominance: "
+msgstr "Dominanza BTC:"
+
+#: includes/cmc-shortcode.php:173
+msgid "search"
+msgstr "ricerca"
+
+#: includes/cmc-shortcode.php:195
+msgid "#"
+msgstr "#"
+
+#: includes/cmc-shortcode.php:196
+msgid "Name"
+msgstr "Nome"
+
+#: includes/cmc-shortcode.php:199
+msgid "Price"
+msgstr "Prezzo"
+
+#: includes/cmc-shortcode.php:204 includes/cmc-shortcode.php:207
+#: includes/cmc-shortcode.php:210
+msgid "Changes "
+msgstr ""
+"I cambiamenti\n"
+
+#: includes/cmc-shortcode.php:204
+msgid "1H "
+msgstr "1H"
+
+#: includes/cmc-shortcode.php:207 includes/cmc-shortcode.php:216
+msgid "24H"
+msgstr "24H"
+
+#: includes/cmc-shortcode.php:210
+msgid "7D"
+msgstr "7D"
+
+#: includes/cmc-shortcode.php:213 includes/cmc-single-shortcode.php:317
+msgid "Market Cap"
+msgstr "Market Cap"
+
+#: includes/cmc-shortcode.php:216
+msgid "Volume "
+msgstr "Volume"
+
+#: includes/cmc-shortcode.php:219 includes/cmc-single-shortcode.php:324
+msgid "Available Supply"
+msgstr "Fornitura disponibile"
+
+#: includes/cmc-shortcode.php:222
+msgid "Price Graph "
+msgstr "Grafico dei prezzi"
+
+#: includes/cmc-shortcode.php:318 includes/cmc-shortcode.php:327
+#: includes/cmc-shortcode.php:344 includes/cmc-shortcode.php:355
+#: includes/cmc-single-shortcode.php:250 includes/cmc-single-shortcode.php:259
+#: includes/cmc-single-shortcode.php:266
+msgid "up"
+msgstr ""
+"su\n"
+
+#: includes/cmc-shortcode.php:330 includes/cmc-shortcode.php:347
+#: includes/cmc-shortcode.php:358 includes/cmc-single-shortcode.php:255
+#: includes/cmc-single-shortcode.php:262 includes/cmc-single-shortcode.php:269
+msgid "down"
+msgstr "giù"
+
+#: includes/cmc-single-shortcode.php:42
+msgid " Price"
+msgstr "Prezzo"
+
+#: includes/cmc-single-shortcode.php:42
+msgid " Market Cap"
+msgstr "Market Cap"
+
+#: includes/cmc-single-shortcode.php:59
+msgid " Price & Market Cap Info"
+msgstr "Prezzo e informazioni sul mercato"
+
+#: includes/cmc-single-shortcode.php:186
+msgid "Currency Not Found"
+msgstr "Valuta non trovata"
+
+#: includes/cmc-single-shortcode.php:189
+msgid "Something wrong with URL"
+msgstr "Qualcosa non va con l'URL"
+
+#: includes/cmc-single-shortcode.php:275
+msgid "1h % "
+msgstr "1h%"
+
+#: includes/cmc-single-shortcode.php:281
+msgid "24h % "
+msgstr "24 ore"
+
+#: includes/cmc-single-shortcode.php:286
+msgid "7d %"
+msgstr "7d%"
+
+#: includes/cmc-single-shortcode.php:302
+#, php-format
+msgid ""
+"%s current price is %s with a marketcap of %s . Its price is %s in last 24 "
+"hours. "
+msgstr ""
+"Il prezzo corrente di% s è% s con una capitalizzazione di mercato di% s. Il "
+"suo prezzo è% s nelle ultime 24 ore."
+
+#: includes/cmc-single-shortcode.php:313
+msgid "Price "
+msgstr "Prezzo"
+
+#: includes/cmc-single-shortcode.php:320
+msgid "Volume"
+msgstr "Volume"
+
+#: includes/cmc-single-shortcode.php:328
+msgid "Rank"
+msgstr "Rango"
+
+#: includes/pagination.class.php:161 includes/pagination.class.php:165
+msgid "First"
+msgstr ""
+"Primo\n"
+
+#: includes/pagination.class.php:173 includes/pagination.class.php:176
+msgid "Prev"
+msgstr "prev"
+
+#: includes/pagination.class.php:195 includes/pagination.class.php:198
+msgid "Next"
+msgstr "Il prossimo"
+
+#: includes/pagination.class.php:204 includes/pagination.class.php:207
+msgid "Last"
+msgstr ""
+"Ultimo\n"
+
+#. Description of the plugin
+msgid ""
+"Create a website similar like CoinMarketCap.com using this <strong>Coin "
+"Market Cap & Crypto Prices</strong> WordPress plugin. This crypto plugin "
+"uses coinmarketcap.com api to grab live crypto prices, market cap, charts "
+"and other data related to cryptocurrency"
+msgstr ""
+"Crea un sito simile a CoinMarketCap.com usando questo <strong>Prezzi del "
+"mercato delle monete e cripto</strong> Plugin per WordPress Questo plugin "
+"crittografico utilizza l'API di coinmarketcap.com per afferrare prezzi "
+"criptati, capitalizzazione di mercato, grafici e altri dati relativi alla "
+"criptovaluta"
+
+#. Author of the plugin
+msgid "Cool Timeline Team"
+msgstr "Cool Timeline Team"
+
+#. Author URI of the plugin
+msgid "https://www.cooltimeline.com/"
+msgstr "https://www.cooltimeline.com/"

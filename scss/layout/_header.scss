@@ -1,0 +1,134 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+.site-header {
+  background-color: $white;
+  border-bottom: 2px solid #eff1f6;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100; 
+  @include breakpoint($tablet) {
+    padding: 15px 20px 20px;
+  }
+  @include breakpoint($desktop) {
+    padding: 0;
+    position: relative;
+    transition: all 0.3s;
+    .home & {
+      opacity: 1;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &__container {
+    margin: 0 auto;
+    max-width: $max-width;
+    padding: 0;
+    @include breakpoint($tablet) {
+      @include clearfix;
+    }
+    .nav-is-opened & {
+      height: 100%;
+    }
+  }
+}
+
+/* Site Logo
+------------------------------------------*/
+.site-logo-mobile {
+  margin: 0 auto;
+  position: relative;
+  z-index: 101;
+  transition: all 0.3s linear;
+  @include breakpoint($desktop) {
+    display: none;
+  }
+  .nav-is-opened & {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
+.site-logo-mobile__link {
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  height: 32px;
+  margin: 0 auto;
+  text-indent: -9999px;
+  width: 95px;
+  @include breakpoint($tablet) {
+    height: 42px;
+    width: 125px;
+  }
+  @include breakpoint($desktop) {
+    height: 42px;
+    width: 125px;
+  }
+}
+
+.site-header-banner {
+  display: none;
+  @include breakpoint($desktop) {
+    display: block;
+  }
+}
+
+.site-header-banner__date {
+  color: $white;
+  display: block;
+  font-family: $bebas;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 2px;
+  text-align: center;
+  @include breakpoint($tablet) {
+    font-size: 18px;
+  }
+  @include breakpoint($desktop) {
+    font-size: 22px;
+  }
+}
+
+/* WP Admin Bar
+------------------------------------------*/
+/* Fix for Wordpress Admin Bar */
+.admin-bar {
+  .site-header {
+    top: 46px;
+    @media only screen and (min-width: 783px) {
+      top: 32px;
+    }
+    @include breakpoint($desktop) {
+      top: auto;
+    }
+  }
+  .site-nav {
+    top: 46px;
+    @media only screen and (min-width: 783px) {
+      top: 32px;
+    }
+    @include breakpoint($desktop) {
+      top: auto;
+    }
+  }
+  #wpadminbar {
+    position: fixed;
+    @include breakpoint($tablet) {
+      .nav-is-scrolled & {
+        display: none;
+      }
+    }
+    @include breakpoint($desktop) {
+      display: block;
+    }
+  }
+}
+.sp-header-scoreboard {
+  display: none;
+  @include breakpoint($desktop) {
+    display: block;
+  }
+}
