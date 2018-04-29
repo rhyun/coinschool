@@ -4,21 +4,14 @@
  */
   get_header();
   if ( have_posts() ) : while ( have_posts() ) : the_post();
-
   //retrieve data from api
 	$coin_data 			= cmc_coin_extra_data_api($coin_id);
 
-
-
-
-	// $get_coin_array = cmc_currencies_details();
-
-	// var_dump($get_coin_array[$coin_id]);
-
   $coin_icon	 		= coin_logo_html($coin_id,128);
-  $coin_symbol 		= $coin_id;
+  $coin_ticker 		= $coin_id;
 
-  $currency_icon 	= cmc_old_cur_symbol($old_currency);
+  $coin_price = do_shortcode('[coin-market-cap-price]');
+  $coin_info = do_shortcode('[coin-market-cap-info]');
 
   $cmc_description 	= $coin_data->description;
   $coin_description = do_shortcode('[coin-market-cap-description]');
@@ -33,91 +26,107 @@
 	$whitepaper 		= isset($coin_data->whitepaper)?$coin_data->whitepaper:"#";
 	$youtube 				= isset($coin_data->youtube)?$coin_data->youtube:"#";
 
+	//$all_coins = cmc_coins_arr($old_currency);
 ?>
-
 <div <?php post_class('coin'); ?>>
 	<main class="coin-main" role="main">
-		<header class="coin-main-header">
-			<div class="coin-main-header__title">
-				<div class="coin-main-header__title-image"><?php echo $coin_icon; ?></div>
-				<h1 class="coin-main-header__title-hdr"><?php echo $coin_name; ?></h1>
-				<span class="coin-main-header__title-ticker"><?php echo $coin_symbol; ?></span>
-			</div>
-			
-			<div class="coin-main-header__price">
-				<h2 class="coin-main-header__price-fiat"><span class="currency-symbol"><?php echo $currency_icon ?></span> <?php echo $single_default_currency; ?></h2>
-				<!-- <span class="coin-main-header__price-pairing"><?php echo $price_btc; ?> <span class="paring-ticker">btc</span></span> -->
-			</div>
+		<header class="coin-header">
+			<div class="coin-header__title">
+				<div class="coin-header__title-ticker"><?php echo $coin_ticker; ?></div>
 
-			<div class="coin-main-header__cats">
+				<div class="coin-header__title-icon"><?php echo $coin_icon; ?></div>
+
+				<div class="coin-header__title-hdr">
+					<h1 class="coin-header__title-hdr-name"><?php echo $coin_name; ?></h1>
+
+					<ul class="coin-header__title-hdr-social">
+						<?php if( $facebook ): ?>
+				    <li class="coin-header__title-hdr-social__item">
+				      <a class="coin-header__title-hdr-social__item-link" href="<?php echo $facebook; ?>" title="Facebook" target="_blank"><span class="icon fab fa-facebook-f"></span></a>
+				    </li>
+				    <?php endif; ?>
+				    <?php if( $twitter ): ?>
+				    <li class="coin-header__title-hdr-social__item">
+				      <a class="coin-header__title-hdr-social__item-link" href="<?php echo $twitter; ?>" title="Twitter" target="_blank"><span class="icon fab fa-twitter"></span></a>
+				    </li>
+				    <?php endif; ?>
+				    <?php if( $youtube ): ?>
+				    <li class="coin-header__title-hdr-social__item">
+				      <a class="coin-header__title-hdr-social__item-link" href="<?php echo $youtube; ?>" title="Youtube" target="_blank"><span class="icon fab fa-youtube"></span></a>
+				    </li>
+				    <?php endif; ?>
+				    <li class="coin-header__title-hdr-social__item">
+				      <a class="coin-header__title-hdr-social__item-link" href="#" title="Share" target="_blank"><span class="icon fas fa-share"></span></a>
+				    </li>
+					</ul><!-- /.coin-header__title-hdr-social -->
+				</div><!-- /.coin-header__title -->
+			</div><!-- /.coin-header-->
+
+			<div class="coin-header__price">
+				<?php echo $coin_price; ?>
 			</div>
-		</header><!-- /.coin-main-header -->
+		</header><!-- /.coin-header -->
 
-		<div class="coin-main-description">
-			<h3 class="coin-main-description__hdr"><span>Short Description</span></h3>
-			<p class="coin-main-description__excerpt"><?php if($coin_description !== '') { echo do_shortcode('[coin-market-cap-description]'); } else { echo $cmc_description; } ?></p>
-			
-			<div class="coin-main-description__cta">
-				<a class="coin-main-description__cta-read btn" href="#" title="Read More"><span>Read More</span></a>
-				<a class="coin-main-description__cta-video btn-text" href="#" title="Watch Video"><span class="icon fas fa-play-circle"></span> <span>Watch Video</span></a>
-			</div>
-		</div><!-- /.coin-main-description -->
+		<section class="coin-content">
+			<div class="coin-content__info">
+				<?php echo $coin_info; ?>
+			</div> 
 
-		<aside class="coin-main-aside">
-			<ul class="coin-main-aside__stats">
-				<li class="coin-main-aside__stats-item coin-main-aside__stats-item--rank">
-					<ul class="coin-main-aside__stats-item__sub">
-						<li class="coin-main-aside__stats-item__sub-item">Market Cap <span>Rank</span></li> 
-						<li class="coin-main-aside__stats-item__sub-item">2</li>
-					</ul>
-				</li>
-				<li class="coin-main-aside__stats-item coin-main-aside__stats-item--cap">
-					<ul class="coin-main-aside__stats-item__sub">
-						<li class="coin-main-aside__stats-item__sub-item">Market Cap</li> 
-						<li class="coin-main-aside__stats-item__sub-item"><span class="currency-symbol">$</span> <?php echo $market_cap; ?></li>
-					</ul>
-				</li>
-				<li class="coin-main-aside__stats-item coin-main-aside__stats-item--supply">
-					<ul class="coin-main-aside__stats-item__sub">
-						<li class="coin-main-aside__stats-item__sub-item">Supply</li> 
-						<li class="coin-main-aside__stats-item__sub-item"><?php echo $supply; ?></li>
-					</ul>
-				</li>
-			</ul><!-- /.coin-main-aside__stats -->
+			<div class="coin-content__about">
+				<h3 class="coin-content__about-hdr">About Coin.</h3>
 
-			<ul class="coin-main-aside__info">
-				<?php if( $website ): ?>
-		    <li class="coin-main-aside__info-item coin-main-aside__info-item--website">
-		    	<span class="icon fas fa-globe"></span>
-		      <a class="coin-main-aside__info-item-link" href="<?php echo $website; ?>" title="Website" target="_blank"><span><?php echo $website; ?></span></a>
-		    </li>
-		    <?php endif; ?>
-		    <?php if( $news ): ?>
-		    <li class="coin-main-aside__info-item coin-main-aside__info-item--news">
-		    	<span class="icon fas fa-bullhorn"></span>
-		      <a class="coin-main-aside__info-item-link" href="<?php echo $news; ?>" title="News" target="_blank"><span><?php echo $news; ?></span></a>
-		    </li>
-		    <?php endif; ?>
-		    <?php if( $blockexplorer ): ?>
-		    <li class="coin-main-aside__info-item coin-main-aside__info-item--block">
-		    	<span class="icon fas fa-cubes"></span>
-		      <a class="coin-main-aside__info-item-link" href="<?php echo $blockexplorer; ?>" title="Block Explorer" target="_blank"><span><?php echo $blockexplorer; ?></span></a>
-		    </li>
-		    <?php endif; ?>
-		    <?php if( $whitepaper ): ?>
-		    <li class="coin-main-aside__info-item coin-main-aside__info-item--whitepaper">
-		    	<span class="icon far fa-file-alt"></span>
-		      <a class="coin-main-aside__info-item-link" href="<?php echo $whitepaper; ?>" title="Whitepaper" target="_blank"><span><?php echo $whitepaper; ?></span></a>
-		    </li>
-		    <?php endif; ?>
-		    <?php if( $github ): ?>
-		    <li class="coin-main-aside__info-item coin-main-aside__info-item--github">
-		    	<span class="icon fab fa-github"></span>
-		      <a class="coin-main-aside__info-item-link" href="<?php echo $github_code; ?>" title="github Code" target="_blank"><span><?php echo $github; ?></span></a>
-		    </li>
-		    <?php endif; ?>
-		  </ul><!-- /.coin-main-aside__info -->
-		</aside>
+				<div class="coin-content__about-cta">
+					<ul class="coin-content__about-cta-list">
+						<?php if( $website ): ?>
+				    <li class="coin-content__about-cta-item coin-content__about-cta-item--website">
+				      <a class="coin-content__about-cta-item-link" href="<?php echo $website; ?>" title="<?php echo $website; ?>" target="_blank"><span class="icon fas fa-globe"></span> Website</a>
+				    </li>
+				    <?php endif; ?>
+				    <?php if( $news ): ?>
+				    <li class="coin-content__about-cta-item coin-content__about-cta-item--news">
+				      <a class="coin-content__about-cta-item-link" href="<?php echo $news; ?>" title="<?php echo $news; ?>" target="_blank"><span class="icon fas fa-bullhorn"></span> Announcements</a>
+				    </li>
+				    <?php endif; ?>
+				    <?php if( $blockexplorer ): ?>
+				    <li class="coin-content__about-cta-item coin-content__about-cta-item--block">
+				      <a class="coin-content__about-cta-item-link" href="<?php echo $blockexplorer; ?>" title="<?php echo $blockexplorer; ?>" target="_blank"><span class="icon fas fa-cubes"></span> Blockexplorer</a>
+				    </li>
+				    <?php endif; ?>
+				    <?php if( $whitepaper ): ?>
+				    <li class="coin-content__about-cta-item coin-content__about-cta-item--whitepaper">
+				      <a class="coin-content__about-cta-item-link" href="<?php echo $whitepaper; ?>" title="<?php echo $whitepaper; ?>" target="_blank"><span class="icon far fa-file-alt"></span> Whitepaper</a>
+				    </li>
+				    <?php endif; ?>
+				    <?php if( $github ): ?>
+				    <li class="coin-content__about-cta-item coin-content__about-cta-item--github">
+				      <a class="coin-content__about-cta-item-link" href="<?php echo $github; ?>" title="<?php echo $github; ?>" target="_blank"><span class="icon fab fa-github"></span> Github</a>
+				    </li>
+				    <?php endif; ?>
+				    <?php if( $reddit ): ?>
+				    <li class="coin-content__about-cta-item coin-content__about-cta-item--reddit">
+				      <a class="coin-content__about-cta-item-link" href="<?php echo $reddit; ?>" title="<?php echo $reddit; ?>" target="_blank"><span class="icon fab fa-reddit"></span> Reddit</a>
+				    </li>
+				    <?php endif; ?>
+				  </ul><!-- /.coin-main-aside__info -->
+
+				  <!-- <p class="coin-content__about-cta-founded"><span>Announced:</span> <?php echo $firstannounced ?></p> -->
+				</div>
+
+				<div class="coin-content__about-description">
+					<h3 class="coin-content__about-description-hdr">Short Description.</h3>
+					<div class="coin-content__about-description-excerpt"><?php if($coin_description !== '') { echo do_shortcode('[coin-market-cap-description]'); } else { echo $cmc_description; } ?></div>
+					
+					<!-- <div class="coin-content__about-description-cta">
+						<a class="coin-content__about-description-cta-read btn" href="#" title="Read More"><span>See Purpose</span></a>
+						<a class="coin-description__cta-video btn-text" href="#" title="Watch Video"><span class="icon fas fa-play-circle"></span> <span>Watch Video</span></a>
+					</div> -->
+				</div>
+			</div><!-- /.coin-content__about -->
+
+			<!-- <aside class="coin-content__aside">
+				<?php include(get_template_directory() . '/modules/mod-ad-300x250.php'); ?>
+			</aside> -->
+		</section><!-- /.coin-content -->
 	</main><!-- /.coin-main -->
 
 	<?php include(get_template_directory() . '/modules/mod-coin-tabs.php'); ?>

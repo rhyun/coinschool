@@ -3,6 +3,7 @@ $mobile: 320px;
 $tablet: 768px;
 $tablet-lg: 1024px;
 $desktop: 1280px;
+$desktop-lg: 1600px;
 $mobile-only: 0px 759px;
 $tablet-only: 760px 1279px;
 $desktop-only: 1280px 9999px;
@@ -23,14 +24,23 @@ $alef-bold: 'alefbold', 'Helvetica', 'Arial', sans-serif;
 $alef: 'alefregular', 'Helvetica', 'Arial', sans-serif;
 $alef-bold: 'alefbold', 'Helvetica', 'Arial', sans-serif;
 $alef: 'alefregular', 'Helvetica', 'Arial', sans-serif;
+$montserrat: 'montserratregular', 'Helvetica', 'Arial', sans-serif;
+$montserrat-thin: 'montserratthin', 'Helvetica', 'Arial', sans-serif;
 $montserrat-bold: 'montserratbold', 'Helvetica', 'Arial', sans-serif;
 $montserrat-black: 'montserratblack', 'Helvetica', 'Arial', sans-serif;
-$montserrat: 'montserratmedium', 'Helvetica', 'Arial', sans-serif;
+$montserrat-medium: 'montserratmedium', 'Helvetica', 'Arial', sans-serif;
 $montserrat-semi: 'montserratsemibold', 'Helvetica', 'Arial', sans-serif;
 $montserrat-extrabold: 'montserratextrabold', 'Helvetica', 'Arial', sans-serif;
+$lobster: 'lobster_1.3regular', 'Helvetica', 'Arial', sans-serif;
+
+
+$gloria: 'gloriaregular', 'Helvetica', 'Arial', sans-serif;
+$gloria-bold: 'gloriabold', 'Helvetica', 'Arial', sans-serif;
+
+$viper: 'viperineregular', 'Helvetica', 'Arial', sans-serif;
 
 // Typography
-$base-font-family: $fira;
+$base-font-family: $montserrat;
 $heading-font-family: $bebas-bold;
 
 // Line height
@@ -52,9 +62,11 @@ $dark-gray: #686F78;
 $medium-gray: #626B79;
 $light-gray: #F1F2F3;
 
+$orange: #FFBA72;
+
 
 // Font Colors
-$base-font-color: $gray;
+$base-font-color: $dark-gray;
 $action-color: blue;
 
 // Border

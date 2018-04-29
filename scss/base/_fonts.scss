@@ -1,3 +1,41 @@
+@font-face {
+    font-family: 'lobster_1.3regular';
+    src: url('../fonts/lobster_1.3-webfont.woff2') format('woff2'),
+         url('../fonts/lobster_1.3-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gloriabold';
+    src: url('../fonts/lhf_gloria_bold-webfont.woff2') format('woff2'),
+         url('../fonts/lhf_gloria_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gloriaregular';
+    src: url('../fonts/lhf_gloria-webfont.woff2') format('woff2'),
+         url('../fonts/lhf_gloria-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'viperineregular';
+    src: url('../fonts/viperine-webfont.woff2') format('woff2'),
+         url('../fonts/viperine-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 
 
 @font-face {
@@ -195,6 +233,28 @@
     font-family: 'montserratsemibold';
     src: url('../fonts/montserrat-semibold-webfont.woff2') format('woff2'),
          url('../fonts/montserrat-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'montserratregular';
+    src: url('../montserrat-regular-webfont.woff2') format('woff2'),
+         url('../montserrat-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'montserratthin';
+    src: url('../montserrat-thin-webfont.woff2') format('woff2'),
+         url('../montserrat-thin-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 

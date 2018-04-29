@@ -3,6 +3,8 @@ html {
   font-family: $base-font-family;
   font-size: 100%;
   line-height: $base-line-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -22,6 +24,7 @@ h6 {
 p {
   font-size: 14px;
   letter-spacing: 0.5px;
+  line-height: 25px;
   margin: 0 0 $small-spacing;
   @include breakpoint($tablet-lg) {
     font-size: 16px;

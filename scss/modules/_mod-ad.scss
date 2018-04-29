@@ -1,0 +1,16 @@
+.mod-ad {
+	background-color: $light-gray;
+	border: 20px solid $light-gray;
+	height: 250px;
+	position: relative;
+	width: 300px;
+	&:before {
+		@include center;
+		content: 'Advertisement';
+		display: inline-block;
+		font-family: $montserrat;
+		font-size: 12px;
+		letter-spacing: 2px;
+		line-height: 1;
+	}
+}

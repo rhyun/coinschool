@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <body <?php body_class(); ?>>
 <div class="site-container">
-	<header class="site-header" role="banner">
+	<!-- <header class="site-header" role="banner">
     <nav class="site-nav js-site-nav">
       <?php if(get_field('logo', 'option')): ?>
       <h2 class="site-nav__logo">
@@ -42,6 +42,6 @@ if ( ! defined( 'ABSPATH' ) ) {
       ?>
 
     </nav>
-  </header><!-- /.site-header -->
+  </header> --><!-- /.site-header -->
 
   <div id="content" class="site-content">

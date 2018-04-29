@@ -1,16 +1,29 @@
-.mod-coins-tabs {
+.mod-coin-tabs {
+	background-color: $light-gray;
 	width: 100%;
+	@include breakpoint($tablet-lg) {
+		display: flex;
+	}
 }
 
 .mod-coin-tabs__nav {
+	background-color: $dark-gray;
 	margin: 0 auto;
 	max-width: $max-width;
 	width: 100%;
+	@include breakpoint($tablet-lg) {
+		order: 1;
+		width: 100px;
+	}
 }
 .mod-coin-tabs__nav-list {
 	display: flex;
 	width: 100%;
 	transform: translateY(5px);
+	@include breakpoint($tablet-lg) {
+		display: block;
+		width: 100px;
+	}
 }
 .mod-coin-tabs__nav-item {
 	overflow: hidden;
@@ -18,36 +31,48 @@
 	position: relative;
 	text-align: center;
 	transition-duration: 0.25s;
-	&:before {
-		background-color: rgba(241, 242, 243, 0.5);
-		border-radius: 5px 5px 0 0;
-		content: "";
-		height: 120%;
-		left: 0;
-		position: absolute;
-		top: 0;
-		transform: translateY(100%);
-		transition-duration: 0.25s;
-		width: 100%;
-		z-index: -1;	
-	}
-	&:hover{
-		&:before{
-			transform: translateY(70%);
-		}
-	}
-	&.active {
-		&:before{
-			background-color: $light-gray;
-			transform: translateY(0); 
-			transition-duration: 0.5s;
-		}
-	}
+	// &:before {
+	// 	background-color: rgba(241, 242, 243, 0.5);
+	// 	border-radius: 5px 5px 0 0;
+	// 	content: "";
+	// 	height: 120%;
+	// 	left: 0;
+	// 	position: absolute;
+	// 	top: 0;
+	// 	transform: translateY(100%);
+	// 	transition-duration: 0.25s;
+	// 	width: 100%;
+	// 	z-index: -1;	
+	// }
+	// &:hover{
+	// 	&:before{
+	// 		transform: translateY(70%);
+	// 	}
+	// }
+	// &.active {
+	// 	&:before{
+	// 		background-color: $light-gray;
+	// 		transform: translateY(0); 
+	// 		transition-duration: 0.5s;
+	// 	}
+	// }
 }
 
 .mod-coin-tabs__nav-item-link {
+	color: $white;
 	display: inline-block;
 	text-decoration: none;
+}
+
+.mod-coin-tabs__container {
+	background-color: $light-gray;
+	padding: 40px;
+	width: 100%;
+	min-height: 400px;
+	@include breakpoint($tablet-lg) {
+		order: 0;
+		width: calc(100% - 100px);
+	}
 }
 
 .mod-coin-tabs__section {
