@@ -40,7 +40,6 @@ if ( ! defined( 'ABSPATH' ) ) {
           'walker' => new NavigationWalker()
          ) );
       ?>
-
     </nav>
   </header> --><!-- /.site-header -->
 

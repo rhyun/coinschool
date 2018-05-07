@@ -1,5 +1,5 @@
 .mod-coin-tabs {
-	background-color: $light-gray;
+	background-color: #F8F8F8;
 	width: 100%;
 	@include breakpoint($tablet-lg) {
 		display: flex;
@@ -7,7 +7,7 @@
 }
 
 .mod-coin-tabs__nav {
-	background-color: $dark-gray;
+	background-color: $white;
 	margin: 0 auto;
 	max-width: $max-width;
 	width: 100%;
@@ -65,7 +65,7 @@
 }
 
 .mod-coin-tabs__container {
-	background-color: $light-gray;
+	background-color: #F8F8F8;
 	padding: 40px;
 	width: 100%;
 	min-height: 400px;
@@ -76,7 +76,7 @@
 }
 
 .mod-coin-tabs__section {
-	background-color: $light-gray;
+	background-color: #F8F8F8;
 	height: 0;
 	overflow: hidden;
 	transition: height 0.5s linear;
