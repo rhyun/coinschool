@@ -77,5 +77,8 @@ $('#custom-templates .typeahead').typeahead(null, {
 });
    
 
+$(".cmc_conversions").on("change",function(){
+    alert($this.val());
+});
         
 })(jQuery);

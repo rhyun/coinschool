@@ -5,7 +5,7 @@
  * Description:Create a website similar like CoinMarketCap.com using this <strong>Coin Market Cap & Crypto Prices</strong> WordPress plugin. This crypto plugin uses coinmarketcap.com api to grab live crypto prices, market cap, charts and other data related to cryptocurrency
  * Author:Cool Plugins Team
  * Author URI:https://www.cooltimeline.com/
- * Version: 2.3.1
+ * Version: 2.4
  * License: GPL2
  * Text Domain:cmc
  * Domain Path:languages
@@ -34,7 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CMC', '2.3.1' );
+
+define( 'CMC', '2.4' );
 define( 'CMC_PRO_FILE', __FILE__ );
 define( 'CMC_PATH', plugin_dir_path( CMC_PRO_FILE ) );
 define('CMC_PLUGIN_DIR', plugin_dir_path( CMC_PRO_FILE ) );
@@ -80,10 +81,9 @@ final class CoinMarketCap {
 
 	   register_activation_hook( CMC_PRO_FILE, array( $this, 'cmc_activate' ) );
 	   register_deactivation_hook( CMC_PRO_FILE, array( $this, 'cmc_deactivate' ) );
+	   $this->cmc_installation_date();
 
-	    $this->cmc_installation_date();
-
-	 	 add_action( 'tf_create_options', array( $this,'cmc_createMyOptions'));
+	    add_action( 'tf_create_options', array( $this,'cmc_createMyOptions'));
 	  	add_action( 'plugins_loaded', array( $this, 'cmc_init' ) );
 		add_action( 'init',  array( $this,'cmc_post_type') );
 		add_action( 'init',  array( $this,'cmc_description_post_type'),11 );
@@ -114,6 +114,7 @@ final class CoinMarketCap {
 			 */
 		}
 
+		add_filter( 'jetpack_photon_skip_for_url',array( $this,'cmc_photon_only_allow_local'), 9, 4 );
 		$this->cmc_includes();
 		if(is_admin()){
          add_action( 'admin_enqueue_scripts',array( $this,'cmc_remove_wp_colorpicker'),99);
@@ -136,7 +137,7 @@ final class CoinMarketCap {
 			  $this->add_coin_details_page();
 			 $this->cmc_rewrite_rule();
 			  flush_rewrite_rules();
-
+			  delete_transient('cmc_top_100_list');
 		}
 
 
@@ -148,9 +149,11 @@ final class CoinMarketCap {
 		require_once( 'titan-framework/titan-framework-embedder.php');
 
 		require_once __DIR__ . '/includes/cmc-shortcode.php';
+		require_once __DIR__ . '/includes/cmc-top-shortcode.php';
 		require_once __DIR__ . '/includes/cmc-single-shortcode.php';
 
-		 $this->shortcode_cmc=new CMC_Shortcode();
+		 	$this->shortcode_cmc=new CMC_Shortcode();
+		  $this->cmc_gainer_losers=new CMC_Top();
 		  $this->shortcode_cmc_single=	new CMC_Single_Shortcode();
 		}
 
@@ -202,6 +205,7 @@ final class CoinMarketCap {
 					 'ID'=>$single_page_id,
 					 'post_content'=>'[cmc-dynamic-description]
 	 				[coin-market-cap-details]
+	 				[cmc-calculator]
 	 				[cmc-coin-extra-data]
 	 				[cmc-chart]
 	 				<h3>More Info About Coin</h3>
@@ -431,9 +435,10 @@ final class CoinMarketCap {
 	        $plugin_info = get_plugin_data( __FILE__ , true, true );
 	        $reviewurl = esc_url( 'https://codecanyon.net/item/coin-market-cap-prices-wordpress-cryptocurrency-plugin/reviews/21429844' );
 
- printf(__('<div class="cmc-review wrap" style=" background: #fff !important;  border: 2px solid #d4d4d4 !important;   padding: 22px !important;  font-size: 16px !important;">You have been using <b> %s </b> for a while. We hope you liked it ! Please give us a quick rating, it works as a boost for us to keep working on the plugin !</br><div class="ccpw-review-btn" style=
-		  "margin-top: 10px !important;"><a href="%s" class="button button-primary" target=
-	            "_blank">Rate Now!</a><a href="%s" class="ccpw-review-done" style="margin-left: 10px !important;"> Already Done !</a></div></div>', $plugin_info['TextDomain']), $plugin_info['Name'], $reviewurl, $dont_disturb );
+ printf(__('<style>.ctf_review_notice {display:none !Important;}</style><div class="cmc-review wrap" style="background: #ffffff !important;border-left: 4px solid #ffba00;padding: 15px !important;max-width: 860px;display: inline-block;border-radius: 4px;clear:both;-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);">
+ <img style="display: inline;float: left;margin-right: 14px;border: 4px solid #e7e2ce;border-radius: 3px;" src="'.plugin_dir_url(__FILE__).'images/coinmarketcap-logo.png" />
+ <p style="display: inline;vertical-align: top;">You have been using <b> %s </b> plugin for a while. We hope you liked it ! Please give us a quick rating, it works as a boost for us to keep working on the plugin updates & new features !</br></br><a href="%s" class="button button-primary" target=
+	            "_blank">Rate Now!</a><a href="%s" class="ccpw-review-done button button-secondary" style="margin-left: 10px !important;"> Already Done !</a></p></div>', $plugin_info['TextDomain']), $plugin_info['Name'], $reviewurl, $dont_disturb );
 
 
 	   // }
@@ -511,15 +516,13 @@ function save_cmc_settings( $post_id, $post, $update ) {
 	    // - Update the post's metadata.
    		 update_option('cmc-post-id',$post_id);
 
-   		  delete_transient( 'cmc-coins' ); // Site
-   		  delete_transient('cmc-coins-list');
-   		  delete_transient('cmc-global-data');
+
 	}
 
 		public function cmc_coins_list($limit){
-				$coinslist= get_transient('cmc_top_100_list');
-			   	$c_list=array();
-			   if( empty($coinslist) || $coinslist==="" ) {
+			$c_list= get_transient('cmc_top_100_list');
+
+			   if( empty($c_list) || $c_list==="" ) {
 			   	 	$request = wp_remote_get( 'https://api.coinmarketcap.com/v1/ticker/?limit='.$limit);
 					if( is_wp_error( $request ) ) {
 						return false; // Bail early
@@ -527,16 +530,43 @@ function save_cmc_settings( $post_id, $post, $update ) {
 					$body = wp_remote_retrieve_body( $request );
 					$coinslist = json_decode( $body );
 					if( ! empty( $coinslist ) ) {
-					 set_transient( 'cmc_top_100_list', $coinslist,12 * HOUR_IN_SECONDS);
+						foreach($coinslist as $coin){
+							$coin =(array)$coin;
+							$coin_index=strtolower(str_replace(" ","-",$coin['name']));
+							$c_list[$coin_index]=$coin['name'];
+								
+						}
+					 set_transient( 'cmc_top_100_list',$c_list, 24 * HOUR_IN_SECONDS);
 					}
 				 }
-				if(!empty($coinslist ) && is_array($coinslist)) {
-				foreach( $coinslist as $coin ) {
-					$c_list[$coin->symbol]=$coin->name;
-				}
+
 				return $c_list;
-			}
+		
 		}
+		
+
+	/**
+	 * Only use Photon for images belonging to our site.
+	 * @param bool         $skip      Should Photon ignore that image.
+	 * @param string       $image_url Image URL.
+	 * @param array|string $args      Array of Photon arguments.
+	 * @param string|null  $scheme    Image scheme. Default to null.
+	 */
+	function cmc_photon_only_allow_local( $skip, $image_url, $args, $scheme ) {
+	    // Get the site URL, without any protocol.
+	    $site_url = preg_replace( '~^(?:f|ht)tps?://~i', '', get_site_url() );
+	 
+	    /**
+	     * If the image URL is from our site,
+	     * return default value (false, unless another function overwrites).
+	     * Otherwise, do not use Photon with it.
+	     */
+	    if ( strpos( $image_url, $site_url ) ) {
+	        return $skip;
+	    } else {
+	        return true;
+	    }
+	}
 
 	} // class end
 

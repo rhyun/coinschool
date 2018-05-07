@@ -4,8 +4,8 @@
 			Fetching all coins data and creating cache for 10 minute
 		*/
 
-	function cmc_coins_data($limit,$old_currency,$post_id){
-    	$coinslist= get_transient($old_currency.'-cmc-coins');
+	function cmc_coins_data($limit,$old_currency){
+    	$coinslist= get_transient($old_currency.'-cmc-all-coins-data');
 		 $price_index="price_".strtolower($old_currency);
          $m_index="market_cap_".strtolower($old_currency);
        	 $v_index="24h_volume_".strtolower($old_currency);
@@ -17,14 +17,15 @@
 		$body = wp_remote_retrieve_body( $request );
 			$coinslist = json_decode( $body );
 			if( ! empty( $coinslist ) ) {
-			 set_transient( $old_currency.'-cmc-coins', $coinslist, 10* MINUTE_IN_SECONDS);
+			 set_transient( $old_currency.'-cmc-all-coins-data', $coinslist, 5* MINUTE_IN_SECONDS);
 
 			 if(is_array($coinslist)){
 			foreach( $coinslist as $coin ) {
 					$coin =(array)$coin;
-					$coin_symbol=$coin['symbol'];
+					$coin_symbol=strtolower(str_replace(" ","-",$coin['name']));
 					$c_list[$coin_symbol]=array(
 						"price"=>$coin[$price_index],
+						"price_usd"=>$coin['price_usd'],
 						"marketcap"=>$coin[$m_index],
 						"24h_volume"=>$coin[$v_index],
 						"percent_change_24h"=>$coin['percent_change_24h'],
@@ -39,7 +40,7 @@
 						);
 			}
 
-			 set_transient($old_currency.'-cmc-coins-list', $c_list, 5* MINUTE_IN_SECONDS);
+			 set_transient($old_currency.'-cmc-single-page-data', $c_list, 5* MINUTE_IN_SECONDS);
 
 				}
 			}
@@ -52,7 +53,7 @@
 		*/
 
 	   function cmc_coins_arr($old_currency){
-				$coinslist= get_transient($old_currency.'-cmc-coins-list-');
+				$coinslist= get_transient($old_currency.'-cmc-single-page-data');
 				 $c_list=array();
 				 $price_index="price_".strtolower($old_currency);
        			 $m_index="market_cap_".strtolower($old_currency);
@@ -69,10 +70,11 @@
 						if( ! empty( $coinsdata ) ) {
 						 	foreach($coinsdata as $coin){
 								$coin =(array)$coin;
-								$coin_symbol=$coin['symbol'];
+								$coin_symbol=strtolower(str_replace(" ","-",$coin['name']));
 
 								$c_list[$coin_symbol]=array(
 									"price"=>$coin[$price_index],
+									"price_usd"=>$coin['price_usd'],
 									"marketcap"=>$coin[$m_index],
 									"24h_volume"=>$coin[$v_index],
 									"percent_change_24h"=>$coin['percent_change_24h'],
@@ -86,7 +88,7 @@
 									"coin-slug"=>$coin['id']
 									);
 							}
-						 set_transient($old_currency.'-cmc-coins-list', $c_list, 5* MINUTE_IN_SECONDS);
+						 set_transient($old_currency.'-cmc-single-page-data', $c_list, 5* MINUTE_IN_SECONDS);
 						 $coinslist=$c_list;
 						}
 					}
@@ -124,6 +126,7 @@
 						return $historical_coin_list;
 						}
 		}
+
 
 		// fetching coin extra data for single page
 	function cmc_coin_extra_data_api($coin_id){
@@ -217,7 +220,7 @@
 		$index="128x128";
 		}
 	$coin_icon='https://res.cloudinary.com/pinkborder/image/upload/coinmarketcap-coolplugins/'.$index.'/'. cmc_get_coin_logo($coin_id). '.png';
-  	$logo_html='<img id="'.$coin_id.'" alt="'.$coin_id.'" src="'.$coin_icon.'">';
+  	$logo_html='<img id="'.$coin_id.'" alt="'.$coin_id.'" src="'.$coin_icon.'" onerror="this.src = \'https://res.cloudinary.com/pinkborder/image/upload/coinmarketcap-coolplugins/'.$index.'/default-logo.png\';">';
 	}
 
 	 return $logo_html;
@@ -244,35 +247,107 @@
 	}
 	// currencies symbol
 	function cmc_old_cur_symbol($name){
-		$currency_symbol='';
-		if($name=="EUR"){
-				$currency_symbol='€';
-			}
-			else if($name=="GBP"){
-				$currency_symbol='£';
-			}
-			else if($name=="INR"){
-				$currency_symbol='₹';
-			}
-			else if($name=="JPY"){
-				$currency_symbol='¥‎';
-			}
-			else if($name=="CNY"){
-				$currency_symbol='¥';
-			}
-			else if($name=="ILS"){
-				$currency_symbol='₪';
-			}
-			else if($name=="KRW"){
-				$currency_symbol='₩';
-			}
-			else if($name=="RUB"){
-				$currency_symbol='₽';
-			}else{
-				$currency_symbol='$';
-			}
-		return $currency_symbol;
+		 $cc = strtoupper($name);
+		    $currency = array(
+		    "USD" => "&#36;" , //U.S. Dollar
+		    "AUD" => "&#36;" , //Australian Dollar
+		    "BRL" => "R&#36;" , //Brazilian Real
+		    "CAD" => "C&#36;" , //Canadian Dollar
+		    "CZK" => "K&#269;" , //Czech Koruna
+		    "DKK" => "kr" , //Danish Krone
+		    "EUR" => "&euro;" , //Euro
+		    "HKD" => "&#36" , //Hong Kong Dollar
+		    "HUF" => "Ft" , //Hungarian Forint
+		    "ILS" => "&#x20aa;" , //Israeli New Sheqel
+		    "INR" => "&#8377;", //Indian Rupee
+		    "JPY" => "&yen;" , //Japanese Yen 
+		    "MYR" => "RM" , //Malaysian Ringgit 
+		    "MXN" => "&#36;" , //Mexican Peso
+		    "NOK" => "kr" , //Norwegian Krone
+		    "NZD" => "&#36;" , //New Zealand Dollar
+		    "PHP" => "&#x20b1;" , //Philippine Peso
+		    "PLN" => "&#122;&#322;" ,//Polish Zloty
+		    "GBP" => "&pound;" , //Pound Sterling
+		    "SEK" => "kr" , //Swedish Krona
+		    "CHF" => "Fr" , //Swiss Franc
+		    "TWD" => "&#36;" , //Taiwan New Dollar 
+		    "THB" => "&#3647;" , //Thai Baht
+		    "TRY" => "&#8378;" //Turkish Lira
+		    );
+		    
+		    if(array_key_exists($cc, $currency)){
+		        return $currency[$cc];
+		    }
 	}
+
+	function currencies_json(){
+
+		 $currency = array(
+		    "USD" => "&#36;" , //U.S. Dollar
+		    "AUD" => "&#36;" , //Australian Dollar
+		    "BRL" => "R&#36;" , //Brazilian Real
+		    "CAD" => "&#36;" , //Canadian Dollar
+		    "CZK" => "K&#269;" , //Czech Koruna
+		    "DKK" => "kr. " , //Danish Krone
+		    "EUR" => "&euro;" , //Euro
+		    "HKD" => "&#36;" , //Hong Kong Dollar
+		    "HUF" => "Ft " , //Hungarian Forint
+		    "ILS" => "&#x20aa;" , //Israeli New Sheqel
+		    "INR" => "&#8377;", //Indian Rupee
+		    "JPY" => "&yen;" , //Japanese Yen 
+		    "MYR" => "RM" , //Malaysian Ringgit 
+		    "MXN" => "&#36" , //Mexican Peso
+		    "NOK" => "kr " , //Norwegian Krone
+		    "NZD" => "&#36" , //New Zealand Dollar
+		    "PHP" => "&#x20b1;" , //Philippine Peso
+		    "PLN" => "&#122;&#322;" ,//Polish Zloty
+		    "GBP" => "&pound;" , //Pound Sterling
+		    "SEK" => "kr " , //Swedish Krona
+		    "CHF" => "Fr. " , //Swiss Franc
+		    "TWD" => "NT&#36;" , //Taiwan New Dollar 
+		    "THB" => "&#3647;" , //Thai Baht
+		    "TRY" => "&#8378;" //Turkish Lira
+		    );
+		return json_encode($currency);
+	}
+	
+	 function cmc_crypto_currency_arr( $limit,$fiat_curr){
+
+			$c_list= get_transient($fiat_curr.'-cmc-single-page-data');
+		
+			   if( empty($c_list) || $c_list==="" ) {
+
+			   		 $second_cache= get_transient('cmc-arr-list');	
+
+			   		  if(! empty($second_cache)&& is_array($second_cache) ) {
+
+			   		  	return  $second_cache;
+						 }
+			   	 	$request = wp_remote_get( 'https://api.coinmarketcap.com/v1/ticker/?limit='.$limit);
+					if( is_wp_error( $request ) ) {
+						return false; // Bail early
+					}
+					$price_index="price_usd";
+					$body = wp_remote_retrieve_body( $request );
+					$coinslist = json_decode( $body );
+					if( ! empty( $coinslist ) ) {
+						foreach($coinslist as $coin){
+							$coin =(array)$coin;
+							$coin_index=strtolower(str_replace(" ","-",$coin['name']));
+							$symbol=$coin['symbol'];
+							$c_list[$symbol]=array("name"=>$coin['name'],"slug"=>$coin_index,"price"=>$coin[$price_index],
+								"price_usd"=>$coin['price_usd']
+						);
+							 set_transient('cmc-arr-list',$c_list, 5* MINUTE_IN_SECONDS);	
+						}
+					
+					}
+				 }
+				 
+				return $c_list;
+		
+		}
+		
 	// currencies icons
 	function cmc_get_currency_icon($old_currency){
 		$currency_icon='';
@@ -299,8 +374,13 @@
 // generating single page coin chart
 function get_coin_chart($coin_id){
 	$output='';
+	if(cmc_get_coin_logo($coin_id)!=''){
 	$chart_img='https://coolplugins.net/cryptoapi/cryptocharts/img/'.cmc_get_coin_logo($coin_id).'.png';
-	$output='<div class="cmc-coin-chart"><img src="'.$chart_img.'" id="'.$coin_id.'.png"></div>';
+	$output='<div class="cmc-coin-chart"><img src="'.$chart_img.'" id="'.$coin_id.'.png" onerror="this.src = \'https://coolplugins.net/cryptoapi/cryptocharts/img/no-chart.png\';"></div>';	
+	}
+	else{
+	$output='<div class="cmc-coin-chart">'.__('No Graphical Data','cmc').'</div>';	
+	}
 	return $output;
 }
 
@@ -318,7 +398,7 @@ function cmc_get_coin_logo($coin_id){
 	 $coinslist =json_decode( $body );
 	 $coinslist=(array) $coinslist;
 	 if(is_array( $coinslist ) && count($coinslist)>0) {
-			set_transient('cmc-coin-logos-ids', $coinslist, 24*HOUR_IN_SECONDS);
+			set_transient('cmc-coin-logos-ids', $coinslist, 48*HOUR_IN_SECONDS);
 		}
 	}
 	if(is_array($coinslist)){
@@ -328,3 +408,132 @@ function cmc_get_coin_logo($coin_id){
 
 	}
 }
+
+  function objectToArray($d) {
+        if (is_object($d)) {
+            // Gets the properties of the given object
+            // with get_object_vars function
+            $d = get_object_vars($d);
+        }
+		
+        if (is_array($d)) {
+            /*
+            * Return array converted to object
+            * Using __FUNCTION__ (Magic constant)
+            * for recursive call
+            */
+            return array_map(__FUNCTION__, $d);
+        }
+        else {
+            // Return array
+            return $d;
+        }
+    }
+
+	function sort_by_gainers($a, $b)
+		{
+		  
+	 if ($a['percent_change_24h'] < $b['percent_change_24h']) {
+                return 1;
+        } else if ($a['percent_change_24h'] > $b['percent_change_24h']) {
+                return -1;
+        } else {
+                return 0;
+        }
+
+		}
+
+	function sort_by_losers($a, $b)
+		{
+		
+		 return $a['percent_change_24h'] - $b['percent_change_24h'];
+
+		}	
+
+	/**
+	 * Register scripts and styles
+	 */
+	 //add cdn and change js file functions
+	 function cmc_register_scripts() {
+		if ( ! is_admin() ) {
+			
+			if( ! wp_script_is( 'jquery', 'done' ) ){
+                wp_enqueue_script( 'jquery' );
+               }
+			wp_enqueue_style('cmc-font-awesome','https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+			wp_register_script( 'cmc-datatables.net', 'https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js' );
+			 
+			wp_register_script( 'cmc-fixed-column-js', 'https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js', array( 'jquery','cmc-datatables.net'), false, true );	
+
+			wp_register_script('bootstrapcdn','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+
+          
+            wp_register_style( 'dataTables_bootstrap4', 'https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css');	
+
+		    wp_register_style( 'cmc-fixed-column', 'https://cdn.datatables.net/fixedcolumns/3.2.4/css/fixedColumns.dataTables.min.css' );	
+			
+			wp_register_style( 'cmc-custom',CMC_URL.'assets/css/cmc-custom.min.css');
+			
+			wp_register_style( 'cmc-bootstrap',CMC_URL.'assets/css/bootstrap.min.css' );	
+		    wp_register_style( 'cmc-fixedcolumn-bootstrap', 'https://cdn.datatables.net/fixedcolumns/3.2.0/css/fixedColumns.bootstrap.min.css' );
+		    
+			wp_register_script( 'cmc-jquery-number', 'https://cdnjs.cloudflare.com/ajax/libs/df-number-format/2.1.6/jquery.number.min.js' );
+			
+			wp_register_script( 'cmc-js', CMC_URL . 'assets/js/cmc.min.js', array( 'jquery','cmc-datatables.net'), false, true );
+			
+          
+
+            wp_register_script('cmc-typeahead', CMC_URL . 'assets/js/typeahead.bundle.min.js', array( 'jquery'), false, true );
+             wp_register_script('cmc-handlebars', CMC_URL . 'assets/js/handlebars-v4.0.11.js', array( 'jquery'), false, true );
+            $data=get_transient("cmc-coins-new-links");
+         	wp_localize_script('cmc-js','coins_links_obj',$data);   		
+		}
+	}	
+
+
+
+  	/* USD conversions */
+
+	function cmc_usd_conversions($currency){
+			$conversions= get_transient('cmc_usd_conversions');
+		if( empty($conversions) || $conversions==="" ) {
+		   	 	$request = wp_remote_get( 'https://us-central1-usd-conversion-data.cloudfunctions.net/conversions/');
+		  	if( is_wp_error( $request ) ) {
+					return false;
+				}
+				$currency_ids = array("USD","AUD","BRL" ,"CAD","CZK","DKK", "EUR","HKD","HUF","ILS","INR" ,"JPY" ,"MYR", "NOK","PHP" ,"PLN","GBP" ,"SEK","CHF","TWD","THB" ,"TRY");
+
+				$body = wp_remote_retrieve_body( $request );
+				$conversion_data= json_decode( $body );
+				$conversion_data=(array) $conversion_data;
+				if(is_array($conversion_data) && count($conversion_data)>0) {
+					foreach($conversion_data as $key=> $currency_price){
+							if(in_array($key,$currency_ids)){
+								$conversions[$key]=$currency_price;
+							}
+						
+						
+					}
+				
+			
+				uksort($conversions, function($key1, $key2) use ($currency_ids) {
+				    return (array_search($key1, $currency_ids) > array_search($key2, $currency_ids));
+				});
+			
+		set_transient('cmc_usd_conversions',$conversions, 5* HOUR_IN_SECONDS);
+				}
+			}
+
+			if($currency=="all"){
+				
+				return $conversions;
+
+			}else{
+				if(isset($conversions[$currency])){
+					return $conversions[$currency];
+				}
+			}
+	}
+
+

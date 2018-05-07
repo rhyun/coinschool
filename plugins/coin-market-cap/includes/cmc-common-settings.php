@@ -285,7 +285,7 @@ function cmc_titan_checkbox_default_new_post_single( $default ) {
     'desc'    => '',
    'id'      => 'des_coin_name',
    'type'    => 'select',
-   'options' =>$this->cmc_coins_list(1500),
+   'options' =>$this->cmc_coins_list(200),
    'default' => '',
    ) );	
 
@@ -298,7 +298,109 @@ function cmc_titan_checkbox_default_new_post_single( $default ) {
 	//'media_buttons' =>false,
 	) );
 	
-
+	
+    /***CMC Documentation***/	
+	
+    $cmc_doc = $cmc_titan->createAdminPanel( array(
+		'name' => __('Coin Market Cap Documentation','cmc' ),
+		'parent' => 'edit.php?post_type=cmc',
+		
+	) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Global Data Shortcode','cmc'),
+    'id'   => 'global_data_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[global-coin-market-cap]</code>
+	            <code>[global-coin-market-cap currency="GBP"]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Top Gainers Shortcode','cmc'),
+    'id'   => 'top_gainer_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[cmc-top type="gainers" show-coins="50"]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Top Losers Shortcode','cmc'),
+    'id'   => 'top_loser_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[cmc-top type="losers" show-coins="50"]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Single Page Shortcodes','cmc'),
+    'id'   => 'single_page',
+    'type' => 'custom',
+	'custom' => '<strong>'.__('Use below mentioned shortcodes on single page(cmc currency details)','cmc').'</strong>'
+    ) );
+	
+	
+    $cmc_doc->createOption( array(
+    'name' => __('Dynamic Title Shortcode','cmc'),
+    'id'   => 'dynamic_title_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[cmc-dynamic-title]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Dynamic Description Shortcode','cmc'),
+    'id'   => 'dynamic_des_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[cmc-dynamic-description]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Coin Market Cap Details Shortcode','cmc'),
+    'id'   => 'dynamic_details_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[coin-market-cap-details]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Extra Data Shortcode','cmc'),
+    'id'   => 'dynamic_extra_data_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[cmc-coin-extra-data]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Price Chart Shortcode','cmc'),
+    'id'   => 'chart_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[cmc-chart]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Custom Description Shortcode','cmc'),
+    'id'   => 'custom_des_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[coin-market-cap-description]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Historical Data Shortcode','cmc'),
+    'id'   => 'historical_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[cmc-history]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Twitter News Feed Shortcode','cmc'),
+    'id'   => 'twitter_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[cmc-twitter-feed]</code>',
+    ) );
+	
+	$cmc_doc->createOption( array(
+    'name' => __('Submit Reviews Shortcode','cmc'),
+    'id'   => 'reviews_shortcode',
+    'type' => 'custom',
+	'custom' => '<code>[coin-market-cap-comments]</code>',
+    ) );
+	
+	
 	
 	
 ?>

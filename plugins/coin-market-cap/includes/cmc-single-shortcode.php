@@ -6,38 +6,50 @@ class CMC_Single_Shortcode{
 
 		if(!is_admin()){
 	    add_action( 'wp_enqueue_scripts', array( $this, 'cmc_single_assets' ) );
-		/*
-		Features based Shortcode for coin single page
-		*/
+			/*
+			Features based Shortcode for coin single page
+			*/
+			add_shortcode( 'coin-market-cap-details',array($this,'cmc_currencies_details'));
 
-		add_shortcode( 'coin-market-cap-details',array($this,'cmc_currencies_details'));
+			add_shortcode( 'coin-market-cap-price', array($this,'cmc_coin_price'));
+			add_shortcode( 'coin-market-cap-info', array($this,'cmc_coin_details'));
 
-		add_shortcode( 'coin-market-cap-description',array($this,'cmc_description'));
-		add_action( 'wp_head',array($this,'cmc_custom_meta_des'), 5 );
-		add_shortcode( 'cmc-dynamic-description',array($this,'cmc_dynamic_description'));
-		add_shortcode( 'cmc-dynamic-title',array($this,'cmc_dynamic_title'));
-		add_shortcode( 'coin-market-cap-comments',array($this,'cmc_comment_box'));
-		add_shortcode( 'cmc-chart',array($this,'cmc_chart_shortcode'));
+			add_shortcode( 'coin-market-cap-description',array($this,'cmc_description'));
+			add_action( 'wp_head',array($this,'cmc_custom_meta_des'), 5 );
+			add_shortcode( 'cmc-dynamic-description',array($this,'cmc_dynamic_description'));
+			add_shortcode( 'cmc-dynamic-title',array($this,'cmc_dynamic_title'));
+			add_shortcode( 'coin-market-cap-comments',array($this,'cmc_comment_box'));
+			add_shortcode( 'cmc-chart',array($this,'cmc_chart_shortcode'));
 
-		add_shortcode( 'cmc-twitter-feed',array($this,'cmc_twitter_feed'));
-
-
-		add_shortcode( 'cmc-history',array($this,'cmc_historical_data'));
-
-		add_shortcode( 'cmc-coin-extra-data',array($this,'cmc_coin_extra_data'));
+			add_shortcode( 'cmc-twitter-feed',array($this,'cmc_twitter_feed'));
 
 
-		add_filter( 'the_title',array($this,'cmc_custom_page_title'), 10, 2 );
+			add_shortcode( 'cmc-history',array($this,'cmc_historical_data'));
 
-			}
+			add_shortcode( 'cmc-coin-extra-data',array($this,'cmc_coin_extra_data'));
+
+
+			add_filter( 'the_title',array($this,'cmc_custom_page_title'), 10, 2 );
+		}
+
 		require_once(CMC_PATH.'/includes/cmc-functions.php');
 	 	add_filter( 'pre_get_document_title', array($this,'cmc_add_coin_name_to_title'), 10, 1);
-
 		add_filter( 'wpseo_title', array($this,'cmc_add_coin_name_to_title'), 10, 1);
-
 		add_action( 'wp_footer', array($this,'cmc_fb_comments_box'), 10 );
-
+		add_action('wp', array($this,'remove_canonical'));//After WP object is 
+		
+		//calculator
+		require_once(CMC_PATH.'/includes/cmc-calculator.php');
+		add_shortcode( 'cmc-calculator','cmc_calculator');
 	}
+
+	// Remove - Canonical for - [cmc currency details - Page]
+    function remove_canonical() {
+    if ( is_page('cmc-currency-details') ) {
+        add_filter( 'wpseo_canonical', '__return_false',  10, 1 );
+    }
+    }
+
 	/*
 	  Single Page Top main Title
 	*/
@@ -128,22 +140,19 @@ class CMC_Single_Shortcode{
 
 // fetching custom desciption
 function cmc_generate_desc($position){
-		$desc='';
+$desc='';
 $cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
 $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 
 	if(get_query_var('coin_id')){
- 		$coin_id=get_query_var('coin_id');
+		//changed to coin name 
+ 	   $coin_id=(string) trim(get_query_var('coin_name'));
  		$real_cur=get_query_var('currency');
-		$old_currency=trim($real_cur)!=="" ?trim($real_cur):'USD';
+ 		$single_default_currency =$cmc_titan->getOption('default_currency');
+		$old_currency=trim($real_cur)!=="" ?trim($real_cur):$single_default_currency;
 		$all_coins=cmc_coins_arr($old_currency);
-
-		if($position=="top"){
-			 $currency_icon=cmc_old_cur_symbol($old_currency);
-			}else{
-			 $currency_icon=cmc_get_currency_icon($old_currency);
-			}
-
+	    $currency_icon=cmc_old_cur_symbol($old_currency);
+			
 		if(isset($all_coins[$coin_id])){
 			$name=$all_coins[$coin_id]['name'];
 			$price=format_number($all_coins[$coin_id]['price']);
@@ -156,8 +165,8 @@ $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 			    }else{
 			    $change_lbl=__('up','cmc');
 			    }
-		$changes=$all_coins[$coin_id]['percent_change_24h'].'%';
-			$dynamic_array=array($name, $currency_icon.$price,$marketcap,$changes.' '.$change_lbl);
+		   $changes=$all_coins[$coin_id]['percent_change_24h'].'%';
+		   $dynamic_array=array($name, $currency_icon.$price,$marketcap,$changes.' '.$change_lbl);
 			$placeholders=array('[coin-name]','[coin-price]','[coin-marketcap]','[coin-changes]');
 			 $desc=str_replace($placeholders,$dynamic_array,$dynamic_desciption);
 			}
@@ -184,35 +193,31 @@ $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 	//creating dynamic title
 	function cmc_generate_title($position){
 		$title_txt='';
-	if(get_query_var('coin_id')){
-		$cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
-		$dynamic_title = $cmc_titan->getOption('dynamic_title');
-		$single_default_currency =$cmc_titan->getOption('default_currency');
- 		$coin_id=get_query_var('coin_id');
- 		$real_cur=get_query_var('currency');
-		$old_currency=trim($real_cur)!=="" ?trim($real_cur):$single_default_currency;
-		$all_coins=cmc_coins_arr($old_currency);
-		if($position=="top"){
-			 $currency_icon=cmc_old_cur_symbol($old_currency);
-			}else{
-			 $currency_icon=cmc_get_currency_icon($old_currency);
+		if(get_query_var('coin_id')){
+			$cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
+			$dynamic_title = $cmc_titan->getOption('dynamic_title');
+			$single_default_currency =$cmc_titan->getOption('default_currency');
+	 		$coin_id=(string) trim(get_query_var('coin_name'));
+	 		$real_cur=get_query_var('currency');
+			$old_currency=trim($real_cur)!=="" ?trim($real_cur):$single_default_currency;
+			$all_coins=cmc_coins_arr($old_currency);
+			$currency_icon=cmc_old_cur_symbol($old_currency);
+	
+			if(isset($all_coins[$coin_id])) {
+				$name=$all_coins[$coin_id]['name'].' ('.$all_coins[$coin_id]['symbol'].')';
+				$price=format_number($all_coins[$coin_id]['price']);
+				$marketcap=cmc_format_coin_values($all_coins[$coin_id]['marketcap']);
+				$marketcap=$marketcap?$currency_icon.$marketcap:__('N/A','cmc');
+
+				$changes=$all_coins[$coin_id]['percent_change_24h'].'%';
+
+				$dynamic_array=array($name,$currency_icon.$price,$marketcap,$changes);
+				$placeholders=array('[coin-name]','[coin-price]','[coin-marketcap]','[coin-changes]');
+				 $title_txt=str_replace($placeholders,$dynamic_array,$dynamic_title);
 			}
-
-		if(isset($all_coins[$coin_id])){
-			$name=$all_coins[$coin_id]['name'].'('.$coin_id.')';
-			$price=format_number($all_coins[$coin_id]['price']);
-			$marketcap=cmc_format_coin_values($all_coins[$coin_id]['marketcap']);
-			$marketcap=$marketcap?$currency_icon.$marketcap:__('N/A','cmc');
-
-		$changes=$all_coins[$coin_id]['percent_change_24h'].'%';
-
-			$dynamic_array=array($name,$currency_icon.$price,$marketcap,$changes);
-			$placeholders=array('[coin-name]','[coin-price]','[coin-marketcap]','[coin-changes]');
-			 $title_txt=str_replace($placeholders,$dynamic_array,$dynamic_title);
-		 }
-		 return  $title_txt;
-	  }
-}
+			return  $title_txt;
+		}
+	}
 /*--------------------------------end--------------------------- */
 	// custom desciption from settings panel
 
@@ -223,13 +228,13 @@ $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 		$output='';
 
 		if(get_query_var('coin_id')){
-		$coin_id=get_query_var('coin_id');
-		$coin_data=cmc_coin_extra_data_api($coin_id);
+		 $coin_id=(string) trim(get_query_var('coin_name'));
+		$coin_data=cmc_coin_extra_data_api(get_query_var('coin_id'));
 		if(isset($coin_data)){
-		$description = $coin_data->description;
+		$description =isset($coin_data->description)?$coin_data->description:'';
 		}
 		// The Query
-		$query=array('post_type' => 'cmc-description','meta_value' => get_query_var('coin_id'));
+		$query=array('post_type' => 'cmc-description','meta_value' => get_query_var('coin_name'));
 		$the_query = new WP_Query( $query );
 		// The Loop
 		if ( $the_query->have_posts() ) {
@@ -265,154 +270,304 @@ $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 	 }
 
 /*--------------------------------end--------------------------- */
+	
+	/*
+	 Generating Coin Price
+	*/
+
+	function cmc_coin_price($atts, $content = null){
+		// shortcode
+		$atts = shortcode_atts( array(
+			'id'  => '',
+		), $atts, 'cmc' );
+		$output='';
+		$post_id=get_option('cmc-post-id');
+
+		$cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
+
+		if(get_query_var('coin_id')) {
+			// changed from symbol to name based
+	 	 	$coin_id=(string) trim(get_query_var('coin_name'));
+	 		$real_cur=get_query_var('currency');
+	 		$single_default_currency =$cmc_titan->getOption('default_currency');
+			$old_currency=trim($real_cur)!=="" ?trim($real_cur):$single_default_currency;
+			$all_coins=cmc_coins_arr($old_currency);
+
+			if(isset($all_coins[$coin_id])){
+				$coin_slug=$all_coins[$coin_id]['coin-slug'];
+				$coin= $all_coins[$coin_id];
+				$output='';
+				$coin_released='365day';
+				$coinId=$coin_id;
+				//$coin_symbol=$coin['symbol'];
+				$currency_icon=cmc_old_cur_symbol($old_currency);
+				$percent_change_7d=$coin['percent_change_7d'] . '%';
+				$percent_change_24h=$coin['percent_change_24h'] . '%';
+				$price_index="price_".strtolower($old_currency);
+
+       	if(isset($coin['price'])){
+ 			 		$coin_price=format_number($coin['price']);
+       	}
+
+        $percent_change_1h = $coin['percent_change_1h'] . '%';
+        $change_sign ='<span class="icon fa fa-arrow-up"></span>';
+        $change_class = __('cmc-up','cmc');
+     		$change_sign_minus = "-";
+
+     	 	if ( strpos( $coin['percent_change_1h'], $change_sign_minus ) !==false) {
+          $change_sign = '<span class="icon fa fa-arrow-down"></span>';
+          $change_class = __('cmc-down','cmc');
+        }
+
+ 		  	$change_sign_24h ='<span class="icon fa fa-arrow-up"></span>';
+        $change_class_24h = __('cmc-up','cmc');
+        if ( strpos( $coin['percent_change_24h'], $change_sign_minus ) !==false) {
+          $change_sign_24h = '<span class="icon fa fa-arrow-down"></span>';
+          $change_class_24h = __('cmc-down','cmc');
+        }
+
+        $change_sign_7d ='<span class="icon fa fa-arrow-up"></span>';
+        $change_class_7d = __('cmc-up','cmc');
+        if ( strpos( $coin['percent_change_7d'], $change_sign_minus ) !==false) {
+          $change_sign_7d = '<span class="icon fa fa-arrow-down"></span>';
+          $change_class_7d = __('cmc-down','cmc');
+        }
+        $all_c_p_html='';
+
+        if($this->cmc_single_page_setting("display_changes1h_single")) {
+        	$all_c_p_html.='<li class="coin-price-change__item"><strong>'.__('1h % ','cmc').'</strong><div class="cmc_coin_price_change" ><span class="'.$change_class.'">'.$change_sign.$percent_change_1h .'</span></div></li>';
+      	}
+
+       	if($this->cmc_single_page_setting("display_changes24h_single")){
+        	$all_c_p_html.='<li class="coin-price-change__item"><strong>'.__('24h % ','cmc').'</strong><div class="cmc_coin_price_change" ><span class="'.$change_class_24h.'">'.$change_sign_24h.$percent_change_24h.'</span></div></li>';
+      	}
+         
+        if($this->cmc_single_page_setting("display_Changes7d_single")){
+         	$all_c_p_html.='<li class="coin-price-change__item"><strong>'.__('7d %','cmc').'</strong><div class="cmc_coin_price_change" ><span class="'.$change_class_7d.'">'.$change_sign_7d.$percent_change_7d.'</span></div></li>';
+  		 	}
+				$this->cmc_coin_details_assets();
+		
+		    $output.='<h2 class="coin-price"><span class="coin-price__symbol">'. $currency_icon . '</span>' . $coin_price .'</h2>';
+	      $output.='<ul class="coin-price-change">'.$all_c_p_html.'</ul>';
+
+ 			} else {
+ 		 		return __('Currency Not Found','cmc');
+ 			}
+ 		} else {
+ 			return __('Something wrong with URL','cmc');
+ 		}
+		return $output;
+	}
+
+	function cmc_coin_details($atts, $content = null){
+		// shortcode
+		$atts = shortcode_atts( array(
+			'id'  => '',
+		), $atts, 'cmc' );
+		$output='';
+		$post_id=get_option('cmc-post-id');
+
+		$cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
+
+		if(get_query_var('coin_id')) {
+			// changed from symbol to name based
+	 	 	$coin_id=(string) trim(get_query_var('coin_name'));
+	 		$real_cur=get_query_var('currency');
+	 		$single_default_currency =$cmc_titan->getOption('default_currency');
+			$old_currency=trim($real_cur)!=="" ?trim($real_cur):$single_default_currency;
+			$all_coins=cmc_coins_arr($old_currency);
+
+			if(isset($all_coins[$coin_id])){
+				$name=$all_coins[$coin_id]['name'];
+				$coin_slug=$all_coins[$coin_id]['coin-slug'];
+				$coin= $all_coins[$coin_id];
+				$output='';
+				$coin_released='365day';
+				$coinId=$coin_id;
+
+				$available_supply=$coin["available_supply"];
+				$m_index="market_cap_".strtolower($old_currency);
+	   	 	$v_index="24h_volume_".strtolower($old_currency);
+      
+       	$volume='';
+        if(isset($coin['24h_volume'])){
+ 			 		$volume = $coin['24h_volume'];
+ 			 		$volume=cmc_format_coin_values($volume);
+	   		} else {
+	   		 	$volume=__('N/A','cmc');
+	   		}
+
+        $market_cap='';
+		 		if(isset($coin['marketcap'])) {
+ 			 		$market_cap = $coin['marketcap'];
+ 			 		$market_cap=$currency_icon.cmc_format_coin_values($market_cap);
+	      } else {
+	        $market_cap=__('N/A','cmc');
+	      }
+
+	      $available_supply=cmc_format_coin_values($available_supply);
+
+				$output.='<ul class="coin-info"><li class="coin-info__item coin-info__item--rank"><span class="coin-info__item-value">'.$coin['rank'].'</span><span class="coin-info__item-label">Market cap rank</span></li>';
+
+	      $output.='<li class="coin-info__item coin-info__item--cap"><span class="coin-info__item-value">'.$market_cap.'</span><span class="coin-info__item-label">Market cap</span></li>';
+
+	      $output.='<li class="coin-info__item coin-info__item--volume"><span class="coin-info__item-value">'.$currency_icon.$volume.'</span><span class="coin-info__item-label">24h volume</span></li>';
+	 
+			 	$output.='<li class="coin-info__item coin-info__item--supply"><span class="coin-info__item-value">'.$available_supply.$coin_symbol.'</span><span class="coin-info__item-label">Circulating supply</span></li></ul>';
+
+ 			} else {
+ 		 		return __('Currency Not Found','cmc');
+ 			}
+ 		} else {
+ 			return __('Something wrong with URL','cmc');
+ 		}
+		return $output;
+	}
+
+
 	/*
 	 Generating Coin details
 	*/
-
 	function cmc_currencies_details($atts, $content = null){
-	// shortcode
-	$atts = shortcode_atts( array(
-		'id'  => '',
-	), $atts, 'cmc' );
-	$output='';
-	$post_id=get_option('cmc-post-id');
-
-	$cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
-
-	if(get_query_var('coin_id')){
- 		$coin_id=get_query_var('coin_id');
- 		$real_cur=get_query_var('currency');
- 		$single_default_currency =$cmc_titan->getOption('default_currency');
-		$old_currency=trim($real_cur)!=="" ?trim($real_cur):$single_default_currency;
-		$all_coins=cmc_coins_arr($old_currency);
-
-		if(isset($all_coins[$coin_id])){
-			$name=$all_coins[$coin_id]['name'];
-			$coin_slug=$all_coins[$coin_id]['coin-slug'];
-
-		$coin= $all_coins[$coin_id];
+		// shortcode
+		$atts = shortcode_atts( array(
+			'id'  => '',
+		), $atts, 'cmc' );
 		$output='';
-		$coin_released='365day';
-	  	$coinId=$coin_id;
-		$coin_name=$coin['name'];
-		 $currency_icon=cmc_get_currency_icon($old_currency);
-		 $percent_change_7d=$coin['percent_change_7d'] . '%';
-	     $percent_change_24h=$coin['percent_change_24h'] . '%';
-		 $available_supply=$coin["available_supply"];
-		 $price_index="price_".strtolower($old_currency);
-	     $m_index="market_cap_".strtolower($old_currency);
-	   	 $v_index="24h_volume_".strtolower($old_currency);
+		$post_id=get_option('cmc-post-id');
 
+		$cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
 
-       	  if(isset($coin['price'])){
- 			 $coin_price=format_number($coin['price']);
-       		 }
-       	  $volume='';
-         if(isset($coin['24h_volume'])){
- 			 $volume = $coin['24h_volume'];
- 			 $volume=cmc_format_coin_values($volume);
-	   		}else{
-	   		 $volume=__('N/A','cmc');
+		if(get_query_var('coin_id')) {
+			// changed from symbol to name based
+	 	 	$coin_id=(string) trim(get_query_var('coin_name'));
+	 		$real_cur=get_query_var('currency');
+	 		$single_default_currency =$cmc_titan->getOption('default_currency');
+			$old_currency=trim($real_cur)!=="" ?trim($real_cur):$single_default_currency;
+			$all_coins=cmc_coins_arr($old_currency);
+
+			if(isset($all_coins[$coin_id])){
+				$name=$all_coins[$coin_id]['name'];
+				$coin_slug=$all_coins[$coin_id]['coin-slug'];
+
+				$coin= $all_coins[$coin_id];
+				$output='';
+				$coin_released='365day';
+				$coinId=$coin_id;
+				$coin_symbol=$coin['symbol'];
+				$coin_name=$coin['name'];
+				$currency_icon=cmc_old_cur_symbol($old_currency);
+				$percent_change_7d=$coin['percent_change_7d'] . '%';
+				$percent_change_24h=$coin['percent_change_24h'] . '%';
+				$available_supply=$coin["available_supply"];
+				$price_index="price_".strtolower($old_currency);
+				$m_index="market_cap_".strtolower($old_currency);
+	   	 	$v_index="24h_volume_".strtolower($old_currency);
+
+       	if(isset($coin['price'])){
+ 			 		$coin_price=format_number($coin['price']);
+       	}
+       	$volume='';
+        if(isset($coin['24h_volume'])){
+ 			 		$volume = $coin['24h_volume'];
+ 			 		$volume=cmc_format_coin_values($volume);
+	   		} else {
+	   		 	$volume=__('N/A','cmc');
 	   		}
-         $market_cap='';
-		 if(isset($coin['marketcap'])){
- 			 $market_cap = $coin['marketcap'];
- 			 $market_cap=$currency_icon.cmc_format_coin_values($market_cap);
-	        }else{
-	        	$market_cap=__('N/A','cmc');
-	        }
+
+        $market_cap='';
+		 		if(isset($coin['marketcap'])) {
+ 			 		$market_cap = $coin['marketcap'];
+ 			 		$market_cap=$currency_icon.cmc_format_coin_values($market_cap);
+	      } else {
+	        $market_cap=__('N/A','cmc');
+	      }
 
 	      $available_supply=cmc_format_coin_values( $available_supply);
 
         $percent_change_1h = $coin['percent_change_1h'] . '%';
         $change_sign ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
-        $change_class = __('up','cmc');
-     	$change_sign_minus = "-";
+        $change_class = __('cmc-up','cmc');
+     		$change_sign_minus = "-";
 
-     	 if ( strpos( $coin['percent_change_1h'], $change_sign_minus ) !==false) {
-            $change_sign = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
-            $change_class = __('down','cmc');
+     	 	if ( strpos( $coin['percent_change_1h'], $change_sign_minus ) !==false) {
+          $change_sign = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
+          $change_class = __('cmc-down','cmc');
         }
 
- 		  $change_sign_24h ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
-          $change_class_24h = __('up','cmc');
-         if ( strpos( $coin['percent_change_24h'], $change_sign_minus ) !==false) {
-            $change_sign_24h = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
-            $change_class_24h = __('down','cmc');
+ 		  	$change_sign_24h ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
+        $change_class_24h = __('cmc-up','cmc');
+        if ( strpos( $coin['percent_change_24h'], $change_sign_minus ) !==false) {
+          $change_sign_24h = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
+          $change_class_24h = __('cmc-down','cmc');
         }
 
-          $change_sign_7d ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
-          $change_class_7d = __('up','cmc');
-         if ( strpos( $coin['percent_change_7d'], $change_sign_minus ) !==false) {
-            $change_sign_7d = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
-            $change_class_7d = __('down','cmc');
+        $change_sign_7d ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
+        $change_class_7d = __('cmc-up','cmc');
+        if ( strpos( $coin['percent_change_7d'], $change_sign_minus ) !==false) {
+          $change_sign_7d = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
+          $change_class_7d = __('cmc-down','cmc');
         }
         $all_c_p_html='';
 
-         if($this->cmc_single_page_setting("display_changes1h_single")){
-        $all_c_p_html.='<li  class="cmc_changes">
-        <strong>'.__('1h % ','cmc').'</strong>
-        <div class="cmc_coin_price_change" ><span class="'.$change_class.'">'.$change_sign.$percent_change_1h .'</span></div></li>';
-      }
+        if($this->cmc_single_page_setting("display_changes1h_single")){
+        	$all_c_p_html.='<li class="coin-price-change">
+        	<strong>'.__('1h % ','cmc').'</strong>
+        	<div class="cmc_coin_price_change" ><span class="'.$change_class.'">'.$change_sign.$percent_change_1h .'</span></div></li>';
+      	}
 
-       if($this->cmc_single_page_setting("display_changes24h_single")){
-        $all_c_p_html.='<li  class="cmc_changes">
-        <strong>'.__('24h % ','cmc').'</strong>
-        <div class="cmc_coin_price_change" ><span class="'.$change_class_24h.'">'.$change_sign_24h.$percent_change_24h.'</span></div></li>';
-        }
-         if($this->cmc_single_page_setting("display_Changes7d_single")){
-         $all_c_p_html.='<li  class="cmc_changes">
-        <strong>'.__('7d %','cmc').'</strong>
-       <div class="cmc_coin_price_change" ><span class="'.$change_class_7d.'">'.$change_sign_7d.$percent_change_7d.'</span></div></li>';
-  		 }
-		$this->cmc_coin_details_assets();
-		$coin_icon= coin_logo_html($coin_id,128);
-		$coin_symbol=$coin_id;
-		$coin_price_html='';
+       	if($this->cmc_single_page_setting("display_changes24h_single")){
+        	$all_c_p_html.='<li class="coin-price-change">
+        	<strong>'.__('24h % ','cmc').'</strong>
+        	<div class="cmc_coin_price_change" ><span class="'.$change_class_24h.'">'.$change_sign_24h.$percent_change_24h.'</span></div></li>';
+      	}
+         
+        if($this->cmc_single_page_setting("display_Changes7d_single")){
+         	$all_c_p_html.='<li class="coin-price-change">
+        	<strong>'.__('7d %','cmc').'</strong>
+       		<div class="cmc_coin_price_change" ><span class="'.$change_class_7d.'">'.$change_sign_7d.$percent_change_7d.'</span></div></li>';
+  		 	}
+				$this->cmc_coin_details_assets();
+				$coin_icon= coin_logo_html($coin_symbol,128);
+	
+				$coin_price_html='';
+				$coin_price_html.='<span class="ticker-price">' . $currency_icon. $coin_price . '</span>';
 
+				if($coin_symbol=="MIOTA"){
+	       	$coinId='IOT';
+	      }
 
-		$coin_price_html.='<span class="ticker-price">' . $currency_icon. $coin_price . '</span>';
-
-		if($coin_symbol=="MIOTA"){
-	       	 	$coinId='IOT';
-	       }
-
-			 $output.='<img class="ccpw-preloader" src="'.CMC_URL.'images/preloader.gif">';
+			 	$output.='<img class="ccpw-preloader" src="'.CMC_URL.'images/preloader.gif">';
 		    $output.='<div class="cmc_coin_details"><ul>
 	           <li><div class="ccpw_icon">'.$coin_icon.'</div>
 	           <div class="ticker-name"><strong>' . $coin_name.'('.$coin_symbol.')</strong></div>
 	           </li>
-	          <li class="c_info"><strong>'.__('Price ','cmc').'</strong> <div class="chart_coin_price CCP-'.$coin_symbol.'">'.$coin_price_html.'</div></li>';
-	          $output.=$all_c_p_html;
+	          <li class="c_info pri"><strong>'.__('Price ','cmc').'</strong> <div class="chart_coin_price CCP-'.$coin_symbol.'">'.$coin_price_html.'</div></li>';
+	      $output.=$all_c_p_html;
 
-	           if($this->cmc_single_page_setting("display_market_cap_single")){
-	          $output.='<li  class="c_info"><strong>'.__('Market Cap','cmc').'</strong> <div class="coin_market_cap"><span class="CCMC">'.$market_cap.'</span></div></li>';
-	      		}
+	      if($this->cmc_single_page_setting("display_market_cap_single")){
+	      	$output.='<li  class="c_info cap"><strong>'.__('Market Cap','cmc').'</strong> <div class="coin_market_cap"><span class="CCMC">'.$market_cap.'</span></div></li>';
+	      }
   			if($this->cmc_single_page_setting("display_Volume_24h_single")){
-	           $output.=' <li  class="cmc_info"><strong>'.__('Volume','cmc').'</strong> <div class="cmc_coin_volume" ><span class="CCV-'.$coin_symbol.'">'.$currency_icon.$volume.'</span></div></li>';
-	       }
+	        $output.=' <li  class="cmc_info vol"><strong>'.__('Volume','cmc').'</strong> <div class="cmc_coin_volume" ><span class="CCV-'.$coin_symbol.'">'.$currency_icon.$volume.'</span></div></li>';
+	      }
 
-	       if($this->cmc_single_page_setting("display_supply_single")){
-			 $output.='<li  class="cmc_info"><strong>'.__('Available Supply','cmc').'</strong> <div class="cmc_coin_supply"><span class="CCS-'.$coin_symbol.'">'.$available_supply.'</span> <span class="coin-symbol">'.$coin_symbol.'</span></div></li>';
-			}
+	      if($this->cmc_single_page_setting("display_supply_single")){
+			 		$output.='<li  class="cmc_info sup"><strong>'.__('Available Supply','cmc').'</strong> <div class="cmc_coin_supply"><span class="CCS-'.$coin_symbol.'">'.$available_supply.'</span> <span class="coin-symbol">'.$coin_symbol.'</span></div></li>';
+				}
 
-		$output.='<li  class="cmc_info"><strong>'.__('Rank','cmc').'</strong> <div class="cmc_rank_badge"><span class="CCS-'.$coin_symbol.'">'.$coin['rank'].'</span></div></li>';
-		  //$output.='<li class="cmc_rank_badge">'.__('Rank:','cmc').$coin['rank'].'</li>';
+				$output.='<li  class="cmc_info rank"><strong>'.__('Rank','cmc').'</strong> <div class="cmc_rank_badge"><span class="CCS-'.$coin_symbol.'">'.$coin['rank'].'</span></div></li>';
+		  		//$output.='<li class="cmc_rank_badge">'.__('Rank:','cmc').$coin['rank'].'</li>';
 
 	      $output.='</ul></div>';
 
-
- 		}else{
- 		 return _e('Currency Not Found','cmc');
+ 			} else {
+ 		 		return __('Currency Not Found','cmc');
+ 			}
+ 		} else {
+ 			return __('Something wrong with URL','cmc');
  		}
- 	}else{
- 		 return _e('Something wrong with URL','cmc');
- 	}
-
-
-
-	return $output;
-
+		return $output;
 	}
 
 	/*Historical data shortcode*/
@@ -425,8 +580,8 @@ $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 	), $atts);
 
 	$output='';
-	wp_enqueue_style( 'cmc-datatable-css');
-	wp_enqueue_script( 'cmc-datatable-js');
+	wp_enqueue_style( 'cmc-historical-datatable-css');
+	wp_enqueue_script( 'cmc-historical-datatable-js');
 
 	//Initialize Titan
 	$cmc_titan = TitanFramework::getInstance( 'cmc_single_settings' );
@@ -447,7 +602,11 @@ $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 			$price_index=$historical_all_data->price[$i][1];
 
 			$volume_index=$historical_all_data->volume[$i][1];
+			$format_volume=cmc_format_coin_values($volume_index);
+			
 			$marketcap_index=$historical_all_data->market_cap[$i][1];
+			$format_marketcap=cmc_format_coin_values($marketcap_index);
+			
 			$time_index=$historical_all_data->price[$i][0];
 
 			$milli_seconds =  $time_index;
@@ -458,13 +617,13 @@ $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 			$all_c_p_html.='<tr>';
 			$all_c_p_html.='<td data-order="'.$hidden_time_index.'">'.$time_index.'</td>
 			<td>$'.$price_index.'</td>
-			<td>$'.$volume_index.'</td>
-			<td>$'.$marketcap_index.'</td>
+			<td>$'.$format_volume.'</td>
+			<td>$'.$format_marketcap.'</td>
 		    </tr>';
 
 	}
 
-	$output.='   <table id="table_id" class="display">
+	$output.='   <table id="table_id" class="display" data-order="[[ 0, &quot;desc&quot; ]]">
     <thead>
         <tr>
 			<th>'.__( 'Date', 'cmc' ).'</th>
@@ -479,13 +638,13 @@ $dynamic_desciption = $cmc_titan->getOption('dynamic_desciption');
 	</table>';
 	}
 	else{
-	return _e('<b>No Historical Data</b>','cmc');
+	return __('<b>No Historical Data</b>','cmc');
 	}
    }
 
 
 else{
-	return _e('<b>Something Wrong With URL</b>','cmc');
+	return __('<b>Something Wrong With URL</b>','cmc');
 	}
 
 
@@ -509,14 +668,14 @@ if(get_query_var('coin_id')){
 		$this->cmc_coin_details_assets();
 		$cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
 		$single_default_currency =$cmc_titan->getOption('default_currency');
- 		$coin_id=get_query_var('coin_id');
+ 		$coin_symbol=get_query_var('coin_id');
  		$real_cur=get_query_var('currency');
- 		$single_default_currency =$cmc_titan->getOption('default_currency');
+ 		
 		$old_currency=trim($real_cur)!=="" ?trim($real_cur):$single_default_currency;
 		$chart_height='100%';
 		$coin_released='365day';
-  		$coinId=$coin_id;
-  		if($coin_id=="MIOTA"){
+  		$coinId=$coin_symbol;
+  		if($coin_symbol=="MIOTA"){
 	       	 $coinId='IOT';
 	       }
 
@@ -545,7 +704,7 @@ if(get_query_var('coin_id')){
 
 			$twitter_feed_type = $cmc_titan->getOption('twitter_feed_type');
 
-			$coin_id=get_query_var('coin_id');
+			$coin_id=get_query_var('coin_name');
 			$coin_symbol=get_query_var('coin_id');
 			$coin_data=cmc_coin_extra_data_api($coin_id);
 
@@ -595,7 +754,7 @@ if(get_query_var('coin_id')){
 			$output.='<a class="youtube" target="_blank" href="'.$youtube.'"><li>'.__('Youtube','cmc').'</li></a>';
 		};
 		if($firstannounced!=''){
-			$output.='<a class="firstannounced" href="#"><li>'.__('Announced','cmc').':<br/>'.$firstannounced.'</li></a>';
+			$output.='<a class="firstannounced"><li>'.__('Announced','cmc').':<br/>'.$firstannounced.'</li></a>';
 		};
 		if($github!=''){
 			$output.='<a class="github" target="_blank" href="'.$github.'"><li>'.__('Github','cmc').'</li></a>';
@@ -649,17 +808,19 @@ if(get_query_var('coin_id')){
 		}
 		// common assets for all shortcodes
 		function cmc_single_assets(){
-		wp_enqueue_style('cmc-font-awesome','https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-	    wp_register_style( 'cmc-datatable-css', 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css' );
-		wp_register_script( 'cmc-datatable-js', 'https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js' );
-
-		wp_add_inline_script('cmc-datatable-js', 'jQuery(document).ready(function($){
+		
+	    wp_register_style( 'cmc-historical-datatable-css', 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css' );
+		
+		wp_register_script( 'cmc-historical-datatable-js', 'https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js' );
+		
+		wp_add_inline_script('cmc-historical-datatable-js', 'jQuery(document).ready(function($){
 
 			 	$("#table_id").DataTable(
 				        {
 						ordering:true,
 						searching:false,
 						pageLength: 10,
+						
 						}
 
 						);

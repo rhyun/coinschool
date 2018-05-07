@@ -243,12 +243,13 @@ input.tt-hint {
 	display: inline-block;
 	padding-right: 20px;
 }
-#cryptocurency-market-cap-wrapper tbody .cmc-changes.up {
+#cryptocurency-market-cap-wrapper tbody .cmc-changes.cmc-up {
 	color:green;
 }
-#cryptocurency-market-cap-wrapper tbody .cmc-changes.down {
+#cryptocurency-market-cap-wrapper tbody .cmc-changes.cmc-down {
 	color:red;
 }
+
 #cryptocurency-market-cap-wrapper tbody .cmc-coin-chart {
 	display:inline-block;
 	text-align:center;
@@ -390,10 +391,10 @@ div#coin-market-cap-widget_paginate a:hover {
 .cmc_coin_details li span.ticker-price {
     font-size: 1.5em;
 }
-.cmc_coin_price_change .up {
+.cmc_coin_price_change .cmc-up {
     color: green;
 }
-.cmc_coin_price_change .down {
+.cmc_coin_price_change .cmc-down {
     color: red;
 }
 
@@ -523,11 +524,11 @@ table.dataTable thead .sorting{
 	background:none!important;
 }
 
-i.fa.fa-arrow-up.up {
+i.fa.fa-arrow-up.cmc-up {
     color: green;
 }
 
-i.fa.fa-arrow-down.down {
+i.fa.fa-arrow-down.cmc-down {
     color: red;
 }
 

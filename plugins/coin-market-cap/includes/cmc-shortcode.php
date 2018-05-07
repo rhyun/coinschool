@@ -18,7 +18,45 @@ class CMC_Shortcode{
 		'currency'=>'USD'
 		), $atts);
 
-		wp_enqueue_style('cmc-font-awesome','https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+		wp_enqueue_style('cmc-font-awesome-g','https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+		$cmc_g_styles='/* Global Market Cap Data */
+		.cmc_global_data {
+			display:inline-block;
+			margin-bottom:5px;
+			width:100%;
+		}
+		.cmc_global_data ul {
+		    list-style: none;
+		    margin: 0;
+		    padding: 0;
+		    display: inline-block;
+		    width: 100%;
+		}
+		.cmc_global_data ul li {
+		    display: inline-block;
+		    margin-right: 20px;
+			font-size:14px;
+			margin-bottom: 5px;
+		}
+		.cmc_global_data ul li .global_d_lbl {
+			font-weight: bold;
+		    background: #f9f9f9;
+		    padding: 4px;
+		    color: #3c3c3c;
+		    border: 1px solid #e7e7e7;
+		    margin-right: 5px;
+		}
+		.cmc_global_data ul li .global_data {
+		    font-size: 13px;
+			white-space:nowrap;
+			display:inline-block;
+		}
+		/* Global Market Cap Data END */ ';
+	
+		wp_add_inline_style('cmc-font-awesome-g',$cmc_g_styles);
+
+
 		$output='';
 		$old_currency=$atts['currency']?$atts['currency']:'USD';
 		
@@ -82,6 +120,7 @@ class CMC_Shortcode{
 
 		}
 
+	
 	// shortcode
 	function cmc_shortcode( $atts, $content = null ) {
 	$atts = shortcode_atts( array(
@@ -95,9 +134,9 @@ class CMC_Shortcode{
 	), $atts, 'cmc' );
 	
 	wp_enqueue_style( 'cmc-fixed-column');
-	wp_enqueue_style( 'dataTables_bootstrap4');
+	
 	wp_enqueue_style( 'cmc-bootstrap');
-	wp_enqueue_style( 'cmc-dataTables-bootstrap');
+	wp_enqueue_style( 'dataTables_bootstrap4');
 	wp_enqueue_style( 'cmc-fixedcolumn-bootstrap');
 	wp_enqueue_style( 'cmc-custom');
 	
@@ -106,13 +145,13 @@ class CMC_Shortcode{
 	wp_enqueue_script( 'cmc-datatables.net');
 	wp_enqueue_script('cmc-typeahead');
 	wp_enqueue_script('cmc-handlebars');
-	
+
 	wp_enqueue_script( 'cmc-js' );
 	wp_enqueue_script( 'cmc-fixed-column-js' );
-	 wp_localize_script( 'cmc-js', 'ajax_object',
+	wp_localize_script( 'cmc-js', 'ajax_object',
              array('ajax_url' => admin_url( 'admin-ajax.php' )) );
-	  wp_enqueue_script('ccc-socket','https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js');
-		wp_enqueue_script('ccpw_stream',CMC_URL. 'assets/js/cmc-stream.min.js', array('ccc-socket'),null,true);	
+	wp_enqueue_script('ccc-socket','https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js');
+	wp_enqueue_script('ccpw_stream',CMC_URL. 'assets/js/cmc-stream.min.js', array('ccc-socket'),null,true);	
 
 	 $slug='';
 	 $post_id=$atts['id'];
@@ -126,7 +165,9 @@ class CMC_Shortcode{
 
 	$real_currency =$cmc_titan->getOption('old_currency',$post_id);
 	$old_currency=$real_currency?$real_currency:"USD";
-
+	// for currency dropdown
+	$currencies_price_list=cmc_usd_conversions('all');
+	
 	$single_default_currency =$cmc_titan->getOption('default_currency',$post_id);
 
 	$fetch_coins=1500;
@@ -137,10 +178,9 @@ class CMC_Shortcode{
 	$display_market_cap =$cmc_titan->getOption('display_market_cap',$post_id);
 
 	$display_price =$cmc_titan->getOption('display_price',$post_id);
+	$display_Changes7d =$cmc_titan->getOption('display_Changes7d',$post_id);
 
-   $display_Changes7d =$cmc_titan->getOption('display_Changes7d',$post_id);
-
-	 $display_changes24h =$cmc_titan->getOption('display_changes24h',$post_id);
+	$display_changes24h =$cmc_titan->getOption('display_changes24h',$post_id);
 	$display_changes1h =$cmc_titan->getOption('display_changes1h',$post_id);
 
 	$display_chart=$cmc_titan->getOption('coin_price_chart',$post_id);
@@ -166,19 +206,31 @@ class CMC_Shortcode{
 			$att_value = esc_attr( $att_value );
 			$cmc_data_attributes .= " data-{$att_key}=\"{$att_value}\" ";
 		}
-	
+
 		$cmc_data_attributes .='data-pageLength="'.$pagination.'"';
 		$cmc_coins_page=(get_query_var( 'page' ) ? get_query_var( 'page' ) : 1);
 	
-		$all_coin_data=cmc_coins_data($fetch_coins,$old_currency,$post_id);
+		$all_coin_data=cmc_coins_data($fetch_coins,$old_currency);
 		 $pagination = new pagination($all_coin_data,$cmc_coins_page ,$pagination);
 		  $show_coins = $pagination->getResults();
+		 $c_json= currencies_json();
 
 		ob_start();
 		$search=__('search','cmc');
 		?>
 		<div id="cryptocurency-market-cap-wrapper">
-
+		
+		<script id="cmc_curr_list" type="application/json">
+		 <?php echo $c_json;?>
+		</script>	
+ 	
+		<div class="cmc_price_conversion">
+			<select class="cmc_conversions">
+				<?php foreach($currencies_price_list  as $name=>$price){
+					echo'<option value="'.$name.'">'.$name.'</option>';
+					}?>
+			</select>
+		</div>
 
 		<div  data-currency="<?php echo $old_currency;?>" class="cmc_search" id="custom-templates">
   		<input class="typeahead" type="text" placeholder="<?php echo $search ?>">
@@ -235,7 +287,7 @@ class CMC_Shortcode{
 	if(count($show_coins)!=0 && is_array($show_coins )) {
 		foreach( $show_coins as $coin ) {
 				$coin=(array)$coin;
-			echo $this->gernate_coin_html($coin,$old_currency,$slug,$post_id
+			echo $this->gernate_coin_html($coin,$old_currency,$post_id
 				,$display_supply,
 				$display_Volume_24h,
 				$display_market_cap,
@@ -245,7 +297,8 @@ class CMC_Shortcode{
 				$display_changes1h,
 				$display_chart,
 				$single_default_currency,
-				$single_page_type
+				$single_page_type,
+				$currencies_price_list
 			);
 				}
 			}
@@ -263,7 +316,7 @@ class CMC_Shortcode{
 		
 	}
 	
-	function gernate_coin_html($coin,$old_currency,$slug,$post_id,
+	function gernate_coin_html($coin,$old_currency,$post_id,
 				$display_supply,
 				$display_Volume_24h,
 				$display_market_cap,
@@ -273,7 +326,8 @@ class CMC_Shortcode{
 				$display_changes1h,
 				$display_chart,
 				$single_default_currency,
-				$single_page_type
+				$single_page_type,
+				$currencies_price_list
 	){
 		$coin_data='';
 		$coin_name = $coin['name'];
@@ -288,8 +342,8 @@ class CMC_Shortcode{
 		 $price_index="price_".strtolower($old_currency);
          $m_index="market_cap_".strtolower($old_currency);
        	 $v_index="24h_volume_".strtolower($old_currency);
-			
-			if(isset($coin[$price_index])){
+
+	if(isset($coin[$price_index])){
 	 			 $coin_price = $coin[$price_index];
 	        }else{
 	        	 $coin_price = $coin['price_usd'];
@@ -309,18 +363,48 @@ class CMC_Shortcode{
 	 			 $market_cap = $coin[$m_index];
 		        }else{
 		        	 $market_cap = $coin['market_cap_usd'];
+
 		        }
-	     
+	    
+
          $formatted_supply=cmc_format_coin_values($supply);		
 		 $supply=format_number($supply);
-		 $formatted_market_cap=cmc_format_coin_values($market_cap);
+		 
+		
+		 if($market_cap==""){
+		$formatted_market_cap="?";	 
+		 }
+		 else{
+		$formatted_market_cap=cmc_format_coin_values($market_cap);	 
+		 }
 		  $market_cap=format_number($market_cap);
+		  
 		  $currency_icon=cmc_get_currency_icon($old_currency);
 	       if($coin_symbol=="MIOTA"){
 	       	 	$coinId='IOT';
 	       } else{
 	       	$coinId=$coin_symbol;
 	       }
+	      $json_data=array();  
+	    $usd_price= $coin['price_usd'];
+	    $usd_cap=$coin['market_cap_usd'];
+	 	$usd_vol=$coin['24h_volume_usd'];
+
+	    $json_data['usd_price']=format_number($usd_price);
+	    $json_data['usd_cap']=cmc_format_coin_values($usd_cap);
+		$json_data['usd_vol']=cmc_format_coin_values($usd_vol);
+		if(is_array($currencies_price_list )){
+			foreach ($currencies_price_list as $c_sym=>$currecy) {
+			$p_index=strtolower($c_sym).'_price';
+			$c_index=strtolower($c_sym).'_cap';
+			$v_index=strtolower($c_sym).'_vol';
+			$json_data[$p_index]=format_number( $usd_price*$currecy);
+			$json_data[$c_index]=cmc_format_coin_values( $usd_cap*$currecy);
+			$json_data[$v_index]=cmc_format_coin_values($usd_vol*$currecy);
+			}
+	  }
+
+		$coin_json=htmlspecialchars(json_encode($json_data),ENT_QUOTES, 'UTF-8');
 
         $percent_change_1h = $coin['percent_change_1h'] . '%';
         $change_sign ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
@@ -331,7 +415,7 @@ class CMC_Shortcode{
        	 $coin_url=esc_url( home_url('currencies/'.$coin_symbol.'/'.$c_id,'/') );	
    		}else{
    		 
-   		   $coin_url=esc_url( home_url('currencies/'.$coin_symbol.'/'.$c_id.'/'.$old_currency,'/') );
+   		  $coin_url=esc_url( home_url('currencies/'.$coin_symbol.'/'.$c_id.'/'.$old_currency,'/') );
    		}
 		
 		if($single_page_type==true){$coin_link_open ='<a target="_blank" href="'.$coin_url.'">';
@@ -341,14 +425,12 @@ class CMC_Shortcode{
 		$coin_link_close='</a>';
 		}
      	
-		
-
-   
+	
  		 $change_sign_24h ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
-          $change_class_24h =  __('up','cmc');
+          $change_class_24h =  __('cmc-up','cmc');
          if ( strpos( $coin['percent_change_24h'], $change_sign_minus ) !==false) {
             $change_sign_24h = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
-            $change_class_24h = __('down','cmc');
+            $change_class_24h = __('cmc-down','cmc');
         }
 
 		 $changes_coin_html='';
@@ -362,10 +444,10 @@ class CMC_Shortcode{
 		 $changes_24h_coin_html.= '</span>';	
 		$change_sign_1h ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
 
-        $change_class_1h =  __('up','cmc');
+        $change_class_1h =  __('cmc-up','cmc');
          if ( strpos( $coin['percent_change_1h'], $change_sign_minus ) !==false) {
             $change_sign_1h = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
-            $change_class_1h = __('down','cmc');
+            $change_class_1h = __('cmc-down','cmc');
         }
 		
 		$changes_1h_coin_html='';
@@ -373,10 +455,10 @@ class CMC_Shortcode{
 		$changes_1h_coin_html.=$change_sign_1h.$percent_change_1h ;
 		$changes_1h_coin_html.= '</span>';		
 		$change_sign_7d ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
-        $change_class_7d =  __('up','cmc');
+        $change_class_7d =  __('cmc-up','cmc');
         if ( strpos( $coin['percent_change_7d'], $change_sign_minus ) !==false) {
             $change_sign_7d = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
-            $change_class_7d = __('down','cmc');
+            $change_class_7d = __('cmc-down','cmc');
         }
 			
 		$changes_7d_coin_html='';
@@ -390,16 +472,16 @@ class CMC_Shortcode{
 	  $coin_name_html='<span class="cmc_coin_name cmc-desktop">'.$coin_name.'</span>';	
 		
 
-	  $coin_data.='<tr data-coin-price="'.$coin['price_usd'].'" data-coin-symbol="'.$coin_symbol.'">';
+	  $coin_data.='<tr data-coin-symbol="'.$coin_symbol.'">';
+
 	  $coin_data .='<td>'.$coin['rank'].'</td>';	
-  	 
 
 	 $coin_data .='<td><span class="cmc-name">';
 	 $coin_data .=$coin_link_open.$logo.$coin_symbol_html.$coin_name_html.$coin_link_close;
 	 $coin_data .='</span></td>';
 	
   if($display_price==true){
-	$coin_data .='<td data-order="'.$coin_price.'"><span class="cmc-price">' . $currency_icon. $coin_price . '</span></td>';
+	$coin_data .='<td data-coin-json='.$coin_json.' data-coin-price="'.$coin['price_usd'].'" data-coin-symbol="'.$coin_symbol.'" class="cmc_price_section" data-order="'.$coin_price.'"><span class="cmc-price">' . $currency_icon. $coin_price . '</span></td>';
 		}
 if($display_changes1h==true){
 	$coin_data .='<td>'.$changes_1h_coin_html.'</td>';
@@ -425,31 +507,13 @@ if($display_changes1h==true){
 	$coin_data .='<td data-order="'.$supply.'" ><span class="cmc_live_supply">'.$formatted_supply.' '.$coin_symbol.'</span></td>';
 	}
 	 if($display_chart==true){
-	$coin_data .='<td><div class="small-chart-area">'.$coin_link_open.get_coin_chart($coin_symbol).$coin_link_close.'</div></td>';
-	}
+	$coin_data .='<td><div class="small-chart-area">'.$coin_link_open.get_coin_chart($coin_symbol).$coin_link_close.'</div></td>'; 
+		}
 
 	  $coin_data.='</tr>';
 	return $coin_data;
 	
 	}	
-
-	function cmc_format_coin_values($value, $precision = 2) {
-		
-		 if ($value < 1000000) {
-	        // Anything less than a million
-	        $formated_str = number_format($value);
-	    } else if ($value < 1000000000) {
-	        // Anything less than a billion
-	       $formated_str = number_format($value / 1000000, $precision) . 'M';
-	    } else {
-	        // At least a billion
-	       $formated_str= number_format($value / 1000000000, $precision) . 'B';
-	    }
-
-    return $formated_str;
-    }
-	
-
 
 	function cmc_get_settings($post_id,$index){
 		if($post_id && $index){
@@ -503,7 +567,7 @@ if($display_changes1h==true){
 			wp_register_script( 'cmc-jquery-number', 'https://cdnjs.cloudflare.com/ajax/libs/df-number-format/2.1.6/jquery.number.min.js' );
 			
 			wp_register_script( 'cmc-js', CMC_URL . 'assets/js/cmc.min.js', array( 'jquery','cmc-datatables.net'), false, true );
-			
+	
             wp_register_script( 'cmc-fixed-column-js', 'https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js', array( 'jquery'), false, true );		
 
             wp_register_script('cmc-typeahead', CMC_URL . 'assets/js/typeahead.bundle.min.js', array( 'jquery'), false, true );
