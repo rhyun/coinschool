@@ -83,21 +83,21 @@ function cmc_description_filter_cpt( $args, $post_type ) {
 add_filter( 'register_post_type_args', 'cmc_description_filter_cpt', 10, 2 );
 
 
-if ( function_exists('my_plugin_function') ){
-	remove_action ('CALLED_HOOK','my_plugin_function');
-	add_action ('CALLED_HOOK','my_NEW_plugin_function');
-} else {
-	add_action( 'admin_notices', 'my_plugin_patch_error' );
-}
+// if ( function_exists('my_plugin_function') ){
+// 	remove_action ('CALLED_HOOK','my_plugin_function');
+// 	add_action ('CALLED_HOOK','my_NEW_plugin_function');
+// } else {
+// 	add_action( 'admin_notices', 'my_plugin_patch_error' );
+// }
 
-function my_plugin_patch_error() {
-	$class = 'notice notice-error';
-	$message = __( ' plugin patch (coin-market-cap-extensions.php line ...) not workng any longer');
-	printf( '%2$s', $class, $message );
-}
-function my_NEW_plugin_function(){
-	//modified function here
-}
+// function my_plugin_patch_error() {
+// 	$class = 'notice notice-error';
+// 	$message = __( ' plugin patch (coin-market-cap-extensions.php line ...) not workng any longer');
+// 	printf( '%2$s', $class, $message );
+// }
+// function my_NEW_plugin_function(){
+// 	//modified function here
+// }
 
 
 

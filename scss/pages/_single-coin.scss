@@ -2,8 +2,7 @@
 // This file contains all styles related to the coin post type.
 // -----------------------------------------------------------------------------
 .coin-main {
-	background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%), radial-gradient(at top left, rgba(255,255,255,0.30) 0%, rgba(0,0,0,0.30) 100%);
- 	background-blend-mode: screen;
+	background-color: $white;
 	height: 100%;
 	min-height: 100vh;
 	width: 100%;
@@ -11,54 +10,21 @@
 	@include breakpoint($tablet-lg) {
 		display: flex;
 		flex-direction: column;
-		&:before {
-			animation: Gradient 25s ease infinite;
-			background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-			background-size: 400% 400%;
+	}
+
+	&:after {
+		@include breakpoint($tablet-lg) {
+			background:  linear-gradient(217deg, rgba(164, 62, 190, 1), rgba(164, 62, 190, 0) 70.71%),
+      linear-gradient(127deg, rgba(255, 115, 80, 1), rgba(255, 115, 80, 0) 70.71%),
+      linear-gradient(336deg, rgba(250,250,250,.8), rgba(250,250,250,0) 70.71%);
 			content: '';
 			display: block;
-			height: 80vh;
-			left: 22px;
+			height: 100vh;
+			right: 0;
 			position: absolute;
-			top: 22px;
+			top: 0;
 			width: 60vw;
 			z-index: 0;
-		}
-	}
-
-	@-webkit-keyframes Gradient {
-		0% {
-			background-position: 0% 50%
-		}
-		50% {
-			background-position: 100% 50%
-		}
-		100% {
-			background-position: 0% 50%
-		}
-	}
-
-	@-moz-keyframes Gradient {
-		0% {
-			background-position: 0% 50%
-		}
-		50% {
-			background-position: 100% 50%
-		}
-		100% {
-			background-position: 0% 50%
-		}
-	}
-
-	@keyframes Gradient {
-		0% {
-			background-position: 0% 50%
-		}
-		50% {
-			background-position: 100% 50%
-		}
-		100% {
-			background-position: 0% 50%
 		}
 	}
 }
@@ -66,27 +32,51 @@
 /* Coin Header
 ------------------------------------------*/
 .coin-header {
-	background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
-	@include breakpoint($tablet-lg) {
-		background-image: none;
-		display: flex;
-		flex-wrap: wrap;
-		padding: 80px 60px 40px;
-		width: 100%;
-		max-width: $max-width;
-		margin: 0 auto;
-	}
 	@include breakpoint($tablet) {
 		flex-grow: 1;
 		position: relative;
 		z-index: 1;
+	}
+	@include breakpoint($tablet-lg) {
+		padding: 80px 60px 40px;
+		width: 100%;
+		max-width: $max-width;
+		margin: 0 auto;
 	}
 	@include breakpoint($desktop) {
 		display: block;
 		padding: 120px 60px 60px;
 	}
 	@include breakpoint($desktop-lg) {
-		padding: 240px 0 80px;
+		padding: 240px 80px 80px;
+		max-width: $desktop-lg;
+	}
+	@include breakpoint($desktop-xl) {
+		max-width: $desktop-xl;
+	}
+
+	&:before {
+		@include breakpoint($desktop) {
+			background-image: url('../images/dot.png');
+			background-repeat: repeat;
+			content: '';
+			display: block;
+			height: 320px;
+			left: 30px;
+			position: absolute;
+			top: 110px;
+			width: 400px;
+		}
+		@include breakpoint($desktop-lg) {
+			top: 185px;
+			height: 450px;
+			width: 520px;
+		}
+		@include breakpoint($desktop-xl) {
+			left: 0;
+			height: 505px;
+			width: 700px;
+		}
 	}
 }
 /* Coin Header: Coin Title
@@ -100,8 +90,6 @@
 		padding: 40px;
 	}
 	@include breakpoint($tablet-lg) {
-		display: flex;
-		flex-wrap: wrap;
 		padding: 0;
 		text-align: left;
 		width: 100%;
@@ -142,13 +130,30 @@
 		font-size: 32px;
 		margin-bottom: 30px;
   }
+  @include breakpoint($desktop-lg) {
+		font-size: 36px;
+  }
+  @include breakpoint($desktop-xl) {
+		font-size: 42px;
+		margin-bottom: 40px;
+  }
+
+  span {
+		background: linear-gradient(to right, #FF6C4E 0%, #DD5273 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+  }
+
   &:before,
   &:after {
-  	color: rgba(250,250,250,0.3);
+  	color: rgba(0,0,0,0.20);
   	display: inline-block;
 		font-family: $montserrat-bold;
 		@include breakpoint($tablet-lg) {
 			font-size: 40px;
+		}
+		@include breakpoint($desktop-lg) {
+			font-size: 48px;
 		}
   }
 	&:before {
@@ -159,9 +164,25 @@
 	}
 }
 
-/* Coin Header: Coin Icon
-------------------------------------------*/
-.coin-header__title-icon {
+/* Coin Header: Coin Icon & Name ------------------------------------------*/
+.coin-header__title-hdr {
+	@include breakpoint($tablet-lg) {
+		display: inline-block;
+		padding-right: 130px;
+		position: relative;
+	}
+	@include breakpoint($desktop) {
+		padding-right: 140px;
+	}
+	@include breakpoint($desktop-lg) {
+		padding-right: 158px;
+	}
+	@include breakpoint($desktop-xl) {
+		padding-right: 195px;
+	}
+}
+
+.coin-header__title-hdr-icon {
 	border-radius: 50%;
 	margin: 0 auto 40px;
 	width: 75px;
@@ -170,27 +191,42 @@
 		width: 90px;
 	}
 	@include breakpoint($tablet-lg) {
-		order: 2;
-		margin: -25px 0 0;
-		padding: 0;
+		margin: 0;
+		position: absolute;
+		right: 0;
+		top: -10px;
 	}
 	@include breakpoint($desktop) {
+		top: -17px;
 		width: 110px;
+	}
+	@include breakpoint($desktop-lg) {
+		width: 128px;
+	}
+	@include breakpoint($desktop-xl) {
+		top: -22px;
+		width: 165px;
 	}
 
 	img {
-		border: 2px solid #dbdbde;
+		border: 2px solid $white;
 		border-radius: 50%;
 		box-shadow: 0px 0px 9px 4px rgba(0,0,0,0.2);
+		width: 100%;
 		@include breakpoint($tablet-lg) {
-			border: 3px solid #dbdbde;
+			border: 3px solid $white;
+		}
+		@include breakpoint($desktop) {
+			border: 5px solid $white;
+		}
+		@include breakpoint($desktop-xl) {
+			border: 7px solid $white;
 		}
 	}
 }
 
-/* Coin Header: Coin Name ------------------------------------------*/
 .coin-header__title-hdr-name {
-  color: #dbdbde;
+  color: #000;
   display: inline-block;
 	font-family: $gloria;
 	font-size: 50px;
@@ -206,82 +242,22 @@
 		font-size: 120px;
 		letter-spacing: 14px;
 		line-height: 78px;
-		margin-right: 40px;
-		order: 1;
 	}
 	@include breakpoint($desktop) {
 		font-size: 140px;
 		letter-spacing: 18px;
 	}
-}
-
-/* Coin Header: Coin Social Links
-------------------------------------------*/
-.coin-header__title-hdr-social {
-	margin-bottom: 40px;
-	@include breakpoint($tablet-lg) {
-		margin: 0;
+	@include breakpoint($desktop-lg) {
+		font-size: 160px;
+		line-height: 105px;
+		letter-spacing: 24px;
 	}
-	&:before {
-		border-top: 1px solid #DBDBDE;
-		content: '';
-		display: block;
-		margin: 20px auto;
-		width: 20px;
-		@include breakpoint($tablet) {
-			margin: 30px auto;
-		}
-		@include breakpoint($tablet-lg) {
-			border-top: 3px solid #DBDBDE;
-	    margin: 20px 0;
-	    text-align: left;
-	  }
-	  @include breakpoint($desktop) {
-			border-top: 5px solid #DBDBDE;
-			margin: 30px 0;
-	  }
+	@include breakpoint($desktop-xl) {
+		font-size: 200px;
+		line-height: 132px;
+		letter-spacing: 32px;
 	}
 }
-
-.coin-header__title-hdr-social__item {
-	display: inline-block;
-	margin-left: 15px;
-	@include breakpoint($tablet) {
-		margin-left: 20px;
-	}
-	&:first-child {
-		margin: 0;
-	}
-}
-
-.coin-header__title-hdr-social__item-link {
-	background-color: rgba(250,250,250,0.15);
-	border-radius: 50%;
-	color: $orange;
-	display: block;
-	height: 35px;
-	position: relative;
-	width: 35px;
-	@include breakpoint($tablet) {
-		height: 50px;
-		width: 50px;
-	}
-	@include breakpoint($tablet-lg) {
-	}
-
-	.icon {
-		@include center;
-		@include breakpoint($tablet) {
-			font-size: 18px;
-		}
-		@include breakpoint($tablet-lg) {
-
-		}
-	}
-}
-
-
-
 
 /* Coin Header: Price
 ------------------------------------------*/
@@ -294,11 +270,15 @@
 	}
 	@include breakpoint($tablet-lg) {
 		background-color: transparent;
-		padding: 0 0 0 40px;
+		margin-top: -92px;	
+		padding: 0;
+	}
+	@include breakpoint($desktop-xl) {
+		margin-top: -102px;
 	}
 
 	.coin-price {
-		color: $orange;
+		color: rgba(250, 250, 250, 0.75);
 		display: block;
 		font-family: $gloria-bold;
 		font-size: 50px;
@@ -306,7 +286,7 @@
 		line-height: 1;
 		margin: 0;
 		text-align: center;
-		text-shadow: 2px 2px 7px rgba(0,0,0,0.5);
+		//text-shadow: 2px 2px 7px rgba(0,0,0,0.5);
 		width: 100%;
 		@include breakpoint($tablet) {
 			font-size: 72px;
@@ -321,6 +301,14 @@
 			font-size: 132px;
 			letter-spacing: 7px;
 		}
+		@include breakpoint($desktop-lg) {
+			font-size: 152px;
+		}
+		@include breakpoint($desktop-xl) {
+			font-size: 172px;
+			letter-spacing: 10px;
+			line-height: 107px;
+		}
 	}
 
 	.coin-price__symbol {
@@ -334,20 +322,77 @@
 	}
 	
 	.coin-price-change {
-		display: none;
+		text-align: right;
 	}
 }
 
-/* Coin Content: Info
+
+
+
+/* Coin Content
 ------------------------------------------*/
-.coin-header__info {
-	padding: 0 20px;
+.coin-content {
 	width: 100%;
+	@include breakpoint($tablet-lg) {
+		align-self: flex-end;
+		position: relative;
+		z-index: 1;
+	}
+}
+
+.coin-content__container {
+		margin: 0 auto;
+		max-width: $max-width;
+		position: relative;
+		width: 100%;
+		z-index: 1;
+		@include breakpoint($tablet-lg) {
+			padding: 0 60px;
+		}
+		@include breakpoint($desktop-lg) {
+			padding: 0 80px;
+			max-width: $desktop-lg;
+		}
+		@include breakpoint($desktop-xl) {
+			max-width: $desktop-xl;
+		}
+}
+
+/* Coin Content: Stats
+------------------------------------------*/
+.coin-content__stats {
+	padding: 0 20px;
 	@include breakpoint($tablet-lg) {
 		padding: 0;
 	}
+	@include breakpoint($desktop-lg) {
+		margin-left: 590px;
+	}
+	@include breakpoint($desktop-xl) {
+		margin-left: 771px;
+	}
+
+	.coin-content__stats-hdr {
+		font-family: $montserrat-black;
+		font-size: 72px;
+		letter-spacing: 3px;
+		line-height: 46px;
+		margin-bottom: 30px;
+		span {
+			background-color: $black;
+			border-radius: 3px;
+			color: $white;
+			display: inline-block;
+			font-family: $montserrat;
+			font-size: 16px;
+			line-height: 1;
+			padding: 5px 10px;
+			text-transform: capitalize;
+			vertical-align: top;
+		}
+	}
 	
-	.coin-info {
+	.coin-stats {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -357,17 +402,18 @@
 			text-align: right;
 		}
 		@include breakpoint($tablet-lg) {
+			background-color: $white;
+			border-radius: 5px;
+			box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 120px 0px;
 			flex-wrap: none;
-			margin: 0 auto;
-			max-width: $max-width;
-			padding: 0 60px;
+			padding: 0
 		}
 		@include breakpoint($desktop-lg) {
 			padding: 0;
 		}
 	}
 
-	.coin-info__item {
+	.coin-stats__item {
 		background-color: rgba(250, 250, 250, 0.65);
 		border-radius: 5px;
 		color: black;
@@ -377,8 +423,12 @@
 		width: calc(50% - 5px);
 		@include breakpoint($tablet-lg) {
 			background-color: transparent;
+			border-radius: 0;
 			margin: 0;
-			width: calc(25% - 10px);
+			width: 25%;
+			&:first-child {
+				border: 0;
+			}
 		}
 
 		&:first-child,
@@ -387,14 +437,14 @@
 		}
 	}
 
-	.coin-info__item-value {
+	.coin-stats__item-value {
 		display: block;
 		font-family: $gloria-bold;
 		font-size: 24px;
 		line-height: 1;
 	}
 
-	.coin-info__item-label {
+	.coin-stats__item-label {
 		color: $black;
 		font-size: 12px;
 		letter-spacing: 1px;
@@ -405,45 +455,30 @@
 
 
 
-/* Coin Content
+
+/* Coin Details
 ------------------------------------------*/
-.coin-content {
-	@include breakpoint($tablet-lg) {
-		align-self: flex-end;
-		width: 100%;
-	}
-}
-
-
-
-/* Coin About
-------------------------------------------*/
-.coin-content__about {
+.coin-content__details {
 	overflow: hidden;
 	position: relative;
 	width: 100%;
 
 	@include breakpoint($tablet-lg) {
-		overflow: visible;
-	}
-	@include breakpoint($desktop-lg) {
-		padding: 60px 0;
-	}
-}
-
-.coin-content__about-wrapper {
-	@include breakpoint($tablet-lg) {
 		display: flex;
 		flex-wrap: wrap;
 		margin: 0 auto;
-		padding: 60px 0 0;
+		padding: 0;
 		max-width: $max-width;
+		overflow: visible;
+	}
+	@include breakpoint($desktop-xl) {
+		max-width: $desktop-lg;
 	}
 }
 
-/* Coin About: 
+/* Coin Details: Info 
 ------------------------------------------*/
-.coin-content__about-cta {
+.coin-content__details-info {
 	overflow: hidden;
 	width: 100%;
 	@include breakpoint($tablet-lg) {
@@ -452,7 +487,7 @@
 	}
 }
 
-.coin-content__about-cta-list {
+.coin-content__details-info-links {
 	background-color: #23282D;
 	display: flex;
 	padding: 10px 20px 10px 40px;
@@ -468,14 +503,14 @@
   }
 }
 
-.coin-content__about-cta-item {
+.coin-content__details-info-links__item {
 	margin-right: 20px;
 	@include breakpoint($tablet-lg) {
 		margin: 0;
 	}
 }
 
-.coin-content__about-cta-item-link {
+.coin-content__details-info-links__item-link {
 	font-size: 12px;
 	display: inline-block;
 	text-decoration: none;
@@ -495,18 +530,17 @@
 	}
 }
 
-/* Coin About: Description
+/* Coin Details: Summary
 ------------------------------------------*/
-.coin-content__about-description {
+.coin-content__details-summary {
 	padding: 40px;
 	@include breakpoint($tablet-lg) {
-		background-color: $white;
 		border-radius: 0 5px 0 0;
 		padding: 40px;
 		width: 70%;
 	}
 }
-.coin-content__about-description-hdr {
+.coin-content__details-summary__hdr {
 	color: #DBDBDE;
 	font-family: $montserrat-black;
 	font-size: 14px;
@@ -518,7 +552,7 @@
 	}
 
   &:before {
-		border-top: 1px solid #DBDBDE;
+		border-top: 1px solid #000;
     content: '';
     display: block;
     margin-bottom: 20px;
@@ -526,7 +560,7 @@
 	}
 }
 
-.coin-content__about-description-excerpt {
+.coin-content__details-summary__text {
 	color: $white;
   font-size: 14px;
   letter-spacing: 0.5px;
@@ -537,7 +571,7 @@
 	}
 }
 
-.coin-content__about-btn {
+.coin-content__details-btn {
 	position: absolute;
 }
 

@@ -1,0 +1,70 @@
+/* Coin Header: Coin Social Links
+------------------------------------------*/
+.coin-social {
+	margin-bottom: 40px;
+	@include breakpoint($tablet-lg) {
+		margin: 0;
+	}
+	&:before {
+		border-top: 1px solid rgba(0, 0, 0, 0.20);
+		content: '';
+		display: block;
+		margin: 20px auto;
+		width: 20px;
+		@include breakpoint($tablet) {
+			margin: 30px auto;
+		}
+		@include breakpoint($tablet-lg) {
+			border-top: 3px solid rgba(0, 0, 0, 0.20);
+	    margin: 20px 0;
+	    text-align: left;
+	  }
+	  @include breakpoint($desktop) {
+			border-top: 5px solid rgba(0, 0, 0, 0.20);
+			margin: 30px 0;
+	  }
+	  @include breakpoint($desktop-lg) {
+			margin: 40px 0;
+	  }
+	}
+}
+
+.coin-social__item {
+	display: inline-block;
+	margin-left: 15px;
+	@include breakpoint($tablet) {
+		margin-left: 20px;
+	}
+	&:first-child {
+		margin: 0;
+	}
+}
+
+.coin-social__item-link {
+	background-color: rgba(250,250,250,0.15);
+	border-radius: 50%;
+	color: #FF6C4E;
+	display: block;
+	height: 35px;
+	position: relative;
+	width: 35px;
+	@include breakpoint($tablet) {
+		height: 50px;
+		width: 50px;
+	}
+	.icon {
+		@include center;
+		@include breakpoint($tablet) {
+			font-size: 18px;
+		}
+		@include breakpoint($tablet-lg) {
+			font-size: 20px;
+		}
+		@include breakpoint($desktop-lg) {
+			font-size: 22px;
+		}
+		@include breakpoint($desktop-xl) {
+			font-size: 24px;
+		}
+	}
+}
