@@ -54,7 +54,7 @@ var jsVendorFile            = 'vendors'; // Compiled JS vendors file name.
 // Default set to vendors i.e. vendors.js.
 
 // JS Custom related.
-var jsCustomSRC             = './js/custom/*.js'; // Path to JS custom scripts folder.
+var jsCustomSRC             = './js/custom/**/*.js'; // Path to JS custom scripts folder.
 var jsCustomDestination     = './js/'; // Path to place the compiled JS custom scripts file.
 var jsCustomFile            = 'custom'; // Compiled JS custom file name.
 // Default set to custom i.e. custom.js.
@@ -66,7 +66,7 @@ var imagesDestination       = './images/'; // Destination folder of optimized im
 // Watch files paths.
 var styleWatchFiles         = './scss/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
 var vendorJSWatchFiles      = './js/vendor/*.js'; // Path to all vendor JS files.
-var customJSWatchFiles      = './js/custom/*.js'; // Path to all custom JS files.
+var customJSWatchFiles      = './js/custom/**/*.js'; // Path to all custom JS files.
 var projectPHPWatchFiles    = './**/*.php'; // Path to all PHP files.
 
 
