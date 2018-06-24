@@ -101,5 +101,13 @@ add_filter( 'register_post_type_args', 'cmc_description_filter_cpt', 10, 2 );
 
 
 
+function remove_scripts_styles_footer() {
+	//----- CSS
+	wp_deregister_style('cmc-historical-datatable-css'); // Jetpack
 
+	//----- JS
+	//wp_deregister_script('devicepx'); // Jetpack
+}
+
+add_action('wp_footer', 'remove_scripts_styles_footer');
 

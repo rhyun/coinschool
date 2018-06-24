@@ -1,5 +1,8 @@
 <div class="coin-tabs js-tabs">
 	<?php echo do_shortcode('[cmc-chart]'); ?>
-
-	<?php echo do_shortcode('[cmc-history]'); ?>
+	
+	<div class="historical-data">
+		<h2>History</h2>
+		<?php echo do_shortcode('[cmc-history]'); ?>
+	</div>
 </div><!-- /.mod-coin-tabs -->

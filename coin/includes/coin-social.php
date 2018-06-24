@@ -1,10 +1,3 @@
-<?php
-
-	$facebook  = isset($coin_data->facebook)?$coin_data->facebook:"#";
-	$twitter 	 = isset($coin_data->twitter)?$coin_data->twitter:"#";
-	$youtube 	 = isset($coin_data->youtube)?$coin_data->youtube:"#";
-?>
-
 <ul class="coin-social">
 	<?php if( $facebook ): ?>
   <li class="coin-social__item">

@@ -1,12 +1,3 @@
-<?php
-	$blockexplorer 	= isset($coin_data->blockexplorer)?$coin_data->blockexplorer:"#";
-	$firstannounced = isset($coin_data->firstannounced)?$coin_data->firstannounced:"";
-	$github 				= isset($coin_data->github)?$coin_data->github:"#";
-	$reddit 				= isset($coin_data->reddit)?$coin_data->reddit:"#";
-	$website 				= isset($coin_data->website)?$coin_data->website:"#";
-	$whitepaper 		= isset($coin_data->whitepaper)?$coin_data->whitepaper:"#";
-
-?>
 <ul class="coin-links">
 	<?php if( $website ): ?>
   <li class="coin-links__item">
@@ -53,6 +44,14 @@
     <a class="coin-links__item-link" href="<?php echo $reddit; ?>" title="<?php echo $reddit; ?>" target="_blank">
     	<button class="coin-links__item-link__btn"><span class="icon fab fa-reddit"></span></button> 
     	<span class="coin-links__item-link__label">Reddit</span>
+    </a>
+  </li>
+  <?php endif; ?>
+  <?php if( $bitcointalk ): ?>
+  <li class="coin-links__item">
+    <a class="coin-links__item-link" href="<?php echo $bitcointalk; ?>" title="<?php echo $bitcointalk; ?>" target="_blank">
+      <button class="coin-links__item-link__btn"><span class="icon fab fa-bitcoin"></span></button>
+      <span class="coin-links__item-link__label">Bitcoin Talk</span>
     </a>
   </li>
   <?php endif; ?>

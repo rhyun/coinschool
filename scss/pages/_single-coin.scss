@@ -13,17 +13,19 @@
 	}
 	&:before {
 		@include breakpoint($tablet-lg) {
-			background:  linear-gradient(217deg, rgba(164, 62, 190, 1), rgba(164, 62, 190, 0) 70.71%),
-      linear-gradient(127deg, rgba(255, 115, 80, 1), rgba(255, 115, 80, 0) 70.71%),
-      linear-gradient(336deg, rgba(250,250,250, 1), rgba(250,250,250, 0) 70.71%);
-      background-size: 60vw 100vh;
+			// background:  linear-gradient(217deg, rgba(164, 62, 190, 1), rgba(164, 62, 190, 0) 70.71%),
+   //    linear-gradient(127deg, rgba(255, 115, 80, 1), rgba(255, 115, 80, 0) 70.71%),
+   //    linear-gradient(336deg, rgba(250,250,250, 1), rgba(250,250,250, 0) 70.71%);
+
+   background: radial-gradient(circle at 77% 0%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+      background-size: 50vw 77vh;
 			content: '';
 			display: block;
-			height: 100vh;
+			height: 77vh;
 			right: 0;
 			position: absolute;
 			top: 0;
-			width: 60vw;
+			width: 50vw;
 			z-index: 0;
 		}
 	}
@@ -218,18 +220,18 @@
 	}
 
 	img {
-		border: 2px solid $white;
-		border-radius: 50%;
-		box-shadow: 0px 0px 9px 4px rgba(0,0,0,0.2);
+		//border: 2px solid $white;
+		//border-radius: 50%;
+		//box-shadow: 0px 0px 9px 4px rgba(0,0,0,0.2);
 		width: 100%;
 		@include breakpoint($tablet-lg) {
-			border: 3px solid $white;
+			//border: 3px solid $white;
 		}
 		@include breakpoint($desktop) {
-			border: 5px solid $white;
+			//border: 5px solid $white;
 		}
 		@include breakpoint($desktop-xl) {
-			border: 7px solid $white;
+			//border: 7px solid $white;
 		}
 	}
 }
@@ -291,7 +293,7 @@
 	}
 
 	.coin-price {
-		color: rgba(250, 250, 250, 0.75);
+		color: $white;
 		display: block;
 		font-family: $gloria-bold;
 		font-size: 50px;
@@ -305,7 +307,6 @@
 		}
 		@include breakpoint($tablet-lg) {
 			font-size: 100px;
-			line-height: 65px;
 			margin-top: 0;
 			text-align: right;
 		}
@@ -319,18 +320,22 @@
 		@include breakpoint($desktop-xl) {
 			font-size: 172px;
 			letter-spacing: 10px;
-			line-height: 107px;
 		}
 	}
 
 	.coin-price__symbol {
-		color: #DBDBDE;
+		background-color: rgba(255, 255, 255, 0.5);
+		border-radius: 50%;
+		color: $black;
 		display: inline-block;
 		font-size: 40px;
-		font-weight: 100;
-		line-height: 1;
-		margin-right: 3px;
+		height: 35px;
+		letter-spacing: normal;
+		line-height: 40px;
+		margin-right: 10px;
+		text-align: center;
 		vertical-align: middle;
+		width: 35px;
 	}
 	
 	.coin-price-change {
@@ -338,13 +343,46 @@
 	}
 
 	.coin-price-change__item {
+		background: linear-gradient(top,  rgba(255, 255, 255, 0.65) 5%, #ffffff 100%);
+		border-radius: 25px;
 		display: inline-block;
 		margin-left: 20px;
+		height: 50px;
+		position: relative;
+		width: 95px;
 		&:first-child {
 			margin: 0;
 		}
+
+		&:before,
+		&:after {
+			background-color: rgba(255, 255, 255, 0.5);
+			content: '';
+			position: absolute;
+			z-index: -1;
+		}
+		
+		&:before {
+			border-radius: 50px;
+			width: 45px;
+			height: 45px;
+			right: 12px;
+			top: -22px;
+		}
+		
+
+		&:after {
+			border-radius: 25px;
+
+			height: 25px;
+			left: 12px;
+			top: -12px;
+			width: 25px;
+		}
 	}
 }
+
+
 
 
 
@@ -365,7 +403,7 @@
 			background: linear-gradient(15deg, rgba(250, 250, 255, 1.0), rgba(255, 255, 255, 1.0) 45%, rgba(255, 255, 255, 0.0) 65%);
 			background-size: 60vw 30vh;
 			bottom: 0;
-			content: '';
+			//content: '';
 			display: block;
 			height: 30vh;
 			position: absolute;
@@ -392,7 +430,7 @@
 		max-width: $desktop-lg;
 	}
 	@include breakpoint($desktop-xl) {
-		padding: 0;
+		max-width: $desktop-xl;
 	}
 }
 
@@ -404,7 +442,7 @@
 	margin-bottom: 30px;
 	width: 100%;
 	@include breakpoint($desktop) {
-		margin-left: 32%;
+		margin-left: 36%;
 	}
 	span {
 		background-color: $black;
@@ -429,7 +467,7 @@
 		width: 100%;
 	}
 	@include breakpoint($desktop) {
-		margin-left: 32%;
+		margin-left: 35%;
 	}
 }
 
@@ -444,8 +482,9 @@
 		text-align: right;
 	}
 	@include breakpoint($tablet-lg) {
-		background-color: $white;
-		border-radius: 5px;
+		background-color: #E9E9E9;
+		border: 20px solid #fff;
+		border-radius: 10px;
 		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 120px 0px;
 		flex-wrap: none;
 	}
@@ -507,29 +546,6 @@
 }
 
 
-
-
-
-
-/* Coin Details
-------------------------------------------*/
-.coin-content__details {
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-
-	@include breakpoint($tablet-lg) {
-		display: flex;
-		margin: 0 auto;
-		padding: 0;
-		max-width: $max-width;
-		overflow: visible;
-	}
-	@include breakpoint($desktop-xl) {
-		max-width: $desktop-lg;
-	}
-}
-
 /* Coin Details: Info 
 ------------------------------------------*/
 .coin-content__info {
@@ -537,24 +553,21 @@
 	width: 100%;
 	@include breakpoint($tablet-lg) {
 		overflow: inherit;
-		width: 30%;
+		width: 40vw;
 	}
 	@include breakpoint($desktop) {
-		margin-top: -145px;
+		//
 	}
 }
 
 /* Coin Details: Summary
 ------------------------------------------*/
 .coin-content__summary {
-	padding: 40px;
 	@include breakpoint($tablet-lg) {
-		border-radius: 0 5px 0 0;
-		padding: 40px;
-		width: 60vw;
+		width: 35%;
 	}
 	@include breakpoint($desktop) {
-		display: flex;
+		margin-top: -145px;
 	}
 }
 .coin-content__summary-hdr {
@@ -588,3 +601,29 @@
 	}
 }
 
+
+.coin-tabs {
+	padding: 0 20px;
+	width: 100%;
+	@include breakpoint($tablet) {
+		padding: 40px;
+	}
+	@include breakpoint($desktop) {
+		
+	}
+	@include breakpoint($desktop-lg) {
+		
+	}
+	@include breakpoint($desktop-xl) {
+		
+	}
+}
+
+
+.historical-data {
+	margin: 0 auto;
+	max-width: $max-width;
+	width: 100%;
+	
+
+}
