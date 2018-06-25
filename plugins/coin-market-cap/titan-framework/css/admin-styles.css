@@ -535,3 +535,6 @@
 td.second.tf-textarea textarea {
     height: 100px!important;
 }
+.tf-radio-image img{
+	width:120px;
+}

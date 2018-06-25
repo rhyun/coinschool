@@ -1,4 +1,5 @@
 <?php
+
 	/*
 	Fetching all coins data and creating cache for 10 minute
 	*/
@@ -195,21 +196,33 @@
 		}
 
 		//Using it for formatting large valaues in billion/million
-	function cmc_format_coin_values($value, $precision = 2) {
+        function cmc_format_coin_values($value, $precision = 2) {
 	    if ($value < 1000000) {
 	        // Anything less than a million
 	        $formated_str = number_format($value);
 	    } else if ($value < 1000000000) {
-	        // Anything less than a billion
-	       $formated_str = number_format($value / 1000000, $precision) . 'M';
+			// Anything less than a billion
+	        $formated_str = number_format($value / 1000000, $precision) . '  M';
+		   
+			if(has_filter('cmc_change_format_text')) {
+            $formated_str = apply_filters('cmc_change_format_text', $formated_str);
+            }
+			
+	        
 	    } else {
 	        // At least a billion
-	       $formated_str= number_format($value / 1000000000, $precision) . 'B';
-	    }
+	       $formated_str= number_format($value / 1000000000, $precision) . '  B';
+	    
+		   if(has_filter('cmc_change_format_text')) {
+           $formated_str = apply_filters('cmc_change_format_text', $formated_str);
+           }
+		
+		}
 
     return $formated_str;
     }
-
+	
+	
 	function format_number($n){
 
 	if($n < 0.50){
@@ -403,6 +416,7 @@ $coin_icon='https://res.cloudinary.com/coolplugins/image/upload/cryptocurrency-l
 			'IDR'   => "Rp ", //Indonesia Rupiah
 			'PKR'   => "₨ ", //Pakistan Rupee
 			'ZAR'   => "R ", //South Africa Rand
+			'BTC' => '&#579;'
 		    );
 		return json_encode($currency);
 	}
@@ -640,8 +654,13 @@ function cmc_get_coin_logo($coin_id){
 	}
 
 function cmc_get_page_slug(){
-		$slug=get_transient('cmc-single-page-slug');
-		if(!empty($slug)){
+	
+		if(get_option('cmc-single-page-slug')){
+			return $slug= get_option('cmc-single-page-slug');
+		}else if(get_transient('cmc-single-page-slug'))
+		{
+			$slug=get_transient('cmc-single-page-slug');
+			update_option('cmc-single-page-slug',$slug);
 			return $slug;
 		}else{
 			return $slug="currencies";
@@ -654,3 +673,10 @@ function cmc_get_page_slug(){
  		
  		return	$cmc_dynamic_css =$cmc_titan->getOption('cmc_dynamic_css');
    }
+
+function cdump($vari){
+	echo '<pre>';
+	print_r($vari);
+	echo '</pre>';
+
+}

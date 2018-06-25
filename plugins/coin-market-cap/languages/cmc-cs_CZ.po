@@ -1,0 +1,743 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Coin Market Cap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-20 06:18+0000\n"
+"PO-Revision-Date: 2018-06-20 08:49+0000\n"
+"Last-Translator: admin <baljit.cooltimeline@gmail.com>\n"
+"Language-Team: Czech\n"
+"Language: cs_CZ\n"
+"Plural-Forms: nplurals=3; plural=( n == 1 ) ? 0 : ( n >= 2 && n <= 4 ) ? 1 : "
+"2;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: coin-market-cap.php:274
+msgctxt "Post Type General Name"
+msgid "Coin Market Cap"
+msgstr ""
+
+#: coin-market-cap.php:275
+msgctxt "Post Type Singular Name"
+msgid "Coin Market Cap"
+msgstr ""
+
+#. Name of the plugin
+#: coin-market-cap.php:276
+msgid "Coin Market Cap"
+msgstr ""
+
+#: coin-market-cap.php:277 coin-market-cap.php:383
+msgid "Post Type"
+msgstr "Post Type"
+
+#: coin-market-cap.php:278 coin-market-cap.php:384
+msgid "Item Archives"
+msgstr "Archiv položek"
+
+#: coin-market-cap.php:279 coin-market-cap.php:385
+msgid "Item Attributes"
+msgstr "Atributy položky"
+
+#: coin-market-cap.php:280 coin-market-cap.php:386
+msgid "Parent Item:"
+msgstr "Nadřazená položka:"
+
+#: coin-market-cap.php:281
+msgid "All Shortcodes"
+msgstr "Všechny zkrácené kódy"
+
+#: coin-market-cap.php:282
+msgid "Add New Shortcode"
+msgstr "Přidat nový zkrácený kód"
+
+#: coin-market-cap.php:283 coin-market-cap.php:389
+msgid "Add New"
+msgstr "Přidat nový"
+
+#: coin-market-cap.php:284 coin-market-cap.php:390
+msgid "New Item"
+msgstr "Nový předmět"
+
+#: coin-market-cap.php:285 coin-market-cap.php:391
+msgid "Edit Item"
+msgstr "Upravit položku"
+
+#: coin-market-cap.php:286 coin-market-cap.php:392
+msgid "Update Item"
+msgstr "Aktualizovat položku"
+
+#: coin-market-cap.php:287 coin-market-cap.php:393
+msgid "View Item"
+msgstr "Prohlédnout položku"
+
+#: coin-market-cap.php:288 coin-market-cap.php:394
+msgid "View Items"
+msgstr "Zobrazit položky"
+
+#: coin-market-cap.php:289 coin-market-cap.php:395
+msgid "Search Item"
+msgstr "Položka vyhledávání"
+
+#: coin-market-cap.php:290 coin-market-cap.php:396
+msgid "Not found"
+msgstr "Nenalezeno"
+
+#: coin-market-cap.php:291 coin-market-cap.php:397
+msgid "Not found in Trash"
+msgstr "Nenalezeno v koši"
+
+#: coin-market-cap.php:292 coin-market-cap.php:398
+msgid "Featured Image"
+msgstr "Doporučený obrázek"
+
+#: coin-market-cap.php:293 coin-market-cap.php:399
+msgid "Set featured image"
+msgstr "Nastavte obrázek"
+
+#: coin-market-cap.php:294 coin-market-cap.php:400
+msgid "Remove featured image"
+msgstr "Odstraňte vybraný obrázek"
+
+#: coin-market-cap.php:295 coin-market-cap.php:401
+msgid "Use as featured image"
+msgstr "Použijte jako doporučený snímek"
+
+#: coin-market-cap.php:296 coin-market-cap.php:402
+msgid "Insert into item"
+msgstr "Vložte do položky"
+
+#: coin-market-cap.php:297 coin-market-cap.php:403
+msgid "Uploaded to this item"
+msgstr "Nahráno do této položky"
+
+#: coin-market-cap.php:298 coin-market-cap.php:404
+msgid "Items list"
+msgstr "Seznam položek"
+
+#: coin-market-cap.php:299 coin-market-cap.php:405
+msgid "Items list navigation"
+msgstr "Navigace seznamu položek"
+
+#: coin-market-cap.php:300 coin-market-cap.php:406
+msgid "Filter items list"
+msgstr "Filtrovat seznam položek"
+
+#: coin-market-cap.php:303
+msgid "CryptoCurrency Price Widget"
+msgstr "CryptoCurrency Price Widget"
+
+#: coin-market-cap.php:304 coin-market-cap.php:410
+msgid "Post Type Description"
+msgstr "Post Type Description"
+
+#: coin-market-cap.php:347
+msgid "Shortcode"
+msgstr "Krátký kód"
+
+#: coin-market-cap.php:363
+msgid "COIN ID"
+msgstr "ID COIN"
+
+#: coin-market-cap.php:380
+msgctxt "Post Type General Name"
+msgid "Coin Description"
+msgstr ""
+
+#: coin-market-cap.php:381
+msgctxt "Post Type Singular Name"
+msgid "Coin Description"
+msgstr ""
+
+#: coin-market-cap.php:382 coin-market-cap.php:409
+#: includes/cmc-common-settings.php:435 includes/cmc-common-settings.php:450
+msgid "Coin Description"
+msgstr "Coin Description"
+
+#: coin-market-cap.php:387
+msgid "All Descriptions"
+msgstr "Všechny popisy"
+
+#: coin-market-cap.php:388
+msgid "Add New Description"
+msgstr "Přidat nový popis"
+
+#: coin-market-cap.php:496
+msgid "Hopefully you are Happy with our plugin"
+msgstr "Doufejme, že jste s naším pluginem spokojeni"
+
+#: coin-market-cap.php:508
+msgid "May I ask you to give it a 5-star rating on  "
+msgstr "Mohu vás požádat, abyste mu dal 5 hvězdiček?"
+
+#: coin-market-cap.php:508 coin-market-cap.php:510
+msgid "Codecanyon"
+msgstr "Codecanyon"
+
+#: coin-market-cap.php:509
+msgid ""
+"This will help to spread its popularity and to make this plugin a better one "
+"on  "
+msgstr "To pomůže rozšířit jeho popularitu a udělat tento plugin lepší"
+
+#: coin-market-cap.php:512
+msgid "View Demos"
+msgstr "Zobrazit ukázky"
+
+#: includes/cmc-calculator.php:116
+msgid "Enter Amount"
+msgstr "Vložit sumu"
+
+#: includes/cmc-calculator.php:118
+msgid "Base Currency"
+msgstr "Základní měna"
+
+#: includes/cmc-calculator.php:133
+msgid "Convert To"
+msgstr "Převést na"
+
+#: includes/cmc-calculator.php:135
+msgid "Currencies"
+msgstr "Měny"
+
+#: includes/cmc-calculator.php:147
+msgid "Crypto Currencies"
+msgstr "Crypto Měny"
+
+#: includes/cmc-calculator.php:166
+msgid "Bitcoin"
+msgstr "Bitcoin"
+
+#: includes/cmc-common-settings.php:5
+msgid "Coin Details Settings"
+msgstr "Coin Details Settings"
+
+#: includes/cmc-common-settings.php:25
+msgid "Settings"
+msgstr "Nastavení"
+
+#: includes/cmc-common-settings.php:38
+msgid "Select Currency"
+msgstr "Vyberte měnu"
+
+#: includes/cmc-common-settings.php:80
+msgid "Coins Per Page"
+msgstr "Mince na stránku"
+
+#: includes/cmc-common-settings.php:97
+msgid "Display Price? (Optional)"
+msgstr "Cena zobrazení? (Volitelný)"
+
+#: includes/cmc-common-settings.php:98
+msgid "Select if you want to <b>Display Price</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:104 includes/cmc-common-settings.php:235
+msgid "Display Changes 1h? (Optional)"
+msgstr "Změny zobrazení 1h? (Volitelný)"
+
+#: includes/cmc-common-settings.php:105 includes/cmc-common-settings.php:239
+msgid "Select if you want to display <b>1 Hour % Changes</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:111 includes/cmc-common-settings.php:244
+msgid "Display Changes 24h? (Optional)"
+msgstr "Změna zobrazení 24h? (Volitelný)"
+
+#: includes/cmc-common-settings.php:112 includes/cmc-common-settings.php:247
+msgid "Select if you want to display <b>24 Hours % Changes</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:119 includes/cmc-common-settings.php:254
+msgid "Display Changes 7d? (Optional)"
+msgstr "Změna zobrazení 7d? (Volitelný)"
+
+#: includes/cmc-common-settings.php:120 includes/cmc-common-settings.php:257
+msgid "Select if you want to display <b>7 Days % Changes</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:129 includes/cmc-common-settings.php:262
+msgid "Display supply? (Optional)"
+msgstr "Zobrazuje se nabídka? (Volitelný)"
+
+#: includes/cmc-common-settings.php:130
+msgid "Select if you want to display currency <b>Available Supply</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:137 includes/cmc-common-settings.php:270
+msgid " Volume 24h ? (Optional)"
+msgstr "Svazek 24h? (Volitelný)"
+
+#: includes/cmc-common-settings.php:138
+msgid "Select if you want to display currency <b>Volume 24H</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:146 includes/cmc-common-settings.php:278
+msgid "Display Market Cap? (Optional)"
+msgstr "Display Cap Cap? (Volitelný)"
+
+#: includes/cmc-common-settings.php:147
+msgid "Select if you want to display <b>Market Cap<b/> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:154
+msgid "Display Price chart 7days?"
+msgstr "Zobrazit cenovou tabulku 7dní?"
+
+#: includes/cmc-common-settings.php:155
+msgid "Select if you want to display <b>7 Days Small Chart</b> in list ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:169
+msgid ""
+"If you are loading more than 500 coins on one page then use <b>Image "
+"Charts</b><br/>otherwise it will good to use <b>Dynamic SVG Charts</b>."
+msgstr ""
+
+#: includes/cmc-common-settings.php:174
+msgid "Enable Live Updates"
+msgstr "Povolit živé aktualizace"
+
+#: includes/cmc-common-settings.php:175
+msgid "Select if you want to display <b>Live Changes</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:182
+msgid "Single Coin Link Setting"
+msgstr "Nastavení jednoduchého mince"
+
+#: includes/cmc-common-settings.php:183
+msgid "Select if you want to open single page in a new tab ?"
+msgstr "Vyberte, zda chcete otevřít jednu stránku na nové kartě?"
+
+#: includes/cmc-common-settings.php:211
+msgid "Dynamic Title"
+msgstr "Dynamický název"
+
+#: includes/cmc-common-settings.php:215
+msgid ""
+"<p>Placeholders:-<code>[coin-name],[coin-price],[coin-marketcap],[coin-"
+"changes]</code><br/>It will also used as <b>SEO title</b>.</p>"
+msgstr ""
+
+#: includes/cmc-common-settings.php:220
+msgid "Dynamic Description"
+msgstr "Dynamický popis"
+
+#: includes/cmc-common-settings.php:224
+msgid ""
+"<p>Placeholders:-<code>[coin-name],[coin-price],[coin-marketcap],[coin-"
+"changes]</code><br/>It will also used as <b>SEO meta description</b>.</p>"
+msgstr ""
+
+#: includes/cmc-common-settings.php:229
+msgid "Display Description From API"
+msgstr "Zobrazení Popis z rozhraní API"
+
+#: includes/cmc-common-settings.php:230
+msgid "Select if you want to display custom description from API"
+msgstr "Zvolte, zda chcete z rozhraní API zobrazit vlastní popis"
+
+#: includes/cmc-common-settings.php:265
+msgid "Select if you want to display <b>Currency Available Supply</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:271
+msgid "Select if you want to display <b>Currency Volume 24h</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:279
+msgid "Select if you want to display <b>Market Cap</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:287
+msgid "Chart Color"
+msgstr "Barva grafu"
+
+#: includes/cmc-common-settings.php:295
+msgid "Select Default Currency"
+msgstr "Vyberte výchozí měnu"
+
+#: includes/cmc-common-settings.php:338
+msgid "Facebok APP ID"
+msgstr "Facebook APP ID"
+
+#: includes/cmc-common-settings.php:347
+msgid "Twitter Feed Type"
+msgstr "Typ zdroje Twitter"
+
+#: includes/cmc-common-settings.php:348
+msgid "In order to display Twitter Feed please install and activate "
+msgstr "Chcete-li zobrazit Twitter Feed, nainstalujte a aktivujte"
+
+#: includes/cmc-common-settings.php:348
+msgid "Custom Twitter Feeds"
+msgstr "Vlastní kanály Twitter"
+
+#: includes/cmc-common-settings.php:348
+msgid " plugin & authorize it with your twitter account."
+msgstr "plugin a autorizujte jej pomocí twitterového účtu."
+
+#: includes/cmc-common-settings.php:359
+msgid "Affiliate Integration"
+msgstr "Affiliate Integration"
+
+#: includes/cmc-common-settings.php:370
+msgid "Changelly Affiliate ID"
+msgstr "Changelly Affiliate ID"
+
+#: includes/cmc-common-settings.php:374
+msgid "In order to add Changelly Affiliate link .Please follow these steps:-"
+msgstr "Chcete-li přidat odkaz Changelly Affiliate .Prosím, postupujte takto:"
+
+#: includes/cmc-common-settings.php:374
+msgid "View Steps"
+msgstr "Zobrazit kroky"
+
+#: includes/cmc-common-settings.php:380
+msgid "Any Other Affiliate Link"
+msgstr "Jakýkoli jiný partnerský odkaz"
+
+#: includes/cmc-common-settings.php:384
+msgid "Please add other Affiliate link."
+msgstr "Přidejte prosím další partnerský odkaz."
+
+#: includes/cmc-common-settings.php:393
+msgid "Change Coin Detail Page Slug"
+msgstr "Změnit stránku s mincemi"
+
+#: includes/cmc-common-settings.php:397
+msgid ""
+"This will update text in red color only:- http://coinmarketcap.coolplugins."
+"net/<strong style=\"color:red;\">currencies</strong>/{dynamic}/{dynamic}"
+"/<br/>\n"
+"\tCoin details page URL like:- http://coinmarketcap.coolplugins."
+"net/currencies/BTC/bitcoin/ <br>"
+msgstr ""
+
+#: includes/cmc-common-settings.php:405
+msgid ""
+"In order to update single page slug. Please follow bellow mentioned steps."
+msgstr ""
+"Chcete-li aktualizovat jednu stránku slimáku. Postupujte prosím níže "
+"uvedenými kroky."
+
+#: includes/cmc-common-settings.php:406
+msgid "Add Custom Slug and Click on Save changes button"
+msgstr "Přidejte službu Custom Slug a klikněte na tlačítko Uložit změny"
+
+#: includes/cmc-common-settings.php:407
+msgid "\">Clear Cache Tab</a> and Delete all API's Cache"
+msgstr ""
+
+#: includes/cmc-common-settings.php:408
+msgid "Then please Update your Permalink Settings."
+msgstr "Poté aktualizujte nastavení služby Permalink."
+
+#: includes/cmc-common-settings.php:440
+msgid "Select Coin"
+msgstr "Vyberte minci"
+
+#: includes/cmc-common-settings.php:460
+msgid "Global Data Shortcode"
+msgstr "Globální zkratka dat"
+
+#: includes/cmc-common-settings.php:468
+msgid "Top Gainers Shortcode"
+msgstr "Krátký kód nejlepších zisků"
+
+#: includes/cmc-common-settings.php:475
+msgid "Top Losers Shortcode"
+msgstr "Nejčastější ztráty krátkého kódu"
+
+#: includes/cmc-common-settings.php:482
+msgid "Single Page Shortcodes"
+msgstr "Kódy pro jednu stránku"
+
+#: includes/cmc-common-settings.php:485
+msgid "Use below mentioned shortcodes on single page"
+msgstr "Použijte níže uvedené zkratky na jedné stránce"
+
+#: includes/cmc-common-settings.php:490
+msgid "Dynamic Title Shortcode"
+msgstr "Krátký kód dynamického názvu"
+
+#: includes/cmc-common-settings.php:497
+msgid "Dynamic Description Shortcode"
+msgstr "Dynamický popis Krátký kód"
+
+#: includes/cmc-common-settings.php:504
+msgid "Changelly Buy/Sell Shortcode"
+msgstr "Changelly koupit / prodat krátký kód"
+
+#: includes/cmc-common-settings.php:511
+msgid "Coin Market Cap Details Shortcode"
+msgstr "Coin Market Cap Details Shortcode"
+
+#: includes/cmc-common-settings.php:518
+msgid "Extra Data Shortcode"
+msgstr "Krátký kód navíc"
+
+#: includes/cmc-common-settings.php:526
+msgid "Calculator Shortcode"
+msgstr "Kalkulátor Krátký kód"
+
+#: includes/cmc-common-settings.php:533
+msgid "Custom Description Shortcode"
+msgstr "Vlastní popis Krátký kód"
+
+#: includes/cmc-common-settings.php:540
+msgid "Price Chart Shortcode"
+msgstr "Krátký kód ceny"
+
+#: includes/cmc-common-settings.php:547
+msgid "Historical Data Shortcode"
+msgstr "Historický datový zkrat"
+
+#: includes/cmc-common-settings.php:554
+msgid "Twitter News Feed Shortcode"
+msgstr "Twitter News Feed Krátký kód"
+
+#: includes/cmc-common-settings.php:561
+msgid "Submit Reviews Shortcode"
+msgstr "Odeslat recenze Krátký kód"
+
+#: includes/cmc-functions.php:498 includes/cmc-shortcode.php:600
+msgid "No Graphical Data"
+msgstr "Žádné grafické údaje"
+
+#: includes/cmc-shortcode.php:106
+msgid "Market Cap:"
+msgstr "Market Cap:"
+
+#: includes/cmc-shortcode.php:111
+msgid "24h Vol:"
+msgstr "24h Vol:"
+
+#: includes/cmc-shortcode.php:113
+msgid "BTC Dominance: "
+msgstr "BTC Dominance:"
+
+#: includes/cmc-shortcode.php:220 includes/cmc-top-shortcode.php:79
+msgid "API Request timeout"
+msgstr "Časový limit žádosti API"
+
+#: includes/cmc-shortcode.php:227
+msgid "search"
+msgstr "Vyhledávání"
+
+#: includes/cmc-shortcode.php:296 includes/cmc-top-shortcode.php:103
+msgid "#"
+msgstr ""
+
+#: includes/cmc-shortcode.php:297 includes/cmc-top-shortcode.php:105
+msgid "Name"
+msgstr "název"
+
+#: includes/cmc-shortcode.php:300 includes/cmc-single-shortcode.php:544
+#: includes/cmc-top-shortcode.php:106
+msgid "Price"
+msgstr "Cena"
+
+#: includes/cmc-shortcode.php:305 includes/cmc-shortcode.php:308
+#: includes/cmc-shortcode.php:311 includes/cmc-top-shortcode.php:107
+msgid "Changes "
+msgstr "Změny"
+
+#: includes/cmc-shortcode.php:305
+msgid "1H "
+msgstr "1H"
+
+#: includes/cmc-shortcode.php:308 includes/cmc-shortcode.php:317
+#: includes/cmc-top-shortcode.php:107 includes/cmc-top-shortcode.php:112
+msgid "24H"
+msgstr "24H"
+
+#: includes/cmc-shortcode.php:311
+msgid "7D"
+msgstr "7D"
+
+#: includes/cmc-shortcode.php:314 includes/cmc-single-shortcode.php:454
+#: includes/cmc-single-shortcode.php:546 includes/cmc-top-shortcode.php:111
+msgid "Market Cap"
+msgstr "Tržní kapitál"
+
+#: includes/cmc-shortcode.php:317 includes/cmc-top-shortcode.php:112
+msgid "Volume "
+msgstr "Hlasitost"
+
+#: includes/cmc-shortcode.php:320 includes/cmc-single-shortcode.php:461
+msgid "Available Supply"
+msgstr "Dostupné dodávky"
+
+#: includes/cmc-shortcode.php:323 includes/cmc-top-shortcode.php:113
+msgid "Price Graph "
+msgstr "Graf cen"
+
+#: includes/cmc-shortcode.php:490 includes/cmc-single-shortcode.php:219
+msgid "up"
+msgstr "nahoru"
+
+#: includes/cmc-single-shortcode.php:213 includes/cmc-single-shortcode.php:263
+#: includes/cmc-single-shortcode.php:383 includes/cmc-single-shortcode.php:390
+msgid "N/A"
+msgstr "N / A"
+
+#: includes/cmc-single-shortcode.php:217
+msgid "down"
+msgstr "dolů"
+
+#: includes/cmc-single-shortcode.php:422
+msgid "1h % "
+msgstr "1h%"
+
+#: includes/cmc-single-shortcode.php:428
+msgid "24h % "
+msgstr "24h%"
+
+#: includes/cmc-single-shortcode.php:433
+msgid "7d %"
+msgstr "7d%"
+
+#: includes/cmc-single-shortcode.php:450
+msgid "Price "
+msgstr "Cena"
+
+#: includes/cmc-single-shortcode.php:457 includes/cmc-single-shortcode.php:545
+msgid "Volume"
+msgstr "Hlasitost"
+
+#: includes/cmc-single-shortcode.php:464
+msgid "Rank"
+msgstr "Hodnost"
+
+#: includes/cmc-single-shortcode.php:471
+msgid "Currency Not Found"
+msgstr "Měna nebyla nalezena"
+
+#: includes/cmc-single-shortcode.php:474
+msgid "Something wrong with URL"
+msgstr "Něco se nezdařilo s adresou URL"
+
+#: includes/cmc-single-shortcode.php:535
+msgid "Previous"
+msgstr "Předchozí"
+
+#: includes/cmc-single-shortcode.php:536 includes/pagination.class.php:195
+#: includes/pagination.class.php:198
+msgid "Next"
+msgstr "další"
+
+#: includes/cmc-single-shortcode.php:537
+msgid "Show"
+msgstr "Show"
+
+#: includes/cmc-single-shortcode.php:538
+msgid "Entries"
+msgstr "Příspěvky"
+
+#: includes/cmc-single-shortcode.php:543
+msgid "Date"
+msgstr "datum"
+
+#: includes/cmc-single-shortcode.php:553
+msgid "No Historical Data"
+msgstr "Žádné historické údaje"
+
+#: includes/cmc-single-shortcode.php:557
+msgid "Something Wrong With URL"
+msgstr "Něco špatného s adresou URL"
+
+#: includes/cmc-single-shortcode.php:593
+msgid "Buy"
+msgstr "Koupit"
+
+#: includes/cmc-single-shortcode.php:594
+msgid "Sell"
+msgstr "Prodat"
+
+#: includes/cmc-single-shortcode.php:637
+msgid "From"
+msgstr "Z"
+
+#: includes/cmc-single-shortcode.php:638
+msgid "To"
+msgstr "Na"
+
+#: includes/cmc-single-shortcode.php:639
+msgid "Zoom"
+msgstr "Zvětšení"
+
+#: includes/cmc-single-shortcode.php:695
+msgid "Block"
+msgstr "Blok"
+
+#: includes/cmc-single-shortcode.php:695
+msgid "Explorer"
+msgstr "Badatel"
+
+#: includes/cmc-single-shortcode.php:698
+msgid "Official"
+msgstr "Oficiální"
+
+#: includes/cmc-single-shortcode.php:698
+msgid "Website"
+msgstr "webová stránka"
+
+#: includes/cmc-single-shortcode.php:701
+msgid "White"
+msgstr "Bílý"
+
+#: includes/cmc-single-shortcode.php:701
+msgid "Paper"
+msgstr "Papír"
+
+#: includes/cmc-single-shortcode.php:704
+msgid "YouTube"
+msgstr "Youtube"
+
+#: includes/cmc-single-shortcode.php:710
+msgid "Github"
+msgstr "Github"
+
+#: includes/cmc-single-shortcode.php:713
+msgid "Reddit"
+msgstr "Reddit"
+
+#: includes/cmc-single-shortcode.php:716
+msgid "Twitter"
+msgstr "Cvrlikání"
+
+#: includes/cmc-single-shortcode.php:719
+msgid "Facebook"
+msgstr "Facebook"
+
+#: includes/pagination.class.php:161 includes/pagination.class.php:165
+msgid "First"
+msgstr "První"
+
+#: includes/pagination.class.php:173 includes/pagination.class.php:176
+msgid "Prev"
+msgstr "Předch"
+
+#: includes/pagination.class.php:204 includes/pagination.class.php:207
+msgid "Last"
+msgstr "Poslední"
+
+#. Description of the plugin
+msgid ""
+"Create a website similar like CoinMarketCap.com using this <strong>Coin "
+"Market Cap & Crypto Prices</strong> WordPress plugin. This crypto plugin "
+"uses coinmarketcap.com api to grab live crypto prices, market cap, charts "
+"and other data related to cryptocurrency"
+msgstr ""
+
+#. Author of the plugin
+msgid "Cool Plugins Team"
+msgstr "Cool Plugins Team"
+
+#. Author URI of the plugin
+msgid "https://coolplugins.net/"
+msgstr ""

@@ -16,10 +16,12 @@ class CMC_Top{
 		'id'  => '',
 		'type'=>'gainers',
 		'layout'=>'basic',
+		'currency'=>'USD',
 		'show-coins'=>30,
 		), $atts);
 $topclass='';
  $topclass='';
+ $output='';
         if($atts['layout']=="basic"){
 		$topclass='basic';
 		}
@@ -44,8 +46,6 @@ $topclass='';
 				  	order:[],
 				  });
 				} );" );	
-				
-				
 			}
 			
 			else{
@@ -64,23 +64,20 @@ $topclass='';
 				} );" );	
 				
 			}
-			
-			
-				
-				
-		
-			// Initialize Titan
-		$cmc_titan = TitanFramework::getInstance( 'cmc_single_settings' );
-		$single_default_currency =$cmc_titan->getOption('default_currency');
-		$old_currency="USD";
+	
+		$single_default_currency =$atts['currency'];
+		$old_currency=isset($single_default_currency)?$single_default_currency:"USD";
 		$load_only=!empty($atts['show-coins'])?$atts['show-coins']:30;
    		$type=$atts['type'];
-   		
-   		$fetch_coins=1500;
-		$single_default_currency="USD";
-		$single_page_type=true;
-		$all_coin_data=cmc_coins_data($fetch_coins,$old_currency);
+ 
+   		$fetch_coins=1494;
+	$all_coin_data=cmc_coins_data($fetch_coins,$old_currency);
+		
+		if(is_array($all_coin_data)&& count($all_coin_data)>0){
 		$coins_data_arr=objectToArray($all_coin_data);
+		}else{
+		 $output.=__('API Request timeout','cmc');
+		}
 		$min=500000;
 		$coins_data_arr = array_filter(
 		    $coins_data_arr,
@@ -97,19 +94,15 @@ $topclass='';
 
 			}
 			
-
-		 $pagination = new pagination($coins_data_arr,1,$load_only);
+	 $pagination = new pagination($coins_data_arr,1,$load_only);
 		  $show_coins = $pagination->getResults();
-		 
-		
-		$output='';
 		$output .='<div id="cryptocurency-market-cap-wrapper">
 		<table id="cmc-top-gainer-lossers" class="table cmc-top-'.$topclass.'  cmc-datatable table-striped table-bordered" width="100%">
 		<thead><tr>';
 		if($atts['layout']=="advance"){
 		$output .='<th data-orderable="false" class="all" >'.__( '#', 'cmc' ).'</th>';
 		}
-		$output .='<th data-orderable="false" class="all">'.__( 'CryptoCurrencies', 'cmc' ).'</th>';
+		$output .='<th data-orderable="false" class="all">'.__( 'Name', 'cmc' ).'</th>';
 		$output .='<th class="all">'.__( 'Price', 'cmc' ).'</th>';
 		$output .='<th>'.__( 'Changes ', 'cmc' ).'<span class="badge  badge-default">'. __('24H', 'cmc' ).'</span></th>';
 
@@ -120,7 +113,7 @@ $topclass='';
 		$output .='<th  data-orderable="false">'.__( 'Price Graph ', 'cmc' ).'<span class="badge badge-default">(24H)</span></th>';
 		}
 		$output .='</tr></thead><tbody>';
-
+		$single_page_slug=cmc_get_page_slug();
 		$i=0;
 		 if(is_array($show_coins) ) {
 		 	
@@ -131,7 +124,7 @@ $topclass='';
 				$c_id = $coin['id'];
 				$coin_symbol =$coin['symbol'];
 				$i++;
-				$coin_icon= coin_logo_html($coin_symbol);
+				$coin_icon= coin_logo_html($c_id);
 				$supply=$coin['available_supply'];
 				$percent_change_7d=$coin['percent_change_7d'] . '%';
 				$percent_change_24h=$coin['percent_change_24h'] . '%';
@@ -164,7 +157,7 @@ $topclass='';
 							}
 					$formatted_market_cap=cmc_format_coin_values($market_cap);
 				  $market_cap=format_number($market_cap);
-				  $currency_icon=cmc_get_currency_icon($old_currency);
+				  $currency_icon=cmc_old_cur_symbol($old_currency);
 			       if($coin_symbol=="MIOTA"){
 			       	 	$coinId='IOT';
 			       } else{
@@ -172,19 +165,14 @@ $topclass='';
 			       }
 
 	  if($old_currency==$single_default_currency){
-       	 $coin_url=esc_url( home_url('currencies/'.$coin_symbol.'/'.$c_id,'/') );
+       	 $coin_url=esc_url( home_url($single_page_slug.'/'.$coin_symbol.'/'.$c_id,'/') );
    		}else{
 
-   		  $coin_url=esc_url( home_url('currencies/'.$coin_symbol.'/'.$c_id.'/'.$old_currency,'/') );
+   		  $coin_url=esc_url( home_url($single_page_slug.'/'.$coin_symbol.'/'.$c_id.'/'.$old_currency,'/') );
    		}
-
-		if($single_page_type==true){$coin_link_open ='<a target="_blank" href="'.$coin_url.'">';
+		$coin_link_open ='<a href="'.$coin_url.'">';
 		$coin_link_close='</a>';
-		}
-		else{$coin_link_open ='<a target="" href="'.$coin_url.'">';
-		$coin_link_close='</a>';
-		}
-
+	
  		 $change_sign_24h ='<i class="fa fa-arrow-up" aria-hidden="true"></i>';
           $change_class_24h ='cmc-up';
          if ( strpos( $coin['percent_change_24h'], $change_sign_minus ) !==false) {

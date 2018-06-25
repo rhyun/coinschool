@@ -9,15 +9,18 @@
 		), $atts);
 	 wp_enqueue_script( 'cmc-select2-js','https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery'), false, true );
 	 wp_enqueue_style( 'cmc-select2-css','https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css');
-	 wp_register_script('cmc-calculator', CMC_URL . 'assets/js/cmc-calcuator.js', array( 'jquery','cmc-select2-js'), false, true );
+	 wp_register_script('cmc-calculator', CMC_URL . 'assets/js/cmc-calcuator.min.js', array( 'jquery','cmc-select2-js'), false, true );
 	  wp_enqueue_script('cmc-calculator');
 
 		 $cmc_styles='
 		/*------------ START CALCULATOR STYLE -----------*/
 		.cmc_calculator {
-		     display: inline-block;
-		    width: 100%;
-			max-width: 640px;
+			display: inline-block;
+			width: 100%;
+			border: 1px solid #e7e7e7;
+			padding: 10px;
+			margin: 10px auto 20px;
+			box-shadow: inset 0px 0px 8px 0px #cecece;
 		}
 		.cmc_calculator_block {
 		    display: inline-block;
@@ -26,16 +29,14 @@
 		    margin-right: 1%;
 		}
 		.cmc_calculator_block span.cal_lbl {
-		    position: absolute;
-		    top: -10px;
-		    left: 6px;
 		    font-size: 10px;
-		    background: #222;
-		    color: #fff;
-		    padding: 2px;
-		    border-radius: 3px;
-		    font-weight: bold;
-			z-index:99;
+			background: #3a3a3a;
+			color: #fff;
+			padding: 1px 4px;
+			font-weight: bold;
+			z-index: 99;
+			margin-bottom: 0;
+			display: inline-block;
 		}
 		.cmc_calculator input#cmc_amount {
 		    background: #e3e3e396;
@@ -95,22 +96,27 @@
 
   		wp_add_inline_style( 'cmc-select2-css', $cmc_styles );
 		
-		$single_page_currency =trim(get_query_var('currency'))!=null?trim(get_query_var('currency')):"USD";
+		$cmc_titan =TitanFramework::getInstance( 'cmc_single_settings' );
+		$single_default_currency =$cmc_titan->getOption('default_currency');
+
+		$single_page_currency =trim(get_query_var('currency'))!=null?trim(get_query_var('currency')):$single_default_currency;
 		
   		$coin_id=(string) trim(get_query_var('coin_name'));
 
 		$fiat_currency=$single_page_currency?$single_page_currency:'USD';
 	
-  		$cdata=cmc_crypto_currency_arr(100,$fiat_currency);
+  		$cdata=cmc_crypto_currency_arr(1520,$fiat_currency);
   		$crypto_data=(array)$cdata;
 
-  		$crypto_curr=array_slice($crypto_data,0,100);
+  		$crypto_curr=array_slice($crypto_data,0,1500);
 		$currencies_list=(array)cmc_usd_conversions('all');
 
 		 $output='';
 		 $output.='<div class="cmc_calculator">';
 		 $output.='<div class="cmc_calculator_block"><span class="cal_lbl">'.__('Enter Amount','cmc').'</span><input id="cmc_amount" value="10" type="number" name="amount" class="cmc_calculate_price"></div>';
-		$output.='<div class="cmc_calculator_block"><span class="cal_lbl">'.__('Base Currency','cmc').'</span><select class="cmc_calculate_price" id="cmc_crypto_list">';
+		
+		$output.='<div class="cmc_calculator_block"><span class="cal_lbl">'.__('Base Currency','cmc').'</span>
+		<select class="cmc_calculate_price" id="cmc_crypto_list">';
 			  if(is_array($crypto_curr)){
 
 			  foreach($crypto_curr as $symbol=> $coin){

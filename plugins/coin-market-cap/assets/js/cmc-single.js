@@ -4,166 +4,191 @@
     /*
         Single Page chart js
     */
-    
+   
       jQuery('.cmc-chart').each(function(index)
         {
             var coinId=jQuery(this).data("coin-id");
             var chart_color=jQuery(this).data("chart-color");
             var coinperiod=jQuery(this).data("coin-period");
+          
+            var chartfrom=jQuery(this).data("chart-from");
+            var chartto=jQuery(this).data("chart-to");
+            var chartzoom=jQuery(this).data("chart-zoom");
+
+
             var priceData = [];
               var volData = [];
+            var mainThis= jQuery(this);
             var apiUrl = 'https://coincap.io';
              var price_section =jQuery(this).find(".CCP-"+coinId);
-             $(this).find('.CCP').number(true); 
+          
              jQuery.ajax({
                     url: apiUrl + '/history/'+coinperiod+'/' + coinId,
                     method: 'GET',
                     beforeSend: function() {
-                        jQuery(this).closest('.cmc-preloader').show();
+                     mainThis.find('.cmc-preloader').show();
                     },
                     success: function(history) {
                     if(history===null){
                         $(".cmc-wrp").hide();
-                        $(".cmc_coin_details").after('<h3>API\'s does not have any chart data</h3>');  
+                        $(".cmc-chart").hide().after('<h3>API\'s does not have any chart data</h3>');  
                       }else{
                       jQuery.each(history.price, function(i, value) {
-                             priceData.push(value);
+                             
+                             priceData.push( {
+                              "date":new Date(value[0]),
+                              "value":value[1],
+                              "volume":history.volume[i][1]
+                            } ); 
                         });
-                      volData=history.volume;
+                    
+                      setTimeout(function() {
+                         gernateChart(coinId,priceData,chart_color,chartfrom,chartto,chartzoom);
+                            mainThis.find('.cmc-preloader').hide(); 
+                        }, 1000);
+                    
                     }
-                        setTimeout(function() {
-                            gernateChart(coinId,priceData,chart_color,volData);
-                            jQuery(this).closest('.cmc-preloader').hide();
-                        }, 500);
+                        
                     }
                 });
         
         });
          
-        var gernateChart = function(coin,priceData,color,volData) {
-            // Create the chart
-            Highcharts.stockChart('CMC-CHART-'+coin, {
-                
-                rangeSelector: {
-                    allButtonsEnabled: true,
-                    buttons: [
-                    {
-                        type: 'day',
-                        count: 1,
-                        text: '1d'
-                    }, 
-                    {
-                        type: 'week',
-                        count: 1,
-                        text: '1w'
-                    }, 
-                    {
-                        type: 'month',
-                        count: 1,
-                        text: '1m'
-                    },
-                    {
-                        type: 'month',
-                        count:3,
-                        text: '3m'
-                    },
-                    {
-                        type: 'month',
-                        count:6,
-                        text: '6m'
-                    },
-                    {
-                        type: 'year',
-                        count: 1,
-                        text: '1y'
-                    }
-                    ],
-                    selected:1
-                },
-                    
-           xAxis : {
-            minRange: 3600 * 1000 // one hour
-            },
 
-           yAxis: [{
-              labels: {
-                align: 'right',
-                x: -3
-              },
-              title: {
-                text: 'Price(USD)'
-              },
-               labels: {
-                        formatter: function () {
-                            return '$'+this.value ;
-                             }
-                        },
-              height: '60%',
-              lineWidth: 2,
-              resize: {
-                enabled: true
-              }
-            }, {
-              labels: {
-                align: 'right',
-                x: -3
-              },
-              title: {
-                text: 'Volume(USD)'
-              },
-              top: '65%',
-              height: '35%',
-              offset: 0,
-              lineWidth: 2
-            }],
+var gernateChart = function(coinId,coinData,color,chartfrom,chartto,chartzoom) {
+   
 
-            tooltip: {
-              split: true
-            },
-         responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                chart: {
-                                    height: 300
-                                },
-                                subtitle: {
-                                    text: null
-                                },
-                                navigator: {
-                                    enabled: false
-                                }
-                            }
-                        }]
-                    },
-                    
-        series: [
-            {
-            name: 'Price(USD)',
-            data: priceData,
-            color:color,
-            type: 'line',
-            marker: {
-            enabled: true,
-            radius:6
-            },
-            tooltip: {
-            valueDecimals: 2
-            }
-            },
-             {
-          type: 'column',
-          name: 'Volume(USD)',
-          data: volData,
-          color:color,
-          yAxis: 1,
-            tooltip: {
-            valueDecimals: 2
-            }
-        }]
-            }); 
-        }
+    var chart = AmCharts.makeChart('CMC-CHART-'+coinId, {
+      "type": "stock",
+      "theme": "light",
+      "hideCredits":true,
+      "categoryAxesSettings": {
+        "minPeriod": "mm"
+      },
+      "dataSets": [ {
+        "title":"USD",
+        "color":color,
+        "fieldMappings": [ {
+          "fromField": "value",
+          "toField": "value"
+        }, {
+          "fromField": "volume",
+          "toField": "volume"
+        } ],
+
+        "dataProvider":coinData,
+        "categoryField": "date"
+      } ],
+
+      "panels": [ {
+        "showCategoryAxis": false,
+        "title": "Price",
+        "percentHeight": 70,
+
+        "stockGraphs": [ {
+          "id": "g1",
+          "valueField": "value",
+          "type": "smoothedLine",
+          "lineThickness": 2,
+          "bullet": "round",
+           "comparable": true,
+          "compareField": "value",
+          "balloonText": "[[title]]:<b>[[value]]</b>",
+          "compareGraphBalloonText": "[[title]]:<b>[[value]]</b>"
+        } ],
+
+
+        "stockLegend": {
+          "periodValueTextComparing": "[[percents.value.close]]%",
+          "periodValueTextRegular": "[[value.close]]"
+        },
+
+         "allLabels": [ {
+          "x": 200,
+          "y": 115,
+          "text": "",
+          "align": "center",
+          "size": 16
+        } ],
+
+      "drawingIconsEnabled": true
+      }, {
+        "title": "Volume",
+        "percentHeight": 30,
+        "stockGraphs": [ {
+          "valueField": "volume",
+          "type": "column",
+           "showBalloon": false,
+          "cornerRadiusTop": 2,
+          "fillAlphas": 1
+        } ],
+
+        "stockLegend": {
+          "periodValueTextRegular": "[[value.close]]"
+        },
+
+      } ],
+
+      "chartScrollbarSettings": {
+        "graph": "g1",
+        "usePeriod": "10mm",
+        "position": "bottom"
+      },
+
+      "chartCursorSettings": {
+        "valueBalloonsEnabled": true,
+        "fullWidth": true,
+        "cursorAlpha": 0.1,
+        "valueLineBalloonEnabled": true,
+        "valueLineEnabled": true,
+        "valueLineAlpha": 0.5
+      },
+     "periodSelector": {
+        "position": "top",
+		"periodsText":chartzoom,
+		"fromText":chartfrom,
+		"toText":chartto,
+        "periods": [
+        {
+          "period": "DD",
+      
+          "count": 1,
+          "label": "1D"
+        },
+        {
+          "period": "DD",
+          "selected": true,
+          "count":7,
+          "label": "7D"
+        },
+         {
+          "period": "MM",
+         "count": 1,
+          "label": "1M"
+        }, 
+      {
+          "period": "MM",
+          "count": 3,
+          "label": "3M"
+        },
+          {
+          "period": "MM",
+          "count":6,
+          "label": "6M"
+        },
+         {
+          "period": "MAX",
+          "label": "1Y"
+        } ]
+      },
+
+      "export": {
+        "enabled": true,
+        "position": "top-right"
+      }
+    } );
+
+    }
+
         
 })(jQuery);

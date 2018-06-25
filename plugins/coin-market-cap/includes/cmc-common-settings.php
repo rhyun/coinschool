@@ -133,8 +133,6 @@ $metaBox->createOption( array(
     'default'=>true
 ) );
 
-
-
 $metaBox->createOption( array(
     'name' => __(' Volume 24h ? (Optional)','cmc' ),
     'desc' => __('Select if you want to display currency <b>Volume 24H</b> ?','cmc' ),
@@ -179,6 +177,13 @@ $metaBox->createOption( array(
     'type' => 'checkbox',
     'default'=>false
 ) );
+$metaBox->createOption( array(
+    'name' => __('Enable Formatting','cmc' ),
+    'desc' => __('Select if you want to display volumne and marketcap in <strong>(Million/Billion)</strong>','cmc' ),
+    'id'   => 'enable_formatting',
+    'type' => 'checkbox',
+    'default'=>true
+) );
 
 $metaBox->createOption( array(
     'name'    => __( 'Single Coin Link Setting','cmc' ),
@@ -187,7 +192,19 @@ $metaBox->createOption( array(
     'type' => 'checkbox',
     'default' => false
 ) );
-
+$metaBox->createOption(array(
+    'id' => 'cmc_ad_banners',
+    'type' => 'custom',
+    'name' => 'CryptoCurrency Exchange List PRO',
+    'custom' => '<a href="https://bit.ly/cryptocurrency-exchanges" target="_blank"><img style="width:100%;height:auto;" src="https://res.cloudinary.com/coolplugins/image/upload/crypto-exchanges-plugin/banner-crypto-exchanges.png" /></a>
+',
+));
+$metaBox->createOption(array(
+    'id' => 'cmc_ad_banners2',
+    'type' => 'custom',
+    'name' => 'CryptoCurrency Price Ticker Widget PRO',
+    'custom' => '<a href="https://bit.ly/crypto-widgets" target="_blank"><img style="width:100%;height:auto;" src="https://res.cloudinary.com/coolplugins/image/upload/crypto-exchanges-plugin/banner-crypto-widgets.png" /></a>',
+));
 
 
 /*-----meta boxes end here--- */
@@ -215,6 +232,12 @@ $generalTab->createOption( array(
     'default'=>'[coin-name] current price is [coin-price] with a marketcap of [coin-marketcap]. Its price is [coin-changes] in last 24 hours.',
 ) );
 
+$generalTab->createOption( array(
+    'name' => __('Display Description From API','cmc'),
+    'desc' => __('Select if you want to display custom description from API','cmc'),
+    'id'   =>'display_api_desc',
+    'type' => 'checkbox',
+    'default'=>true));
 $generalTab->createOption( array(
     'name' => __('Display Changes 1h? (Optional)','cmc'),
     'id' => 'display_changes1h_single',
@@ -264,6 +287,14 @@ $generalTab->createOption( array(
     'id'   => 'display_market_cap_single',
     'type' => 'checkbox',
     'default'=>true));
+$generalTab->createOption( array(
+    'name' => __('Enable Formatting','cmc' ),
+    'desc' => __('Select if you want to display volumne and marketcap in <strong>(Million/Billion)</strong>','cmc' ),
+    'id'   => 's_enable_formatting',
+    'type' => 'checkbox',
+    'default'=>true
+) );
+
 $generalTab->createOption( array(
     'name'    => __('Chart Color','cmc'),
     'id'      => 'chart_color',
@@ -335,14 +366,37 @@ $generalTab->createOption( array(
     ),
     'default' => 'url',
 ) );
+
 $generalTab->createOption( array(
-    'name' => __('Changelly Affiliate ID','cmc'),
-    'desc' => '',
-    'id'   => 'affiliate_id',
-    'type' => 'text',
-    'desc' => '<p>'.__('In order to add Changelly Affiliate link .Please follow these steps:-','cmc').'<a  target="_blank" href="https://drive.google.com/file/d/1yMhXICDMaykPUQiuUx9uOFNP98JE6ELj/view">'.__('View Steps','cmc').'</a></p>',
-    'default'=>'675b2e20174f',
+   'name' => __('Affiliate Integration','cmc'),
+   'desc' => '',
+   'id'   => 'choose_affiliate_type',
+   'type' => 'radio',
+   'default'=>'changelly_aff_id',
+    'options' => array(
+   'changelly_aff_id' => 'Changelly',
+   'any_other_aff_id' => 'Other Affiliate',
+),
 ) );
+
+$generalTab->createOption( array('name' => __('Changelly Affiliate ID','cmc'),
+    'desc' => '',
+   'id'   => 'affiliate_id',
+   'type' => 'text',
+   'desc' => '<p>'.__('In order to add Changelly Affiliate link .Please follow these steps:-','cmc').'<a  target="_blank" href="https://drive.google.com/file/d/1yMhXICDMaykPUQiuUx9uOFNP98JE6ELj/view">'.__('View Steps','cmc').'</a></p>',
+  'default'=>'675b2e20174f',
+)
+);
+
+$generalTab->createOption( array(
+   'name' => __('Any Other Affiliate Link','cmc'),
+   'desc' => '',
+   'id'   => 'other_affiliate_link',
+   'type' => 'text',
+ 'desc' => '<p>'.__('Please add other Affiliate link.','cmc').'</p>'
+   
+) );
+
 
 
 $generalTab->createOption( array('type' => 'save') );
@@ -373,6 +427,7 @@ $extraTab->createOption( array(
     'desc' => 'Put your custom CSS rules here',
     'lang' => 'css',
 ) );
+
 
 $extraTab->createOption( array('type' => 'save') );
 
@@ -418,28 +473,29 @@ $docTab->createOption( array(
     'id'   => 'global_data_shortcode',
     'type' => 'custom',
     'custom' => '<code>[global-coin-market-cap]</code><br/><br/>
-	            <code>[global-coin-market-cap currency="GBP"]</code> (For Specific Currency!)',
+	            <code>[global-coin-market-cap currency="GBP"]</code> (For Specific Currency!)<br><br>
+                <code>[global-coin-market-cap formatted="false"]</code>(without Million/billion)formatted values',
 ) );
 
 $docTab->createOption( array(
     'name' => __('Top Gainers Shortcode','cmc'),
     'id'   => 'top_gainer_shortcode',
     'type' => 'custom',
-    'custom' => '<code>[cmc-top type="gainers" show-coins="50"]</code>',
+    'custom' => '<code>[cmc-top type="gainers" currency="USD" show-coins="50"]</code>',
 ) );
 
 $docTab->createOption( array(
     'name' => __('Top Losers Shortcode','cmc'),
     'id'   => 'top_loser_shortcode',
     'type' => 'custom',
-    'custom' => '<code>[cmc-top type="losers" show-coins="50"]</code>',
+    'custom' => '<code>[cmc-top type="losers" currency="USD" show-coins="50"]</code>',
 ) );
 
 $docTab->createOption( array(
     'name' => __('Single Page Shortcodes','cmc'),
     'id'   => 'single_page',
     'type' => 'custom',
-    'custom' => '<strong>'.__('Use below mentioned shortcodes on single page(<a href="'.admin_url().'/post.php?post='.get_page_by_path('cmc-currency-details')->ID.'&action=edit">cmc currency details</a>)','cmc').'</strong>'
+    'custom' => '<strong>'.__('Use below mentioned shortcodes on single page','cmc').'</strong>'
 ) );
 
 
@@ -521,7 +577,19 @@ $docTab->createOption( array(
     'custom' => '<code>[coin-market-cap-comments]</code> (Display facebook comment box.)',
 ) );
 
-
+$docTab->createOption(array(
+    'id' => 'doc_ad_banners',
+    'type' => 'custom',
+    'name' => 'CryptoCurrency Exchange List PRO',
+    'custom' => '<a href="https://bit.ly/cryptocurrency-exchanges" target="_blank"><img style="width:100%;height:auto;" src="https://res.cloudinary.com/coolplugins/image/upload/crypto-exchanges-plugin/banner-crypto-exchanges.png" /></a>
+',
+));
+$docTab->createOption(array(
+    'id' => 'doc_ad_banners2',
+    'type' => 'custom',
+    'name' => 'CryptoCurrency Price Ticker Widget PRO',
+    'custom' => '<a href="https://bit.ly/crypto-widgets" target="_blank"><img style="width:100%;height:auto;" src="https://res.cloudinary.com/coolplugins/image/upload/crypto-exchanges-plugin/banner-crypto-widgets.png" /></a>',
+));
 
 
 ?>

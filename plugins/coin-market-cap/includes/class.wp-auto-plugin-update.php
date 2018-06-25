@@ -12,7 +12,7 @@
  * @package Posts
  * @version 1.0.0
  */
-class WTHP_Auto_Update
+class WTHP_CMC_Auto_Update
 {
 	/**
 	 * Plugin's current version
@@ -84,14 +84,16 @@ class WTHP_Auto_Update
 	 */
 	public function get_updates_info($false, $action, $arg) {
 
-		if ( $arg->slug === $this->wsq_slug and 'plugin_information' == $action ) {
+		if ('plugin_information' == $action && $arg->slug === $this->wsq_slug  ) {
 			$args = (array) $arg;
 			$options = array_merge( $args,array( 'action' => $action, 'plugin' => $this->wsq_slug ) );
 			$response = wp_remote_post( $this->wsq_remote_path.'/wunpupdates', array( 'body' => $options ) );
-			if ( ! is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) === 200 ) {
+			if ( ! is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) === 200  ) {
+				if(is_array($response['body'])){
 				$info = unserialize( $response['body'] );
 				$info = $this->append_auth_parameter($info);
 				return $info;
+				}
 			}
 			return false;
 		}
@@ -117,5 +119,5 @@ class WTHP_Auto_Update
 		return $info;
 	}
 }
-new WTHP_Auto_Update();
+new WTHP_CMC_Auto_Update();
 

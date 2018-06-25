@@ -4,13 +4,13 @@
  * Plugin Name:Coin Market Cap
  * Description:Create a website similar like CoinMarketCap.com using this <strong>Coin Market Cap & Crypto Prices</strong> WordPress plugin. This crypto plugin uses coinmarketcap.com api to grab live crypto prices, market cap, charts and other data related to cryptocurrency
  * Author:Cool Plugins Team
- * Author URI:https://www.cooltimeline.com/
- * Version: 2.4
+ * Author URI:https://coolplugins.net/
+ * Version: 2.7.1
  * License: GPL2
  * Text Domain:cmc
  * Domain Path:languages
  *
- * @package Coin Market Cap
+ * @package Coin_Market_Cap
  */
  /*
 
@@ -30,19 +30,22 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (!defined('ABSPATH')) {
+	exit();
 }
 
 
-define( 'CMC', '2.4' );
-define( 'CMC_PRO_FILE', __FILE__ );
-define( 'CMC_PATH', plugin_dir_path( CMC_PRO_FILE ) );
-define('CMC_PLUGIN_DIR', plugin_dir_path( CMC_PRO_FILE ) );
-define( 'CMC_URL', plugin_dir_url( CMC_PRO_FILE ) );
-if( !defined( 'CMC_CSS_URL' ) ) {
-    define( 'CMC_CSS_URL', plugin_dir_url( __FILE__ ) . 'css' );
+define('CMC', '2.7.1');
+define('CMC_PRO_FILE', __FILE__);
+define('CMC_PATH', plugin_dir_path(CMC_PRO_FILE ));
+define('CMC_PLUGIN_DIR',plugin_dir_path(CMC_PRO_FILE ));
+define( 'CMC_URL',plugin_dir_url(CMC_PRO_FILE ));
+if( !defined('CMC_CSS_URL')) {
+    define('CMC_CSS_URL', plugin_dir_url( __FILE__ ) . 'css');
 }
+
+
+
 
 
 /**
@@ -81,23 +84,41 @@ final class CoinMarketCap {
 
 	   register_activation_hook( CMC_PRO_FILE, array( $this, 'cmc_activate' ) );
 	   register_deactivation_hook( CMC_PRO_FILE, array( $this, 'cmc_deactivate' ) );
-	   $this->cmc_installation_date();
 
+	   // including all files
+	   $this->cmc_includes();
+	   $this->cmc_installation_date();
+	   // creating settings panel
 	    add_action( 'tf_create_options', array( $this,'cmc_createMyOptions'));
 	  	add_action( 'plugins_loaded', array( $this, 'cmc_init' ) );
+
+	  	// registering post type for generator
 		add_action( 'init',  array( $this,'cmc_post_type') );
+		
+		// coin custom description post type
 		add_action( 'init',  array( $this,'cmc_description_post_type'),11 );
+
+		// registering custom rewrite urls for coin single pge
 		 add_action('init', array($this, 'cmc_rewrite_rule'));
 		add_filter( 'query_vars', array($this,'cmc_query_vars'));
 
-		if(is_admin()){
+		add_action('tf_save_admin_cmc_single_settings', array($this, 'cmc_after_titan_save'), 10, 3);
 
+		// adding custom js in admin side
+		add_action( 'admin_enqueue_scripts', array($this,'cmc_admin_custom_js'));
+		
+		if(is_admin()){
+			// notice for review
 			add_action( 'admin_init',array($this,'cmc_check_installation_time'));
 		    add_action( 'admin_init',array($this,'cmc_spare_me'), 5 );
+
+		    // registering meta boxes for shortcode
 			add_action( 'add_meta_boxes', array( $this,'register_cmc_meta_box') );
+
+			// custom columns for all shortcodes
 			add_filter( 'manage_cmc_posts_columns',array($this,'set_custom_edit_cmc_columns'));
 			add_action( 'manage_cmc_posts_custom_column' ,array($this,'custom_cmc_column'), 10, 2 );
-
+			// coin descriptoin custom column
 			add_filter( 'manage_cmc-description_posts_columns', array($this,'set_custom_cmcd_book_columns' ));
 			add_action( 'manage_cmc-description_posts_custom_column' , array($this,'custom_cmcd_column'), 10, 2 );
 
@@ -112,16 +133,24 @@ final class CoinMarketCap {
 			 'Coin Market Cap',
 			 'cmc');
 			 */
-		}
+			
+			//add_action('tf_save_admin_cmc_single_settings',array( $this,'cmc_extra_settings_callback'),10,3);
 
+		}
+		else{
+			add_action('init',array($this,'cmc_grab_custom_slug'));
+		}
+		// disabling jetpack photon cache
 		add_filter( 'jetpack_photon_skip_for_url',array( $this,'cmc_photon_only_allow_local'), 9, 4 );
-		$this->cmc_includes();
+
 		if(is_admin()){
          add_action( 'admin_enqueue_scripts',array( $this,'cmc_remove_wp_colorpicker'),99);
         }
+        // deleting all API cache
+       	add_action( 'wp_ajax_cmc_delete_cache', array($this,'cmc_delete_cache_api_data' ));
 	}
 
-
+	// fixing conflict
 	public function cmc_remove_wp_colorpicker() {
         wp_dequeue_script( 'wp-color-picker-alpha' );
         }
@@ -132,10 +161,10 @@ final class CoinMarketCap {
 		public  function cmc_deactivate() {
 			 flush_rewrite_rules();
 		}
-
+		// on plugin activation hook adding page and flushing rewrite rules
 		public  function cmc_activate() {
 			  $this->add_coin_details_page();
-			 $this->cmc_rewrite_rule();
+			  $this->cmc_rewrite_rule();
 			  flush_rewrite_rules();
 			  delete_transient('cmc_top_100_list');
 		}
@@ -145,14 +174,13 @@ final class CoinMarketCap {
 	 * Load plugin function files here.
 	 */
 	public function cmc_includes() {
+	require_once( 'titan-framework/titan-framework-embedder.php');
+	require_once(CMC_PATH.'/includes/cmc-functions.php');
+	require_once __DIR__ . '/includes/cmc-shortcode.php';
+	require_once __DIR__ . '/includes/cmc-top-shortcode.php';
+	require_once __DIR__ . '/includes/cmc-single-shortcode.php';
 
-		require_once( 'titan-framework/titan-framework-embedder.php');
-
-		require_once __DIR__ . '/includes/cmc-shortcode.php';
-		require_once __DIR__ . '/includes/cmc-top-shortcode.php';
-		require_once __DIR__ . '/includes/cmc-single-shortcode.php';
-
-		 	$this->shortcode_cmc=new CMC_Shortcode();
+		 $this->shortcode_cmc=new CMC_Shortcode();
 		  $this->cmc_gainer_losers=new CMC_Top();
 		  $this->shortcode_cmc_single=	new CMC_Single_Shortcode();
 		}
@@ -163,20 +191,42 @@ final class CoinMarketCap {
 		public function cmc_init() {
 			load_plugin_textdomain( 'cmc', false, basename(dirname(__FILE__)) . '/languages/');
 		}
+
+		// generating rewrite rule on plugin init
 		function cmc_rewrite_rule() {
 		$page_id=get_option('cmc-coin-single-page-id');
-		 add_rewrite_rule('currencies/?([^/]*)/?([^/]*)/?([^/]*)', 'index.php?page_id='.$page_id.'&coin_id=$matches[1]&coin_name=$matches[2]
+		$single_page_slug=cmc_get_page_slug();
+		add_rewrite_rule('^' . $single_page_slug . '/([^/]*)/([^/]*)/([^/]*)/?$', 'index.php?page_id=' . $page_id . '&coin_id=$matches[1]&coin_name=$matches[2]
 		 	 &currency=$matches[3]
 		 	', 'top');
+		add_rewrite_rule('^'.$single_page_slug . '/([^/]*)/([^/]*)/?$', 'index.php?page_id=' . $page_id . '&coin_id=$matches[1]&coin_name=$matches[2]
+', 'top');
+		
 		}
 
+	// adding dyanmic rewrite rule after save changes in slug settings 		
+	function cmc_dynamic_rewrite_rules($wp_rewrite)
+	{
+		$page_id = get_option('cmc-coin-single-page-id');
+		$single_page_slug = cmc_get_page_slug();
+		$feed_rules = array(
+			'^' . $single_page_slug . '/([^/]*)/([^/]*)/([^/]*)/?$' => 'index.php?page_id=' . $page_id . '&coin_id=$matches[1]&coin_name=$matches[2]
+		 	 &currency=$matches[3]',
+			'^' . $single_page_slug . '/([^/]*)/([^/]*)/?$' => 'index.php?page_id=' . $page_id . '&coin_id=$matches[1]&coin_name=$matches[2]',
+		);
+		$wp_rewrite->rules = $feed_rules + $wp_rewrite->rules;
+		return $wp_rewrite->rules;
+	}
+
+		// adding query var for custom rewrite rules
 		function cmc_query_vars( $query_vars ){
 			$query_vars[] = 'coin_id';
 			$query_vars[] = 'coin_name';
-			$query_vars[] = 'currency';
+			$query_vars[] ='currency';
 			return $query_vars;
 		}
 
+		// generating page with shortcode for coin single page
 		function add_coin_details_page(){
 		 	$post_data = array(
 		    'post_title' => 'cmc currency details',
@@ -201,27 +251,10 @@ final class CoinMarketCap {
 			$single_page_id=get_option('cmc-coin-single-page-id');
 
 			if('publish' === get_post_status( $single_page_id)){
-					$update_post_data=array(
-					 'ID'=>$single_page_id,
-					 'post_content'=>'[cmc-dynamic-description]
-	 				[coin-market-cap-details]
-	 				[cmc-calculator]
-	 				[cmc-coin-extra-data]
-	 				[cmc-chart]
-	 				<h3>More Info About Coin</h3>
-	 				[coin-market-cap-description]
-	 				<h3>Historical Data</h3>
-	 				[cmc-history]
-	 				<h3>Twitter News Feed</h3>
-	 				[cmc-twitter-feed]
-	 				<h3>Submit Your Reviews</h3>
-	 				[coin-market-cap-comments]',
-				);
-				$post_id = wp_update_post( $update_post_data );
-
+			
 			}else{
 				$post_id = wp_insert_post( $post_data );
-				update_option('cmc-coin-single-page-id',$post_id);
+			update_option('cmc-coin-single-page-id',$post_id);
 			}
 
 
@@ -324,8 +357,8 @@ final class CoinMarketCap {
 			}
 		}
 
-
-		 function set_custom_cmcd_book_columns($currency_columns) {
+	// description post type custom column 
+	 function set_custom_cmcd_book_columns($currency_columns) {
 
 		$currency_columns['coin_id'] = __( 'COIN ID', 'cmc' );
 
@@ -340,7 +373,7 @@ final class CoinMarketCap {
 			break;
 				}
 		}
-
+		// creating custom post type of coin custom description for coin single page
 		function cmc_description_post_type() {
 
 		$labels = array(
@@ -467,7 +500,7 @@ final class CoinMarketCap {
                 'low'
             );
 	}
-
+	// ask for review notice 
 	function cmc_right_section($post, $callback){
         global $post;
         $pro_add='';
@@ -518,7 +551,7 @@ function save_cmc_settings( $post_id, $post, $update ) {
 
 
 	}
-
+	// creating coins array for custom description dropdown
 		public function cmc_coins_list($limit){
 			$c_list= get_transient('cmc_top_100_list');
 
@@ -567,6 +600,70 @@ function save_cmc_settings( $post_id, $post, $update ) {
 	        return true;
 	    }
 	}
+
+	// removing all cached content
+	 function cmc_delete_all_transients() {
+
+		global $wpdb;
+
+		$count = $wpdb->query(
+			"DELETE FROM $wpdb->options
+			WHERE option_name LIKE '\_transient\_%'"
+		);
+
+		return $count;
+	}
+
+	
+	function cmc_delete_cache_api_data() {
+		// Do something
+		$count=$this->cmc_delete_all_transients();
+		if($count>0){
+		wp_send_json_success( __( 'Successfully Deleted!', 'default' ) );
+		}else{
+		wp_send_json_error( __( 'Failed!', 'default' ) );
+		}
+		
+	}
+
+	// attaching hook after titan settings save
+	function cmc_after_titan_save($container, $activeTab, $options)
+	{
+		$cmc_titan = TitanFramework::getInstance('cmc_single_settings');
+		$slug = $cmc_titan->getOption('single-page-slug');
+	//	set_transient('cmc-single-page-slug', $slug,MINUTE_IN_SECONDS );
+		update_option('cmc-single-page-slug', $slug);
+	if (isset($_REQUEST['tab']) && $_REQUEST['tab'] == "extra-settings") {
+			add_filter('generate_rewrite_rules',array($this, 'cmc_dynamic_rewrite_rules'));
+			flush_rewrite_rules();
+		}
+	}
+
+	function cmc_grab_custom_slug(){
+				$cmc_titan = TitanFramework::getInstance('cmc_single_settings');
+				$slug = $cmc_titan->getOption('single-page-slug');
+				//set_transient('cmc-single-page-slug', $slug, MINUTE_IN_SECONDS);
+				update_option('cmc-single-page-slug', $slug);
+	
+
+	}
+
+	// registering custom js for settings panel
+	function cmc_admin_custom_js()
+	{
+	  
+	 	$screen =(array) get_current_screen();
+	 
+	    if (isset($screen['post_type']) && $screen['post_type']=="cmc") {     
+	    // loading js
+	   wp_register_script( 'cmc-admin-custom-js', CMC_URL.'assets/js/cmc-admin-custom.js', array('jquery-core'), false, true );
+	    wp_enqueue_script( 'cmc-admin-custom-js' );
+		}
+	}
+ 
+
+
+
 
 	} // class end
 

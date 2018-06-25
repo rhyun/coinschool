@@ -1,0 +1,750 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Coin Market Cap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-20 06:18+0000\n"
+"PO-Revision-Date: 2018-06-20 09:08+0000\n"
+"Last-Translator: admin <baljit.cooltimeline@gmail.com>\n"
+"Language-Team: Dutch\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: coin-market-cap.php:274
+msgctxt "Post Type General Name"
+msgid "Coin Market Cap"
+msgstr ""
+
+#: coin-market-cap.php:275
+msgctxt "Post Type Singular Name"
+msgid "Coin Market Cap"
+msgstr ""
+
+#. Name of the plugin
+#: coin-market-cap.php:276
+msgid "Coin Market Cap"
+msgstr ""
+
+#: coin-market-cap.php:277 coin-market-cap.php:383
+msgid "Post Type"
+msgstr "Berichttype"
+
+#: coin-market-cap.php:278 coin-market-cap.php:384
+msgid "Item Archives"
+msgstr "Artikelarchief"
+
+#: coin-market-cap.php:279 coin-market-cap.php:385
+msgid "Item Attributes"
+msgstr "Itemattributen"
+
+#: coin-market-cap.php:280 coin-market-cap.php:386
+msgid "Parent Item:"
+msgstr "Bovenliggend item:"
+
+#: coin-market-cap.php:281
+msgid "All Shortcodes"
+msgstr "Alle shortcodes"
+
+#: coin-market-cap.php:282
+msgid "Add New Shortcode"
+msgstr "Nieuwe shortcode toevoegen"
+
+#: coin-market-cap.php:283 coin-market-cap.php:389
+msgid "Add New"
+msgstr "Voeg nieuw toe"
+
+#: coin-market-cap.php:284 coin-market-cap.php:390
+msgid "New Item"
+msgstr "Nieuw item"
+
+#: coin-market-cap.php:285 coin-market-cap.php:391
+msgid "Edit Item"
+msgstr ""
+"Item bewerken\n"
+
+#: coin-market-cap.php:286 coin-market-cap.php:392
+msgid "Update Item"
+msgstr "Item bijwerken"
+
+#: coin-market-cap.php:287 coin-market-cap.php:393
+msgid "View Item"
+msgstr "Bekijk item"
+
+#: coin-market-cap.php:288 coin-market-cap.php:394
+msgid "View Items"
+msgstr "Items bekijken"
+
+#: coin-market-cap.php:289 coin-market-cap.php:395
+msgid "Search Item"
+msgstr "Zoek item"
+
+#: coin-market-cap.php:290 coin-market-cap.php:396
+msgid "Not found"
+msgstr "Niet gevonden"
+
+#: coin-market-cap.php:291 coin-market-cap.php:397
+msgid "Not found in Trash"
+msgstr "Niet gevonden in de Prullenbak"
+
+#: coin-market-cap.php:292 coin-market-cap.php:398
+msgid "Featured Image"
+msgstr "Uitgelichte afbeelding"
+
+#: coin-market-cap.php:293 coin-market-cap.php:399
+msgid "Set featured image"
+msgstr "Stel aanbevolen afbeelding in"
+
+#: coin-market-cap.php:294 coin-market-cap.php:400
+msgid "Remove featured image"
+msgstr "Verwijder de aanbevolen afbeelding"
+
+#: coin-market-cap.php:295 coin-market-cap.php:401
+msgid "Use as featured image"
+msgstr "Gebruik als aanbevolen afbeelding"
+
+#: coin-market-cap.php:296 coin-market-cap.php:402
+msgid "Insert into item"
+msgstr "Invoegen in item"
+
+#: coin-market-cap.php:297 coin-market-cap.php:403
+msgid "Uploaded to this item"
+msgstr "Geupload naar dit item"
+
+#: coin-market-cap.php:298 coin-market-cap.php:404
+msgid "Items list"
+msgstr "Items lijst"
+
+#: coin-market-cap.php:299 coin-market-cap.php:405
+msgid "Items list navigation"
+msgstr "Items lijst navigatie"
+
+#: coin-market-cap.php:300 coin-market-cap.php:406
+msgid "Filter items list"
+msgstr "Filter items lijst"
+
+#: coin-market-cap.php:303
+msgid "CryptoCurrency Price Widget"
+msgstr "CryptoCurrency Prijs Widget"
+
+#: coin-market-cap.php:304 coin-market-cap.php:410
+msgid "Post Type Description"
+msgstr ""
+
+#: coin-market-cap.php:347
+msgid "Shortcode"
+msgstr "Korte code"
+
+#: coin-market-cap.php:363
+msgid "COIN ID"
+msgstr "COIN ID"
+
+#: coin-market-cap.php:380
+msgctxt "Post Type General Name"
+msgid "Coin Description"
+msgstr ""
+
+#: coin-market-cap.php:381
+msgctxt "Post Type Singular Name"
+msgid "Coin Description"
+msgstr ""
+
+#: coin-market-cap.php:382 coin-market-cap.php:409
+#: includes/cmc-common-settings.php:435 includes/cmc-common-settings.php:450
+msgid "Coin Description"
+msgstr ""
+
+#: coin-market-cap.php:387
+msgid "All Descriptions"
+msgstr "Alle beschrijvingen"
+
+#: coin-market-cap.php:388
+msgid "Add New Description"
+msgstr "Nieuwe beschrijving toevoegen"
+
+#: coin-market-cap.php:496
+msgid "Hopefully you are Happy with our plugin"
+msgstr "Hopelijk bent u tevreden met onze plug-in"
+
+#: coin-market-cap.php:508
+msgid "May I ask you to give it a 5-star rating on  "
+msgstr "Mag ik u vragen om er een 5-sterrenbeoordeling op te geven?"
+
+#: coin-market-cap.php:508 coin-market-cap.php:510
+msgid "Codecanyon"
+msgstr "Codecanyon"
+
+#: coin-market-cap.php:509
+msgid ""
+"This will help to spread its popularity and to make this plugin a better one "
+"on  "
+msgstr ""
+"Dit zal helpen om zijn populariteit te verspreiden en om deze plug-in beter "
+"te maken"
+
+#: coin-market-cap.php:512
+msgid "View Demos"
+msgstr "Bekijk demo's"
+
+#: includes/cmc-calculator.php:116
+msgid "Enter Amount"
+msgstr "Voer een bedrag in"
+
+#: includes/cmc-calculator.php:118
+msgid "Base Currency"
+msgstr "Basisvaluta"
+
+#: includes/cmc-calculator.php:133
+msgid "Convert To"
+msgstr "Omzetten naar"
+
+#: includes/cmc-calculator.php:135
+msgid "Currencies"
+msgstr "valuta"
+
+#: includes/cmc-calculator.php:147
+msgid "Crypto Currencies"
+msgstr "Crypto-valuta's"
+
+#: includes/cmc-calculator.php:166
+msgid "Bitcoin"
+msgstr "Bitcoin"
+
+#: includes/cmc-common-settings.php:5
+msgid "Coin Details Settings"
+msgstr ""
+
+#: includes/cmc-common-settings.php:25
+msgid "Settings"
+msgstr "instellingen"
+
+#: includes/cmc-common-settings.php:38
+msgid "Select Currency"
+msgstr "selecteer valuta"
+
+#: includes/cmc-common-settings.php:80
+msgid "Coins Per Page"
+msgstr "Munten per pagina"
+
+#: includes/cmc-common-settings.php:97
+msgid "Display Price? (Optional)"
+msgstr "Prijs weergeven? (Optioneel)"
+
+#: includes/cmc-common-settings.php:98
+msgid "Select if you want to <b>Display Price</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:104 includes/cmc-common-settings.php:235
+msgid "Display Changes 1h? (Optional)"
+msgstr "Display verandert 1 uur? (Optioneel)"
+
+#: includes/cmc-common-settings.php:105 includes/cmc-common-settings.php:239
+msgid "Select if you want to display <b>1 Hour % Changes</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:111 includes/cmc-common-settings.php:244
+msgid "Display Changes 24h? (Optional)"
+msgstr "Veranderingen weergeven 24 uur? (Optioneel)"
+
+#: includes/cmc-common-settings.php:112 includes/cmc-common-settings.php:247
+msgid "Select if you want to display <b>24 Hours % Changes</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:119 includes/cmc-common-settings.php:254
+msgid "Display Changes 7d? (Optional)"
+msgstr "Veranderingen weergeven 7d? (Optioneel)"
+
+#: includes/cmc-common-settings.php:120 includes/cmc-common-settings.php:257
+msgid "Select if you want to display <b>7 Days % Changes</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:129 includes/cmc-common-settings.php:262
+msgid "Display supply? (Optional)"
+msgstr "Weergave aanbod? (Optioneel)"
+
+#: includes/cmc-common-settings.php:130
+msgid "Select if you want to display currency <b>Available Supply</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:137 includes/cmc-common-settings.php:270
+msgid " Volume 24h ? (Optional)"
+msgstr "Volume 24 uur? (Optioneel)"
+
+#: includes/cmc-common-settings.php:138
+msgid "Select if you want to display currency <b>Volume 24H</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:146 includes/cmc-common-settings.php:278
+msgid "Display Market Cap? (Optional)"
+msgstr "Market Cap weergeven? (Optioneel)"
+
+#: includes/cmc-common-settings.php:147
+msgid "Select if you want to display <b>Market Cap<b/> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:154
+msgid "Display Price chart 7days?"
+msgstr "Schermprijsgrafiek 7 dagen?"
+
+#: includes/cmc-common-settings.php:155
+msgid "Select if you want to display <b>7 Days Small Chart</b> in list ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:169
+msgid ""
+"If you are loading more than 500 coins on one page then use <b>Image "
+"Charts</b><br/>otherwise it will good to use <b>Dynamic SVG Charts</b>."
+msgstr ""
+
+#: includes/cmc-common-settings.php:174
+msgid "Enable Live Updates"
+msgstr "Live-updates inschakelen"
+
+#: includes/cmc-common-settings.php:175
+msgid "Select if you want to display <b>Live Changes</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:182
+msgid "Single Coin Link Setting"
+msgstr "Single Coin Link-instelling"
+
+#: includes/cmc-common-settings.php:183
+msgid "Select if you want to open single page in a new tab ?"
+msgstr "Selecteer of u één pagina wilt openen op een nieuw tabblad?"
+
+#: includes/cmc-common-settings.php:211
+msgid "Dynamic Title"
+msgstr "Dynamische titel"
+
+#: includes/cmc-common-settings.php:215
+msgid ""
+"<p>Placeholders:-<code>[coin-name],[coin-price],[coin-marketcap],[coin-"
+"changes]</code><br/>It will also used as <b>SEO title</b>.</p>"
+msgstr ""
+
+#: includes/cmc-common-settings.php:220
+msgid "Dynamic Description"
+msgstr "Dynamische beschrijving"
+
+#: includes/cmc-common-settings.php:224
+msgid ""
+"<p>Placeholders:-<code>[coin-name],[coin-price],[coin-marketcap],[coin-"
+"changes]</code><br/>It will also used as <b>SEO meta description</b>.</p>"
+msgstr ""
+
+#: includes/cmc-common-settings.php:229
+msgid "Display Description From API"
+msgstr "Beschrijving weergeven vanuit API"
+
+#: includes/cmc-common-settings.php:230
+msgid "Select if you want to display custom description from API"
+msgstr "Selecteer of u een aangepaste beschrijving van de API wilt weergeven"
+
+#: includes/cmc-common-settings.php:265
+msgid "Select if you want to display <b>Currency Available Supply</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:271
+msgid "Select if you want to display <b>Currency Volume 24h</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:279
+msgid "Select if you want to display <b>Market Cap</b> ?"
+msgstr ""
+
+#: includes/cmc-common-settings.php:287
+msgid "Chart Color"
+msgstr "Diagramkleur"
+
+#: includes/cmc-common-settings.php:295
+msgid "Select Default Currency"
+msgstr "Selecteer Standaardvaluta"
+
+#: includes/cmc-common-settings.php:338
+msgid "Facebok APP ID"
+msgstr "Facebook APP ID"
+
+#: includes/cmc-common-settings.php:347
+msgid "Twitter Feed Type"
+msgstr "Twitter Feed Type"
+
+#: includes/cmc-common-settings.php:348
+msgid "In order to display Twitter Feed please install and activate "
+msgstr "Om Twitter Feed te tonen, installeer en activeer"
+
+#: includes/cmc-common-settings.php:348
+msgid "Custom Twitter Feeds"
+msgstr "Aangepaste Twitter-feeds"
+
+#: includes/cmc-common-settings.php:348
+msgid " plugin & authorize it with your twitter account."
+msgstr "plugin & autoriseer het met uw Twitter-account."
+
+#: includes/cmc-common-settings.php:359
+msgid "Affiliate Integration"
+msgstr "Affiliate integratie"
+
+#: includes/cmc-common-settings.php:370
+msgid "Changelly Affiliate ID"
+msgstr "ID van partner van Changelly"
+
+#: includes/cmc-common-settings.php:374
+msgid "In order to add Changelly Affiliate link .Please follow these steps:-"
+msgstr "Om een Changelly Affiliatelink toe te voegen, volg deze stappen: -"
+
+#: includes/cmc-common-settings.php:374
+msgid "View Steps"
+msgstr "Bekijk stappen"
+
+#: includes/cmc-common-settings.php:380
+msgid "Any Other Affiliate Link"
+msgstr "Elke andere partner-link"
+
+#: includes/cmc-common-settings.php:384
+msgid "Please add other Affiliate link."
+msgstr "Voeg een andere partnerlink toe."
+
+#: includes/cmc-common-settings.php:393
+msgid "Change Coin Detail Page Slug"
+msgstr "Wijzig muntstukpagina Slak"
+
+#: includes/cmc-common-settings.php:397
+msgid ""
+"This will update text in red color only:- http://coinmarketcap.coolplugins."
+"net/<strong style=\"color:red;\">currencies</strong>/{dynamic}/{dynamic}"
+"/<br/>\n"
+"\tCoin details page URL like:- http://coinmarketcap.coolplugins."
+"net/currencies/BTC/bitcoin/ <br>"
+msgstr ""
+
+#: includes/cmc-common-settings.php:405
+msgid ""
+"In order to update single page slug. Please follow bellow mentioned steps."
+msgstr "Om een enkele pagina slug te updaten. Volg de onderstaande stappen."
+
+#: includes/cmc-common-settings.php:406
+msgid "Add Custom Slug and Click on Save changes button"
+msgstr "Voeg Custom Slug toe en klik op Save changes button"
+
+#: includes/cmc-common-settings.php:407
+msgid "\">Clear Cache Tab</a> and Delete all API's Cache"
+msgstr ""
+
+#: includes/cmc-common-settings.php:408
+msgid "Then please Update your Permalink Settings."
+msgstr "Werk dan uw Permalink instellingen bij."
+
+#: includes/cmc-common-settings.php:440
+msgid "Select Coin"
+msgstr "Selecteer munt"
+
+#: includes/cmc-common-settings.php:460
+msgid "Global Data Shortcode"
+msgstr "Global Data Shortcode"
+
+#: includes/cmc-common-settings.php:468
+msgid "Top Gainers Shortcode"
+msgstr "Top Gainers Shortcode"
+
+#: includes/cmc-common-settings.php:475
+msgid "Top Losers Shortcode"
+msgstr "Top verliezers Shortcode"
+
+#: includes/cmc-common-settings.php:482
+msgid "Single Page Shortcodes"
+msgstr "Enkele pagina Shortcodes"
+
+#: includes/cmc-common-settings.php:485
+msgid "Use below mentioned shortcodes on single page"
+msgstr "Gebruik onderstaande shortcodes op één pagina"
+
+#: includes/cmc-common-settings.php:490
+msgid "Dynamic Title Shortcode"
+msgstr "Dynamische kortcode titel"
+
+#: includes/cmc-common-settings.php:497
+msgid "Dynamic Description Shortcode"
+msgstr "Dynamische omschrijving Shortcode"
+
+#: includes/cmc-common-settings.php:504
+msgid "Changelly Buy/Sell Shortcode"
+msgstr "Changelly Koop / Verkoop Shortcode"
+
+#: includes/cmc-common-settings.php:511
+msgid "Coin Market Cap Details Shortcode"
+msgstr ""
+
+#: includes/cmc-common-settings.php:518
+msgid "Extra Data Shortcode"
+msgstr "Extra gegevens Shortcode"
+
+#: includes/cmc-common-settings.php:526
+msgid "Calculator Shortcode"
+msgstr "Calculator Shortcode"
+
+#: includes/cmc-common-settings.php:533
+msgid "Custom Description Shortcode"
+msgstr "Aangepaste beschrijving Shortcode"
+
+#: includes/cmc-common-settings.php:540
+msgid "Price Chart Shortcode"
+msgstr "Prijsoverzicht Shortcode"
+
+#: includes/cmc-common-settings.php:547
+msgid "Historical Data Shortcode"
+msgstr "Historische gegevens shortcode"
+
+#: includes/cmc-common-settings.php:554
+msgid "Twitter News Feed Shortcode"
+msgstr "Twitter Nieuws Feed Shortcode"
+
+#: includes/cmc-common-settings.php:561
+msgid "Submit Reviews Shortcode"
+msgstr "Recensies verzenden Shortcode"
+
+#: includes/cmc-functions.php:498 includes/cmc-shortcode.php:600
+msgid "No Graphical Data"
+msgstr "Geen grafische gegevens"
+
+#: includes/cmc-shortcode.php:106
+msgid "Market Cap:"
+msgstr ""
+"Marktkapitalisatie:\n"
+
+#: includes/cmc-shortcode.php:111
+msgid "24h Vol:"
+msgstr "24 uur Vol:"
+
+#: includes/cmc-shortcode.php:113
+msgid "BTC Dominance: "
+msgstr "BTC dominantie:"
+
+#: includes/cmc-shortcode.php:220 includes/cmc-top-shortcode.php:79
+msgid "API Request timeout"
+msgstr "API-aanvraag time-out"
+
+#: includes/cmc-shortcode.php:227
+msgid "search"
+msgstr ""
+"zoeken\n"
+
+#: includes/cmc-shortcode.php:296 includes/cmc-top-shortcode.php:103
+msgid "#"
+msgstr ""
+
+#: includes/cmc-shortcode.php:297 includes/cmc-top-shortcode.php:105
+msgid "Name"
+msgstr ""
+"Naam\n"
+
+#: includes/cmc-shortcode.php:300 includes/cmc-single-shortcode.php:544
+#: includes/cmc-top-shortcode.php:106
+msgid "Price"
+msgstr "Prijs"
+
+#: includes/cmc-shortcode.php:305 includes/cmc-shortcode.php:308
+#: includes/cmc-shortcode.php:311 includes/cmc-top-shortcode.php:107
+msgid "Changes "
+msgstr "Veranderingen"
+
+#: includes/cmc-shortcode.php:305
+msgid "1H "
+msgstr "1 uur"
+
+#: includes/cmc-shortcode.php:308 includes/cmc-shortcode.php:317
+#: includes/cmc-top-shortcode.php:107 includes/cmc-top-shortcode.php:112
+msgid "24H"
+msgstr "24 uur"
+
+#: includes/cmc-shortcode.php:311
+msgid "7D"
+msgstr ""
+"7 dagen\n"
+
+#: includes/cmc-shortcode.php:314 includes/cmc-single-shortcode.php:454
+#: includes/cmc-single-shortcode.php:546 includes/cmc-top-shortcode.php:111
+msgid "Market Cap"
+msgstr "Marktkapitalisatie"
+
+#: includes/cmc-shortcode.php:317 includes/cmc-top-shortcode.php:112
+msgid "Volume "
+msgstr "Volume"
+
+#: includes/cmc-shortcode.php:320 includes/cmc-single-shortcode.php:461
+msgid "Available Supply"
+msgstr "Beschikbaar aanbod"
+
+#: includes/cmc-shortcode.php:323 includes/cmc-top-shortcode.php:113
+msgid "Price Graph "
+msgstr "Prijs grafiek"
+
+#: includes/cmc-shortcode.php:490 includes/cmc-single-shortcode.php:219
+msgid "up"
+msgstr "omhoog"
+
+#: includes/cmc-single-shortcode.php:213 includes/cmc-single-shortcode.php:263
+#: includes/cmc-single-shortcode.php:383 includes/cmc-single-shortcode.php:390
+msgid "N/A"
+msgstr "N / A"
+
+#: includes/cmc-single-shortcode.php:217
+msgid "down"
+msgstr "omlaag"
+
+#: includes/cmc-single-shortcode.php:422
+msgid "1h % "
+msgstr "1 uur%"
+
+#: includes/cmc-single-shortcode.php:428
+msgid "24h % "
+msgstr "24 uur%"
+
+#: includes/cmc-single-shortcode.php:433
+msgid "7d %"
+msgstr "7d%"
+
+#: includes/cmc-single-shortcode.php:450
+msgid "Price "
+msgstr "Prijs"
+
+#: includes/cmc-single-shortcode.php:457 includes/cmc-single-shortcode.php:545
+msgid "Volume"
+msgstr "Volume"
+
+#: includes/cmc-single-shortcode.php:464
+msgid "Rank"
+msgstr "Rang"
+
+#: includes/cmc-single-shortcode.php:471
+msgid "Currency Not Found"
+msgstr "Valuta niet gevonden"
+
+#: includes/cmc-single-shortcode.php:474
+msgid "Something wrong with URL"
+msgstr "Er is iets mis met de URL"
+
+#: includes/cmc-single-shortcode.php:535
+msgid "Previous"
+msgstr "voorgaand"
+
+#: includes/cmc-single-shortcode.php:536 includes/pagination.class.php:195
+#: includes/pagination.class.php:198
+msgid "Next"
+msgstr "volgende"
+
+#: includes/cmc-single-shortcode.php:537
+msgid "Show"
+msgstr "Laten zien"
+
+#: includes/cmc-single-shortcode.php:538
+msgid "Entries"
+msgstr "inzendingen"
+
+#: includes/cmc-single-shortcode.php:543
+msgid "Date"
+msgstr "Datum"
+
+#: includes/cmc-single-shortcode.php:553
+msgid "No Historical Data"
+msgstr "Geen historische gegevens"
+
+#: includes/cmc-single-shortcode.php:557
+msgid "Something Wrong With URL"
+msgstr "Iets mis met URL"
+
+#: includes/cmc-single-shortcode.php:593
+msgid "Buy"
+msgstr "Kopen"
+
+#: includes/cmc-single-shortcode.php:594
+msgid "Sell"
+msgstr "Verkopen"
+
+#: includes/cmc-single-shortcode.php:637
+msgid "From"
+msgstr "Van"
+
+#: includes/cmc-single-shortcode.php:638
+msgid "To"
+msgstr "Naar"
+
+#: includes/cmc-single-shortcode.php:639
+msgid "Zoom"
+msgstr "zoemen"
+
+#: includes/cmc-single-shortcode.php:695
+msgid "Block"
+msgstr "Blok"
+
+#: includes/cmc-single-shortcode.php:695
+msgid "Explorer"
+msgstr "Ontdekkingsreiziger"
+
+#: includes/cmc-single-shortcode.php:698
+msgid "Official"
+msgstr ""
+"Officieel\n"
+
+#: includes/cmc-single-shortcode.php:698
+msgid "Website"
+msgstr "Website"
+
+#: includes/cmc-single-shortcode.php:701
+msgid "White"
+msgstr "Wit"
+
+#: includes/cmc-single-shortcode.php:701
+msgid "Paper"
+msgstr "Papier"
+
+#: includes/cmc-single-shortcode.php:704
+msgid "YouTube"
+msgstr "YouTube"
+
+#: includes/cmc-single-shortcode.php:710
+msgid "Github"
+msgstr "Github"
+
+#: includes/cmc-single-shortcode.php:713
+msgid "Reddit"
+msgstr "reddit"
+
+#: includes/cmc-single-shortcode.php:716
+msgid "Twitter"
+msgstr "tjilpen"
+
+#: includes/cmc-single-shortcode.php:719
+msgid "Facebook"
+msgstr "Facebook"
+
+#: includes/pagination.class.php:161 includes/pagination.class.php:165
+msgid "First"
+msgstr ""
+"Eerste\n"
+
+#: includes/pagination.class.php:173 includes/pagination.class.php:176
+msgid "Prev"
+msgstr "Vorige"
+
+#: includes/pagination.class.php:204 includes/pagination.class.php:207
+msgid "Last"
+msgstr ""
+"Laatste\n"
+
+#. Description of the plugin
+msgid ""
+"Create a website similar like CoinMarketCap.com using this <strong>Coin "
+"Market Cap & Crypto Prices</strong> WordPress plugin. This crypto plugin "
+"uses coinmarketcap.com api to grab live crypto prices, market cap, charts "
+"and other data related to cryptocurrency"
+msgstr ""
+
+#. Author of the plugin
+msgid "Cool Plugins Team"
+msgstr "Cool Plug-ins Team"
+
+#. Author URI of the plugin
+msgid "https://coolplugins.net/"
+msgstr ""
